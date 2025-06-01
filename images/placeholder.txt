@@ -1,0 +1,25 @@
+此文件夹用于存放网站图片资源。
+
+您需要添加以下图片文件：
+1. showcase.jpg - 首页展示背景图片 (推荐尺寸: 1920x1080px)，建议使用创意/科技相关的年轻活力图片
+2. service1.jpg, service2.jpg, service3.jpg, service4.jpg, service5.jpg - 项目缩略图 (推荐尺寸: 600x400px)
+   - service1.jpg - Apass密码管理小程序截图
+   - service2.jpg - Lovalovea情侣空间截图
+   - service3.jpg - 字符大师微信小程序截图
+   - service4.jpg - ASCII艺术桌面版Qt应用截图
+   - service5.jpg - UDP交流互动软件截图
+3. apass-detail.jpg - Apass项目详情图 (推荐尺寸: 800x600px)
+4. lovalovea-detail.jpg - Lovalovea项目详情图 (推荐尺寸: 800x600px)
+5. ascii-wx-detail.jpg - 字符大师微信小程序详情图 (推荐尺寸: 800x600px)
+6. ascii-qt-detail.jpg - ASCII艺术桌面版详情图 (推荐尺寸: 800x600px)，建议展示视频处理和帧转换功能
+7. julia-detail.jpg - UDP交流互动软件详情图 (推荐尺寸: 800x600px)，建议展示网络通信界面和绘图共享功能
+8. team1.jpg, team2.jpg, team3.jpg - 团队成员照片 (推荐尺寸: 400x400px)
+9. favicon.ico - 网站图标 (推荐尺寸: 32x32px)
+
+注意事项：
+- 项目截图应该清晰展示应用界面和主要功能
+- 对于团队成员照片，可以使用适当的人物照片，或者使用抽象的头像图片
+- 所有图片建议采用明亮、现代的风格，体现年轻团队的活力和创造力
+- 请确保所有图片都已获得适当的使用权限或版权
+- ASCII艺术桌面版的截图应突出其视频处理能力和Qt界面特点
+- UDP交流互动软件的截图应强调网络通信功能，展示用户界面和实时数据传输特性 
