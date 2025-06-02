@@ -347,17 +347,19 @@
                             <input type="text" name="name" placeholder="您的姓名" required>
                         </div>
                         <div class="form-group">
-                            <input type="email" name="_replyto" placeholder="您的邮箱" required>
+                            <input type="email" name="email" placeholder="您的邮箱" required>
+                            <small class="form-text" style="color: #777; font-size: 0.85rem; margin-top: 5px;">请输入有效的邮箱地址，如: example@domain.com</small>
                         </div>
                         <div class="form-group">
-                            <input type="text" name="_subject" placeholder="主题" value="Loralore网站留言">
+                            <input type="text" name="subject" placeholder="主题" value="Loralore网站留言">
                         </div>
                         <div class="form-group">
                             <textarea name="message" placeholder="您的留言" required></textarea>
                         </div>
                         <input type="hidden" name="_next" value="https://sippyyuhao.github.io/Loralore/thanks.html">
                         <input type="hidden" name="_cc" value="2684373547@qq.com">
-                        <button type="submit" class="btn btn-primary">发送消息</button>
+                        <div id="form-status" style="margin-bottom: 15px; color: #d9534f; display: none;"></div>
+                        <button type="submit" class="btn btn-primary" id="submitBtn">发送消息</button>
                     </form>
                 </div>
             </div>
@@ -407,11 +409,29 @@
             
             // 表单提交处理
             const contactForm = document.getElementById('contactForm');
+            const formStatus = document.getElementById('form-status');
+            const submitBtn = document.getElementById('submitBtn');
+            
             if (contactForm) {
                 contactForm.addEventListener('submit', function(e) {
+                    const emailInput = contactForm.querySelector('input[type="email"]');
+                    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                    
+                    // 邮箱格式验证
+                    if (!emailRegex.test(emailInput.value)) {
+                        e.preventDefault();
+                        formStatus.textContent = '请输入有效的邮箱地址';
+                        formStatus.style.display = 'block';
+                        emailInput.focus();
+                        return false;
+                    }
+                    
+                    // 表单提交时显示加载状态
+                    submitBtn.textContent = '发送中...';
+                    submitBtn.disabled = true;
+                    
                     // FormSpree会处理实际的提交
                     console.log('表单已提交');
-                    // 这里可以添加提交后的UI反馈
                 });
             }
         });
