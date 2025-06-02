@@ -349,17 +349,19 @@
                             <input type="text" name="name" placeholder="您的姓名" required>
                         </div>
                         <div class="form-group">
-                            <input type="email" name="email" placeholder="您的邮箱" required>
+                            <input type="email" name="_replyto" placeholder="您的邮箱" required>
                             <small class="form-text" style="color: #777; font-size: 0.85rem; margin-top: 5px;">请输入有效的邮箱地址，如: example@domain.com</small>
                         </div>
                         <div class="form-group">
-                            <input type="text" name="subject" placeholder="主题" value="Loralore网站留言">
+                            <input type="text" name="_subject" placeholder="主题" value="Loralore网站留言">
                         </div>
                         <div class="form-group">
                             <textarea name="message" placeholder="您的留言" required></textarea>
                         </div>
+                        <!-- FormSpree配置 - 确保消息发送到开发者QQ邮箱 -->
                         <input type="hidden" name="_next" value="https://sippyyuhao.github.io/Loralore/thanks.html">
-                        <input type="hidden" name="_cc" value="2684373547@qq.com">
+                        <input type="hidden" name="_format" value="plain">
+                        <input type="hidden" name="_autoresponse" value="感谢您联系Loralore团队，我们已收到您的留言，会尽快回复您。">
                         <div id="form-status" style="margin-bottom: 15px; color: #d9534f; display: none;"></div>
                         <button type="submit" class="btn btn-primary" id="submitBtn">发送消息</button>
                     </form>
