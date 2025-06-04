@@ -250,7 +250,7 @@ function initGallery() {
             target: "#project-ascii-wx"
         },
         {
-            img: "./images/service4.jpg",
+            img: "./images/service4.png",
             title: "ASCII艺术桌面版",
             description: "桌面端ASCII艺术转换工具，支持图片和视频处理，视频实时转换为字符动画",
             tags: ["桌面应用", "Qt", "多媒体"],
@@ -264,7 +264,7 @@ function initGallery() {
             target: "#project-julia"
         },
         {
-            img: "./images/service5.jpg",
+            img: "./images/service6.jpg",
             title: "微积分计算器",
             description: "基于MATLAB开发的高级微积分计算工具，支持复杂函数求导、积分、图形可视化",
             tags: ["数学工具", "MATLAB", "教育类"],

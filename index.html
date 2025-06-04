@@ -30,8 +30,8 @@
 
         .equipment-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
             margin-top: 40px;
         }
 
@@ -104,13 +104,15 @@
             text-align: center;
         }
 
-        @media (max-width: 768px) {
+        @media (max-width: 992px) {
+            .equipment-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 576px) {
             .equipment-grid {
                 grid-template-columns: 1fr;
-            }
-            
-            .equipment-image {
-                height: 200px;
             }
         }
     </style>
@@ -127,7 +129,7 @@
                 <ul>
                     <li class="current"><a href="index.html">首页</a></li>
                     <li><a href="#projects">项目</a></li>
-                    <li><a href="#equipment">设备</a></li>
+                    <li><a href="#equipment">3D打印资源</a></li>
                     <li><a href="#team">团队</a></li>
                     <li><a href="#contact">联系我们</a></li>
                 </ul>
@@ -171,7 +173,7 @@
 
     <section id="projects">
         <div class="container">
-            <h2 class="section-title">我们的项目</h2>
+            <h2 class="section-title">团队项目</h2>
             
             <!-- 3D旋转画廊展示 -->
             <!-- 注意：画廊内容将由JavaScript动态生成 -->
@@ -354,9 +356,9 @@
 
     <section id="equipment">
         <div class="container">
-            <h2 class="section-title">我们的设备</h2>
+            <h2 class="section-title">3D打印资源</h2>
             <div class="equipment-intro">
-                <p class="equipment-description">Loralore工作室配备多台专业3D打印设备，支持团队从产品原型设计到最终实物成型的全流程创新。我们的设备涵盖不同特性与应用场景，为项目开发提供强大硬件支持。</p>
+                <p class="equipment-description">Loralore工作室配备多台专业3D打印设备，支持团队从产品原型设计到最终实物成型的全流程创新。我们的资源涵盖FDM打印、激光雕刻等不同工艺，为创意项目提供强大硬件支持。</p>
             </div>
             
             <div class="equipment-grid">
@@ -366,22 +368,6 @@
                     </div>
                     <div class="equipment-info">
                         <h3>创想三维Ender3v3ke</h3>
-                        <p class="equipment-slogan">高性价比实用型打印机</p>
-                        <div class="equipment-specs">
-                            <div class="spec-item">
-                                <i class="fa fa-arrows"></i>
-                                <span>打印尺寸：220×220×250mm</span>
-                            </div>
-                            <div class="spec-item">
-                                <i class="fa fa-tachometer"></i>
-                                <span>打印速度：高达150mm/s</span>
-                            </div>
-                            <div class="spec-item">
-                                <i class="fa fa-wrench"></i>
-                                <span>特点：直接驱动挤出，静音打印</span>
-                            </div>
-                        </div>
-                        <p>作为工作室的主力打印设备，Ender3v3ke提供稳定可靠的日常打印服务，适合大多数功能性零件与模型制作。</p>
                     </div>
                 </div>
                 
@@ -391,47 +377,15 @@
                     </div>
                     <div class="equipment-info">
                         <h3>拓竹A1mini</h3>
-                        <p class="equipment-slogan">智能激光雕刻与切割</p>
-                        <div class="equipment-specs">
-                            <div class="spec-item">
-                                <i class="fa fa-arrows"></i>
-                                <span>工作尺寸：400×400mm</span>
-                            </div>
-                            <div class="spec-item">
-                                <i class="fa fa-bolt"></i>
-                                <span>激光功率：5W/10W可选</span>
-                            </div>
-                            <div class="spec-item">
-                                <i class="fa fa-wrench"></i>
-                                <span>特点：高精度雕刻，多材料兼容</span>
-                            </div>
-                        </div>
-                        <p>拓竹A1mini激光设备为团队提供了木材、亚克力、皮革等多种材料的精细雕刻能力，扩展了我们的制作可能性。</p>
                     </div>
                 </div>
                 
                 <div class="equipment-item">
                     <div class="equipment-image">
-                        <img src="./images/拓竹p1s.png" alt="拓竹p1s">
+                        <img src="./images/拓竹p1s.png" alt="拓竹P1S">
                     </div>
                     <div class="equipment-info">
                         <h3>拓竹P1S</h3>
-                        <p class="equipment-slogan">多材料高精度打印</p>
-                        <div class="equipment-specs">
-                            <div class="spec-item">
-                                <i class="fa fa-arrows"></i>
-                                <span>打印尺寸：256×256×256mm</span>
-                            </div>
-                            <div class="spec-item">
-                                <i class="fa fa-tachometer"></i>
-                                <span>打印精度：±0.1mm</span>
-                            </div>
-                            <div class="spec-item">
-                                <i class="fa fa-wrench"></i>
-                                <span>特点：多材料自动换料，AI摄像监控</span>
-                            </div>
-                        </div>
-                        <p>拓竹P1S是我们的高精度打印设备，配备智能材料识别系统和AI摄像监控功能，适合精细模型与复杂结构的打印工作。</p>
                     </div>
                 </div>
                 
@@ -441,22 +395,6 @@
                     </div>
                     <div class="equipment-info">
                         <h3>Tink3D T1</h3>
-                        <p class="equipment-slogan">工业级多材料打印系统</p>
-                        <div class="equipment-specs">
-                            <div class="spec-item">
-                                <i class="fa fa-arrows"></i>
-                                <span>打印尺寸：300×300×350mm</span>
-                            </div>
-                            <div class="spec-item">
-                                <i class="fa fa-cubes"></i>
-                                <span>材料系统：四色自动切换</span>
-                            </div>
-                            <div class="spec-item">
-                                <i class="fa fa-wrench"></i>
-                                <span>特点：闭环控制，高温材料兼容</span>
-                            </div>
-                        </div>
-                        <p>Tink3D T1是我们的高端设备，支持高温工程材料打印，四色自动切换系统让多色多材料打印变得简单，为团队提供工业级打印能力。</p>
                     </div>
                 </div>
             </div>
@@ -465,7 +403,7 @@
 
     <section id="team">
         <div class="container">
-            <h2 class="section-title">我们的团队</h2>
+            <h2 class="section-title">团队成员</h2>
             <div class="team-intro">
                 <p class="team-description">Loralore是一支充满活力的跨校学生组成的队伍。由广东海洋大学、广东外语外贸大学、华南师范大学、湖北科技学院的热爱技术、分享、创造的同学们共同维护。</p>
             </div>
@@ -579,7 +517,7 @@
                     <div class="footer-links-column">
                         <h3>快速链接</h3>
                         <a href="#projects">项目展示</a>
-                        <a href="#equipment">设备展示</a>
+                        <a href="#equipment">3D打印资源</a>
                         <a href="#team">团队介绍</a>
                         <a href="#contact">联系我们</a>
                     </div>
