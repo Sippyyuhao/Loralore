@@ -6,22 +6,114 @@
     <title>Loralore - 洛尔工作室 | 创新技术解决方案</title>
     <link rel="stylesheet" href="./css/style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css">
-    <!-- Favicon设置 -->
-    <link rel="icon" href="favicon.ico" type="image/x-icon">
-    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-    <meta name="description" content="Loralore是由一群充满激情的学生组成的技术团队，专注于创新解决方案的开发与实现。">
-    
-    <!-- 百度统计代码 -->
-    <script>
-    var _hmt = _hmt || [];
-    (function() {
-      var hm = document.createElement("script");
-      hm.src = "https://hm.baidu.com/hm.js?eeb28021804dbaae20ca63e9b8f96bf9";
-      var s = document.getElementsByTagName("script")[0]; 
-      s.parentNode.insertBefore(hm, s);
-    })();
-    </script>
-    <!-- 百度统计结束 -->
+    <link rel="icon" href="./images/favicon.ico" type="image/x-icon">
+    <meta name="description" content="洛尔科技工作室是由一群充满激情的学生创业者组成的技术团队，专注于创新解决方案的开发与实现。">
+    <style>
+        /* 设备展示部分样式 */
+        #equipment {
+            background-color: #f9f9f9;
+            padding: 60px 0;
+        }
+
+        .equipment-intro {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .equipment-description {
+            max-width: 800px;
+            margin: 0 auto;
+            font-size: 1.1em;
+            color: #555;
+            line-height: 1.6;
+        }
+
+        .equipment-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .equipment-item {
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .equipment-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+        }
+
+        .equipment-image {
+            height: 250px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .equipment-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            transition: transform 0.5s;
+            padding: 15px;
+            background-color: #f5f5f5;
+        }
+
+        .equipment-item:hover .equipment-image img {
+            transform: scale(1.05);
+        }
+
+        .equipment-info {
+            padding: 20px;
+        }
+
+        .equipment-info h3 {
+            margin-top: 0;
+            font-size: 1.5em;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .equipment-slogan {
+            color: #666;
+            font-style: italic;
+            margin-bottom: 15px;
+        }
+
+        .equipment-specs {
+            margin: 20px 0;
+            padding: 15px;
+            background-color: #f5f5f5;
+            border-radius: 5px;
+        }
+
+        .spec-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+
+        .spec-item i {
+            color: var(--primary-color, #5c6bc0);
+            margin-right: 10px;
+            width: 20px;
+            text-align: center;
+        }
+
+        @media (max-width: 768px) {
+            .equipment-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .equipment-image {
+                height: 200px;
+            }
+        }
+    </style>
 </head>
 <body>
     <header id="header">
@@ -35,6 +127,7 @@
                 <ul>
                     <li class="current"><a href="index.html">首页</a></li>
                     <li><a href="#projects">项目</a></li>
+                    <li><a href="#equipment">设备</a></li>
                     <li><a href="#team">团队</a></li>
                     <li><a href="#contact">联系我们</a></li>
                 </ul>
@@ -49,9 +142,9 @@
         <div id="particles-js"></div>
         <div class="container">
             <div class="showcase-content">
-                <h1>用技术改变生活</h1>
-                <p>致力于将创意转化为现实</p>
-                <a href="#projects" class="btn btn-primary">深入了解</a>
+                <h1>用创意改变世界</h1>
+                <p>我们是一群热爱技术的学生创业者，致力于将创意转化为现实</p>
+                <a href="#projects" class="btn btn-primary">查看我们的项目</a>
             </div>
         </div>
     </section>
@@ -259,6 +352,117 @@
         </div>
     </section>
 
+    <section id="equipment">
+        <div class="container">
+            <h2 class="section-title">我们的设备</h2>
+            <div class="equipment-intro">
+                <p class="equipment-description">Loralore工作室配备多台专业3D打印设备，支持团队从产品原型设计到最终实物成型的全流程创新。我们的设备涵盖不同特性与应用场景，为项目开发提供强大硬件支持。</p>
+            </div>
+            
+            <div class="equipment-grid">
+                <div class="equipment-item">
+                    <div class="equipment-image">
+                        <img src="./images/创想三维Ender3v3ke.png" alt="创想三维Ender3v3ke">
+                    </div>
+                    <div class="equipment-info">
+                        <h3>创想三维Ender3v3ke</h3>
+                        <p class="equipment-slogan">高性价比实用型打印机</p>
+                        <div class="equipment-specs">
+                            <div class="spec-item">
+                                <i class="fa fa-arrows"></i>
+                                <span>打印尺寸：220×220×250mm</span>
+                            </div>
+                            <div class="spec-item">
+                                <i class="fa fa-tachometer"></i>
+                                <span>打印速度：高达150mm/s</span>
+                            </div>
+                            <div class="spec-item">
+                                <i class="fa fa-wrench"></i>
+                                <span>特点：直接驱动挤出，静音打印</span>
+                            </div>
+                        </div>
+                        <p>作为工作室的主力打印设备，Ender3v3ke提供稳定可靠的日常打印服务，适合大多数功能性零件与模型制作。</p>
+                    </div>
+                </div>
+                
+                <div class="equipment-item">
+                    <div class="equipment-image">
+                        <img src="./images/拓竹A1mini.png" alt="拓竹A1mini">
+                    </div>
+                    <div class="equipment-info">
+                        <h3>拓竹A1mini</h3>
+                        <p class="equipment-slogan">智能激光雕刻与切割</p>
+                        <div class="equipment-specs">
+                            <div class="spec-item">
+                                <i class="fa fa-arrows"></i>
+                                <span>工作尺寸：400×400mm</span>
+                            </div>
+                            <div class="spec-item">
+                                <i class="fa fa-bolt"></i>
+                                <span>激光功率：5W/10W可选</span>
+                            </div>
+                            <div class="spec-item">
+                                <i class="fa fa-wrench"></i>
+                                <span>特点：高精度雕刻，多材料兼容</span>
+                            </div>
+                        </div>
+                        <p>拓竹A1mini激光设备为团队提供了木材、亚克力、皮革等多种材料的精细雕刻能力，扩展了我们的制作可能性。</p>
+                    </div>
+                </div>
+                
+                <div class="equipment-item">
+                    <div class="equipment-image">
+                        <img src="./images/拓竹p1s.png" alt="拓竹p1s">
+                    </div>
+                    <div class="equipment-info">
+                        <h3>拓竹P1S</h3>
+                        <p class="equipment-slogan">多材料高精度打印</p>
+                        <div class="equipment-specs">
+                            <div class="spec-item">
+                                <i class="fa fa-arrows"></i>
+                                <span>打印尺寸：256×256×256mm</span>
+                            </div>
+                            <div class="spec-item">
+                                <i class="fa fa-tachometer"></i>
+                                <span>打印精度：±0.1mm</span>
+                            </div>
+                            <div class="spec-item">
+                                <i class="fa fa-wrench"></i>
+                                <span>特点：多材料自动换料，AI摄像监控</span>
+                            </div>
+                        </div>
+                        <p>拓竹P1S是我们的高精度打印设备，配备智能材料识别系统和AI摄像监控功能，适合精细模型与复杂结构的打印工作。</p>
+                    </div>
+                </div>
+                
+                <div class="equipment-item">
+                    <div class="equipment-image">
+                        <img src="./images/Tink3D t1.png" alt="Tink3D T1">
+                    </div>
+                    <div class="equipment-info">
+                        <h3>Tink3D T1</h3>
+                        <p class="equipment-slogan">工业级多材料打印系统</p>
+                        <div class="equipment-specs">
+                            <div class="spec-item">
+                                <i class="fa fa-arrows"></i>
+                                <span>打印尺寸：300×300×350mm</span>
+                            </div>
+                            <div class="spec-item">
+                                <i class="fa fa-cubes"></i>
+                                <span>材料系统：四色自动切换</span>
+                            </div>
+                            <div class="spec-item">
+                                <i class="fa fa-wrench"></i>
+                                <span>特点：闭环控制，高温材料兼容</span>
+                            </div>
+                        </div>
+                        <p>Tink3D T1是我们的高端设备，支持高温工程材料打印，四色自动切换系统让多色多材料打印变得简单，为团队提供工业级打印能力。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <section id="team">
         <div class="container">
             <h2 class="section-title">我们的团队</h2>
@@ -326,15 +530,15 @@
                 <div class="contact-info">
                     <div class="contact-item">
                         <i class="fa fa-map-marker"></i>
-                        <p>地址：四校联合</p>
+                        <p>地址：四校联合工作室</p>
                     </div>
                     <div class="contact-item">
                         <i class="fa fa-phone"></i>
-                        <p>电话：+86 13413074193</p>
+                        <p>qq：2684373547</p>
                     </div>
                     <div class="contact-item">
                         <i class="fa fa-envelope"></i>
-                        <p>邮箱：sippyyuhao@hotmail.com</p>
+                        <p>邮箱：sippyyuhao@hotmail.com </p>
                     </div>
                     <div class="social-links">
                         <a href="#" class="social-link"><i class="fa fa-weixin"></i></a>
@@ -344,26 +548,20 @@
                     </div>
                 </div>
                 <div class="contact-form">
-                    <form id="contactForm" action="https://formspree.io/f/mjkrvkve" method="POST">
+                    <form id="contactForm">
                         <div class="form-group">
                             <input type="text" name="name" placeholder="您的姓名" required>
                         </div>
                         <div class="form-group">
-                            <input type="email" name="_replyto" placeholder="您的邮箱" required>
-                            <small class="form-text" style="color: #777; font-size: 0.85rem; margin-top: 5px;">请输入有效的邮箱地址，如: example@domain.com</small>
+                            <input type="email" name="email" placeholder="您的邮箱" required>
                         </div>
                         <div class="form-group">
-                            <input type="text" name="_subject" placeholder="主题" value="Loralore网站留言">
+                            <input type="text" name="subject" placeholder="主题">
                         </div>
                         <div class="form-group">
                             <textarea name="message" placeholder="您的留言" required></textarea>
                         </div>
-                        <!-- FormSpree配置 - 确保消息发送到开发者QQ邮箱 -->
-                        <input type="hidden" name="_next" value="https://sippyyuhao.github.io/Loralore/thanks.html">
-                        <input type="hidden" name="_format" value="plain">
-                        <input type="hidden" name="_autoresponse" value="感谢您联系Loralore团队，我们已收到您的留言，会尽快回复您。">
-                        <div id="form-status" style="margin-bottom: 15px; color: #d9534f; display: none;"></div>
-                        <button type="submit" class="btn btn-primary" id="submitBtn">发送消息</button>
+                        <button type="submit" class="btn btn-primary">发送消息</button>
                     </form>
                 </div>
             </div>
@@ -381,6 +579,7 @@
                     <div class="footer-links-column">
                         <h3>快速链接</h3>
                         <a href="#projects">项目展示</a>
+                        <a href="#equipment">设备展示</a>
                         <a href="#team">团队介绍</a>
                         <a href="#contact">联系我们</a>
                     </div>
@@ -394,7 +593,7 @@
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2025 Loralore 团队. 保留所有权利.</p>
+                <p>&copy; 2025 Loralore. 保留所有权利.</p>
             </div>
         </div>
     </footer>
@@ -409,34 +608,6 @@
                 particlesJS("particles-js", particlesConfig);
             } else {
                 console.error("particles.js 未加载");
-            }
-            
-            // 表单提交处理
-            const contactForm = document.getElementById('contactForm');
-            const formStatus = document.getElementById('form-status');
-            const submitBtn = document.getElementById('submitBtn');
-            
-            if (contactForm) {
-                contactForm.addEventListener('submit', function(e) {
-                    const emailInput = contactForm.querySelector('input[type="email"]');
-                    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-                    
-                    // 邮箱格式验证
-                    if (!emailRegex.test(emailInput.value)) {
-                        e.preventDefault();
-                        formStatus.textContent = '请输入有效的邮箱地址';
-                        formStatus.style.display = 'block';
-                        emailInput.focus();
-                        return false;
-                    }
-                    
-                    // 表单提交时显示加载状态
-                    submitBtn.textContent = '发送中...';
-                    submitBtn.disabled = true;
-                    
-                    // FormSpree会处理实际的提交
-                    console.log('表单已提交');
-                });
             }
         });
     </script>
