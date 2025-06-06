@@ -80,7 +80,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
             
             // FormSpree提交
-            const formSubmitURL = "https://formspree.io/f/xjvnkkvo"; // 替换为你的FormSpree表单ID
+            const formSubmitURL = "https://formspree.io/f/mjkrvkve"; // FormSpree表单ID
             
             // 表单提交中状态
             const submitButton = contactForm.querySelector('button[type="submit"]');
