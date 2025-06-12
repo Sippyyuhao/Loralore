@@ -79,45 +79,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 return;
             }
             
-            // FormSpree提交
-            const formSubmitURL = "https://formspree.io/f/mjkrvkve"; // FormSpree表单ID
-            
-            // 表单提交中状态
-            const submitButton = contactForm.querySelector('button[type="submit"]');
-            const originalButtonText = submitButton.textContent;
-            submitButton.disabled = true;
-            submitButton.textContent = '提交中...';
-            
-            fetch(formSubmitURL, {
-                method: 'POST',
-                body: formData,
-                headers: {
-                    'Accept': 'application/json'
-                }
-            })
-            .then(response => {
-                if (response.ok) {
-                    return response.json();
-                }
-                throw new Error('网络响应失败');
-            })
-            .then(data => {
-                // 提交成功
-                contactForm.reset();
-                
-                // 重定向到感谢页面
-                window.location.href = './thanks.html';
-            })
-            .catch(error => {
-                // 处理错误
-                console.error('提交错误:', error);
-                alert('抱歉，表单提交失败，请稍后再试或通过其他方式联系我们。');
-            })
-            .finally(() => {
-                // 恢复按钮状态
-                submitButton.disabled = false;
-                submitButton.textContent = originalButtonText;
-            });
+            // 模拟表单提交成功
+            alert('感谢您的留言！我们会尽快回复您。');
+            contactForm.reset();
         });
     }
 

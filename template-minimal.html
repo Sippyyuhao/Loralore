@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>极简风格模板 - Loralore工作室</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css">
+    <style>
+        :root {
+            --primary-color: #5c6bc0;
+            --text-color: #333;
+            --light-color: #f8f9fa;
+            --border-color: #eaeaea;
+            --accent-color: #5c6bc0;
+            --font-sans: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: var(--font-sans);
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: #fff;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* 导航栏 */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+        
+        .logo a {
+            text-decoration: none;
+            color: var(--text-color);
+        }
+        
+        .logo span {
+            color: var(--primary-color);
+        }
+        
+        .nav-links {
+            display: flex;
+        }
+        
+        .nav-links li {
+            list-style: none;
+            margin-left: 30px;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-color);
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+        
+        /* 英雄区 */
+        .hero {
+            padding: 100px 0;
+            text-align: center;
+        }
+        
+        .hero-content h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            font-weight: 300;
+        }
+        
+        .hero-content p {
+            font-size: 20px;
+            max-width: 600px;
+            margin: 0 auto 40px;
+            color: #666;
+        }
+        
+        /* 模板预览 */
+        .template-preview {
+            padding: 60px 0;
+            background-color: var(--light-color);
+        }
+        
+        .preview-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .preview-header h2 {
+            font-size: 36px;
+            font-weight: 300;
+            margin-bottom: 20px;
+        }
+        
+        .preview-image {
+            max-width: 80%;
+            margin: 0 auto;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        
+        .preview-image img {
+            width: 100%;
+            display: block;
+        }
+        
+        /* 特点 */
+        .features {
+            padding: 80px 0;
+        }
+        
+        .features-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .features-header h2 {
+            font-size: 36px;
+            font-weight: 300;
+            margin-bottom: 20px;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+        
+        .feature-item {
+            text-align: center;
+            padding: 30px;
+        }
+        
+        .feature-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 20px;
+            background-color: var(--light-color);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 30px;
+            color: var(--primary-color);
+        }
+        
+        .feature-item h3 {
+            font-size: 20px;
+            margin-bottom: 15px;
+        }
+        
+        .feature-item p {
+            color: #666;
+        }
+        
+        /* 价格 */
+        .pricing {
+            padding: 80px 0;
+            background-color: var(--light-color);
+            text-align: center;
+        }
+        
+        .pricing-header {
+            margin-bottom: 40px;
+        }
+        
+        .pricing-header h2 {
+            font-size: 36px;
+            font-weight: 300;
+            margin-bottom: 20px;
+        }
+        
+        .price-tag {
+            font-size: 64px;
+            font-weight: 300;
+            color: var(--primary-color);
+            margin: 20px 0;
+        }
+        
+        .price-tag small {
+            font-size: 20px;
+        }
+        
+        .pricing-features {
+            max-width: 500px;
+            margin: 0 auto 30px;
+            list-style: none;
+        }
+        
+        .pricing-features li {
+            padding: 10px 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .pricing-features li:last-child {
+            border-bottom: none;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background-color: var(--primary-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+        
+        .btn:hover {
+            background-color: #4a59a7;
+            transform: translateY(-2px);
+        }
+        
+        /* 底部 */
+        .footer {
+            padding: 40px 0;
+            text-align: center;
+            color: #666;
+        }
+        
+        .back-link {
+            margin-top: 20px;
+            display: block;
+        }
+        
+        .back-link a {
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+        
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+            }
+            
+            .nav-links {
+                margin-top: 20px;
+            }
+            
+            .nav-links li {
+                margin: 0 10px;
+            }
+            
+            .hero-content h1 {
+                font-size: 36px;
+            }
+            
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <div class="logo">
+                    <a href="index.html"><span>Lora</span>lore</a>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="index.html">首页</a></li>
+                    <li><a href="index.html#services">服务</a></li>
+                    <li><a href="index.html#equipment">3D打印</a></li>
+                    <li><a href="index.html#team">团队</a></li>
+                    <li><a href="index.html#contact">联系我们</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>极简风格模板</h1>
+                <p>简约不简单，专注于内容的呈现，让用户获得纯粹的浏览体验</p>
+            </div>
+        </div>
+    </section>
+    
+    <section class="template-preview">
+        <div class="container">
+            <div class="preview-header">
+                <h2>设计展示</h2>
+                <p>清晰的层次结构，优雅的排版，高质量的视觉元素</p>
+            </div>
+            <div class="preview-image">
+                <img src="https://colorlib.com/wp/wp-content/uploads/sites/2/minimal-bootstrap-resume-template.png.webp" alt="极简风格模板预览">
+            </div>
+        </div>
+    </section>
+    
+    <section class="features">
+        <div class="container">
+            <div class="features-header">
+                <h2>设计特点</h2>
+                <p>极简风格的核心设计理念和元素</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <i class="fa fa-paint-brush"></i>
+                    </div>
+                    <h3>简洁设计</h3>
+                    <p>去除冗余元素，保留最核心的内容，减少用户视觉负担</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <i class="fa fa-font"></i>
+                    </div>
+                    <h3>精致排版</h3>
+                    <p>精心设计的字体搭配与排版，提升阅读体验</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <i class="fa fa-th-large"></i>
+                    </div>
+                    <h3>网格布局</h3>
+                    <p>基于网格的页面布局，整齐有序，结构清晰</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <i class="fa fa-picture-o"></i>
+                    </div>
+                    <h3>高质量图片</h3>
+                    <p>精选高品质图片资源，提升网站整体质感</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <i class="fa fa-arrows-alt"></i>
+                    </div>
+                    <h3>留白设计</h3>
+                    <p>合理使用空白区域，让页面元素有呼吸感</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <i class="fa fa-mobile"></i>
+                    </div>
+                    <h3>响应式设计</h3>
+                    <p>完美适配各种设备，提供一致的用户体验</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="pricing">
+        <div class="container">
+            <div class="pricing-header">
+                <h2>价格实惠</h2>
+                <p>高品质网站模板，为四校学生提供专属优惠</p>
+            </div>
+            <div class="price-tag">
+                ¥19.9 <small>元</small>
+            </div>
+            <ul class="pricing-features">
+                <li><i class="fa fa-check"></i> 完整HTML/CSS源码</li>
+                <li><i class="fa fa-check"></i> 响应式设计</li>
+                <li><i class="fa fa-check"></i> 个性化定制</li>
+                <li><i class="fa fa-check"></i> 一次性付款</li>
+                <li><i class="fa fa-check"></i> 3天快速交付</li>
+            </ul>
+            <a href="index.html#contact" class="btn">立即订购</a>
+        </div>
+    </section>
+    
+    <footer class="footer">
+        <div class="container">
+            <p>© 2025 Loralore工作室. 保留所有权利.</p>
+            <div class="back-link">
+                <a href="index.html#services"><i class="fa fa-arrow-left"></i> 返回模板选择</a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html> 

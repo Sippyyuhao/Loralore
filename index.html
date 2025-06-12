@@ -115,6 +115,260 @@
                 grid-template-columns: 1fr;
             }
         }
+        
+        /* 服务展示部分样式 */
+        #services {
+            background-color: #f5f7fa;
+            padding: 60px 0;
+        }
+
+        .services-intro {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .services-description {
+            max-width: 800px;
+            margin: 0 auto;
+            font-size: 1.1em;
+            color: #555;
+            line-height: 1.6;
+        }
+
+        .service-highlight {
+            display: flex;
+            justify-content: center;
+            padding: 20px 0;
+        }
+
+        .service-card {
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+            overflow: hidden;
+            width: 100%;
+            max-width: 500px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.18);
+        }
+
+        .service-header {
+            background: var(--primary-color, #5c6bc0);
+            color: white;
+            padding: 25px;
+            text-align: center;
+            position: relative;
+        }
+
+        .service-header h3 {
+            margin: 0;
+            font-size: 1.8em;
+            margin-bottom: 10px;
+        }
+
+        .service-price {
+            font-size: 2.5em;
+            font-weight: bold;
+        }
+
+        .service-content {
+            padding: 30px;
+        }
+
+        .service-features {
+            margin-bottom: 30px;
+        }
+
+        .service-feature {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            font-size: 1.1em;
+        }
+
+        .service-feature i {
+            color: var(--primary-color, #5c6bc0);
+            margin-right: 10px;
+            font-size: 1.2em;
+        }
+
+        .service-action {
+            text-align: center;
+        }
+
+        .service-action .btn {
+            padding: 12px 30px;
+            font-size: 1.1em;
+        }
+
+        @media (max-width: 768px) {
+            .service-card {
+                max-width: 90%;
+            }
+        }
+        
+        /* 模板展示样式 */
+        .templates-section {
+            margin-top: 60px;
+        }
+        
+        .templates-title {
+            text-align: center;
+            font-size: 1.8em;
+            margin-bottom: 10px;
+        }
+        
+        .templates-description {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 40px;
+            color: #666;
+        }
+        
+        .template-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .template-item {
+            background: #fff;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .template-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+        
+        .template-preview {
+            height: 200px;
+            position: relative;
+            overflow: hidden;
+            background-color: #f5f5f5;
+        }
+        
+        .template-preview img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .template-item:hover .template-preview img {
+            transform: scale(1.05);
+        }
+        
+        .template-overlay {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+        }
+        
+        .template-tag {
+            display: inline-block;
+            background-color: var(--primary-color, #5c6bc0);
+            color: white;
+            font-size: 0.8em;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-weight: bold;
+        }
+        
+        .template-info {
+            padding: 20px;
+        }
+        
+        .template-info h4 {
+            margin-top: 0;
+            font-size: 1.4em;
+            margin-bottom: 8px;
+            color: #333;
+        }
+        
+        .template-info p {
+            color: #666;
+            margin-bottom: 15px;
+        }
+        
+        .template-features {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .template-features li {
+            display: flex;
+            align-items: center;
+            margin-bottom: 8px;
+            color: #555;
+        }
+        
+        .template-features li i {
+            color: var(--primary-color, #5c6bc0);
+            margin-right: 8px;
+        }
+        
+        .templates-note {
+            text-align: center;
+            color: #666;
+            font-size: 0.9em;
+            background-color: #f0f2f5;
+            padding: 15px;
+            border-radius: 5px;
+        }
+        
+        .templates-note i {
+            color: var(--primary-color, #5c6bc0);
+            margin-right: 5px;
+        }
+        
+        .template-link {
+            text-decoration: none;
+            color: inherit;
+            display: block;
+            height: 100%;
+        }
+        
+        .template-action {
+            text-align: center;
+            margin-top: 15px;
+        }
+        
+        .btn-view {
+            display: inline-block;
+            background-color: var(--primary-color, #5c6bc0);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+        
+        .template-item:hover .btn-view {
+            background-color: var(--secondary-color, #3949ab);
+            transform: scale(1.05);
+        }
+        
+        @media (max-width: 992px) {
+            .template-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .template-grid {
+                grid-template-columns: 1fr;
+            }
+        }
     </style>
 </head>
 <body>
@@ -129,6 +383,7 @@
                 <ul>
                     <li class="current"><a href="index.html">首页</a></li>
                     <li><a href="#projects">项目</a></li>
+                    <li><a href="#services">服务</a></li>
                     <li><a href="#equipment">3D打印资源</a></li>
                     <li><a href="#team">团队</a></li>
                     <li><a href="#contact">联系我们</a></li>
@@ -354,6 +609,162 @@
         </div>
     </section>
 
+    <section id="services">
+        <div class="container">
+            <h2 class="section-title">我们的服务</h2>
+            <div class="services-intro">
+                <p class="services-description">Loralore工作室提供专业的网站开发服务，让您的创意和业务在线上展现。我们关注用户体验和视觉设计，打造高品质网站。</p>
+            </div>
+            
+            <div class="service-highlight">
+                <div class="service-card">
+                    <div class="service-header">
+                        <h3>19.9元专属网站计划</h3>
+                        <div class="service-price">¥19.9</div>
+                    </div>
+                    <div class="service-content">
+                        <div class="service-features">
+                            <div class="service-feature">
+                                <i class="fa fa-check"></i>
+                                <span>精美响应式单页网站</span>
+                            </div>
+                            <div class="service-feature">
+                                <i class="fa fa-check"></i>
+                                <span>个性化设计与布局</span>
+                            </div>
+                            <div class="service-feature">
+                                <i class="fa fa-check"></i>
+                                <span>基础SEO优化</span>
+                            </div>
+                            <div class="service-feature">
+                                <i class="fa fa-check"></i>
+                                <span>手机端完美适配</span>
+                            </div>
+                            <div class="service-feature">
+                                <i class="fa fa-check"></i>
+                                <span>一次性交付源代码</span>
+                            </div>
+                            <div class="service-feature">
+                                <i class="fa fa-check"></i>
+                                <span>3天快速交付</span>
+                            </div>
+                        </div>
+                        <div class="service-action">
+                            <a href="#contact" class="btn btn-primary">立即咨询</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="templates-section">
+                <h3 class="templates-title">六大风格网站模板</h3>
+                <p class="templates-description">我们提供六种不同风格的现代化布局和样式，点击卡片查看详情，总有一款适合你</p>
+                
+                <div class="template-grid">
+                    <!-- 简约风格 -->
+                    <div class="template-item">
+                        <a href="template-minimal.html" class="template-link">
+                            <div class="template-preview">
+                                <img src="https://images.unsplash.com/photo-1512428559084-b3de39d36a53?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNjU5OTZ8MHwxfHNlYXJjaHw0fHxtaW5pbWFsJTIwd2Vic2l0ZXxlbnwwfHx8fDE2NzI4MDI0NTE&ixlib=rb-4.0.3&q=80&w=400" alt="简约风格">
+                            </div>
+                            <div class="template-info">
+                                <h4>简约风格</h4>
+                                <p>干净、清爽，通过留白和排版突出核心内容。</p>
+                                <div class="template-action">
+                                    <span class="btn-view">查看模板</span>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    
+                    <!-- 高交互风格 -->
+                    <div class="template-item">
+                        <a href="template-interactive.html" class="template-link">
+                            <div class="template-preview">
+                                <img src="https://images.unsplash.com/photo-1558655146-364adaf1fcc9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNjU5OTZ8MHwxfHNlYXJjaHwyfHxpbnRlcmFjdGl2ZSUyMGRlc2lnbnxlbnwwfHx8fDE2NzI4MDI1Mzc&ixlib=rb-4.0.3&q=80&w=400" alt="高交互风格">
+                            </div>
+                            <div class="template-info">
+                                <h4>高交互风格</h4>
+                                <p>充满动效和微交互，为用户带来流畅有趣的体验。</p>
+                                <div class="template-action">
+                                    <span class="btn-view">查看模板</span>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    
+                    <!-- 二次元风格 -->
+                    <div class="template-item">
+                        <a href="template-anime.html" class="template-link">
+                            <div class="template-preview">
+                                <img src="https://images.unsplash.com/photo-1613376023733-0a73375d8628?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNjU5OTZ8MHwxfHNlYXJjaHwxfHxhbmltZSUyMGFydHxlbnwwfHx8fDE2NzI4MDI2MDE&ixlib=rb-4.0.3&q=80&w=400" alt="二次元风格">
+                            </div>
+                            <div class="template-info">
+                                <h4>二次元风格</h4>
+                                <p>可爱、活泼，使用明亮的色彩和专属字体，萌即正义！</p>
+                                <div class="template-action">
+                                    <span class="btn-view">查看模板</span>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    
+                    <!-- 插画风格 -->
+                    <div class="template-item">
+                        <a href="template-illustrated.html" class="template-link">
+                            <div class="template-preview">
+                                <img src="https://images.unsplash.com/photo-1633469030283-5cbf86e57b16?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNjU5OTZ8MHwxfHNlYXJjaHwxfHxpbGx1c3RyYXRpb24lMjB3ZWJzaXRlfGVufDB8fHx8MTY3MjgwMjYzNA&ixlib=rb-4.0.3&q=80&w=400" alt="插画风格">
+                            </div>
+                            <div class="template-info">
+                                <h4>插画风格</h4>
+                                <p>使用定制插画，让你的网站充满艺术感和故事性。</p>
+                                <div class="template-action">
+                                    <span class="btn-view">查看模板</span>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+
+                    <!-- 暗黑风格 -->
+                    <div class="template-item">
+                        <a href="template-dark.html" class="template-link">
+                            <div class="template-preview">
+                                <img src="https://images.unsplash.com/photo-1533090481720-856c6e3c1fdc?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNjU5OTZ8MHwxfHNlYXJjaHw0fHxkYXJrJTIwd2Vic2l0ZXxlbnwwfHx8fDE2NzI4MDI2NzM&ixlib=rb-4.0.3&q=80&w=400" alt="暗黑风格">
+                            </div>
+                            <div class="template-info">
+                                <h4>暗黑风格</h4>
+                                <p>深邃、高级，利用深色背景和高对比度，创造沉浸式体验。</p>
+                                <div class="template-action">
+                                    <span class="btn-view">查看模板</span>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+
+                    <!-- 卡片式风格 -->
+                    <div class="template-item">
+                        <a href="template-cards.html" class="template-link">
+                            <div class="template-preview">
+                                <img src="https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNjU5OTZ8MHwxfHNlYXJjaHwyfHxtYXRlcmlhbCUyMGRlc2lnbnxlbnwwfHx8fDE2NzI4MDI3MTM&ixlib=rb-4.0.3&q=80&w=400" alt="卡片式风格">
+                            </div>
+                            <div class="template-info">
+                                <h4>卡片式风格</h4>
+                                <p>信息模块化，布局清晰，适合展示多元化内容。</p>
+                                <div class="template-action">
+                                    <span class="btn-view">查看模板</span>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="templates-note">
+                    <p><i class="fa fa-info-circle"></i> 所有模板均为响应式设计，特别针对四校（广东海洋大学、广东外语外贸大学、华南师范大学、湖北科技学院）学生需求定制优化</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <section id="equipment">
         <div class="container">
             <h2 class="section-title">3D打印资源</h2>
@@ -517,6 +928,7 @@
                     <div class="footer-links-column">
                         <h3>快速链接</h3>
                         <a href="#projects">项目展示</a>
+                        <a href="#services">服务</a>
                         <a href="#equipment">3D打印资源</a>
                         <a href="#team">团队介绍</a>
                         <a href="#contact">联系我们</a>

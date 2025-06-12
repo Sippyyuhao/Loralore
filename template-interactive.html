@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>高交互风格模板 - Loralore工作室</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css">
+    <style>
+        :root {
+            --primary-color: #ff6b6b;
+            --secondary-color: #feca57;
+            --text-color: #333;
+            --light-bg: #fff;
+            --dark-bg: #130f40;
+            --font-sans: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: var(--font-sans);
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--light-bg);
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .section {
+            padding: 100px 0;
+            position: relative;
+        }
+        
+        /* 导航栏 */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 20px 0;
+            z-index: 1000;
+            transition: background-color 0.3s, box-shadow 0.3s;
+        }
+        
+        .navbar.scrolled {
+            background-color: rgba(255, 255, 255, 0.9);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .navbar .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo a {
+            font-size: 24px;
+            font-weight: bold;
+            text-decoration: none;
+            color: var(--text-color);
+        }
+        
+        .logo span {
+            color: var(--primary-color);
+        }
+        
+        /* 英雄区 */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+        }
+        
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            animation: fadeInDown 1s ease-in-out;
+        }
+        
+        .hero p {
+            font-size: 1.5rem;
+            animation: fadeInUp 1s ease-in-out 0.5s;
+        }
+        
+        /* 内容区域 */
+        .content-section {
+            background-color: var(--light-bg);
+        }
+        
+        .content-section .container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+        
+        .content-text {
+            opacity: 0;
+            transform: translateX(-50px);
+            transition: opacity 0.6s, transform 0.6s;
+        }
+        
+        .content-image {
+            opacity: 0;
+            transform: translateX(50px);
+            transition: opacity 0.6s, transform 0.6s;
+        }
+
+        .content-section.is-visible .content-text,
+        .content-section.is-visible .content-image {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .content-image img {
+            max-width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        .content-text h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+        }
+        
+        /* 价格 */
+        .pricing {
+            text-align: center;
+        }
+
+        .price-card {
+            background-color: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            max-width: 400px;
+            margin: 0 auto;
+            transform: scale(0.9);
+            opacity: 0;
+            transition: opacity 0.6s, transform 0.6s;
+        }
+        
+        .pricing.is-visible .price-card {
+            transform: scale(1);
+            opacity: 1;
+        }
+        
+        .price-tag {
+            font-size: 3rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background-color: var(--primary-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(255, 107, 107, 0.4);
+        }
+        
+        .footer {
+            background-color: var(--dark-bg);
+            color: white;
+            text-align: center;
+            padding: 40px 0;
+        }
+        
+        .back-link a {
+            color: var(--primary-color);
+        }
+
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">
+                <a href="index.html"><span>Lora</span>lore</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>高交互体验</h1>
+            <p>动感十足，充满惊喜</p>
+        </div>
+    </section>
+
+    <section class="section content-section">
+        <div class="container">
+            <div class="content-text">
+                <h2>流畅的滚动动画</h2>
+                <p>当你滚动页面时，内容会以平滑的动画效果进入视野，为用户提供一种引人入胜的浏览体验。这种动态反馈不仅美观，还能有效引导用户的注意力。</p>
+            </div>
+            <div class="content-image">
+                <img src="https://images.unsplash.com/photo-1555949963-ff98b8708aa6?w=500" alt="交互设计">
+            </div>
+        </div>
+    </section>
+    
+    <section class="section content-section">
+        <div class="container">
+            <div class="content-image">
+                <img src="https://images.unsplash.com/photo-1522199755839-a2bacb67c546?w=500" alt="交互设计">
+            </div>
+            <div class="content-text">
+                <h2>响应式微交互</h2>
+                <p>从按钮的点击效果到图片的悬停状态，每一个细节都经过精心设计。这些微小的交互反馈汇集在一起，构成了网站流畅而直观的用户体验。</p>
+            </div>
+        </div>
+    </section>
+    
+    <section class="section pricing">
+        <div class="container">
+            <div class="price-card">
+                <h2>专属优惠</h2>
+                <div class="price-tag">¥19.9</div>
+                <p>为四校学生提供专属优惠，获得一个充满动感和交互性的现代化网站。</p>
+                <a href="index.html#contact" class="btn">立即订购</a>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <p>© 2025 Loralore工作室. 保留所有权利.</p>
+        <p class="back-link"><a href="index.html#services">返回模板选择</a></p>
+    </footer>
+
+    <script>
+        const navbar = document.querySelector('.navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        const sections = document.querySelectorAll('.section');
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        sections.forEach(section => {
+            observer.observe(section);
+        });
+    </script>
+</body>
+</html> 

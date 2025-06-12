@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>二次元风格模板 - Loralore工作室</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Mochiy+Pop+One&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #ff9ff3;
+            --secondary-color: #f6e58d;
+            --accent-color: #48dbfb;
+            --text-color: #576574;
+            --light-bg: #ffffff;
+            --font-main: 'Mochiy Pop One', 'Segoe UI', sans-serif;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.7;
+            color: var(--text-color);
+            background-color: #fcfaff;
+        }
+        
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        h1, h2, h3 {
+            font-family: var(--font-main);
+            color: var(--primary-color);
+        }
+
+        /* Header */
+        .header {
+            background-image: linear-gradient(to top, #fad0c4 0%, #ffd1ff 100%);
+            padding: 20px 0;
+            text-align: center;
+        }
+
+        .logo a {
+            font-family: var(--font-main);
+            font-size: 28px;
+            text-decoration: none;
+            color: white;
+            text-shadow: 2px 2px 0 var(--primary-color);
+        }
+
+        /* Hero */
+        .hero {
+            padding: 80px 0;
+            text-align: center;
+            background-image: url('data:image/svg+xml;utf8,<svg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><g fill="%23ff9ff3" fill-opacity="0.2"><circle cx="50" cy="50" r="4" /></g></svg>');
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+        
+        .hero-image img {
+            max-width: 300px;
+            margin-top: 30px;
+            border-radius: 20px;
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        /* Section */
+        .section {
+            padding: 80px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 50px;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .feature-card {
+            background: var(--light-bg);
+            padding: 30px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(255, 159, 243, 0.2);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 25px rgba(255, 159, 243, 0.4);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: var(--accent-color);
+        }
+        
+        .pricing {
+            background-color: var(--secondary-color);
+            text-align: center;
+        }
+        
+        .price-box {
+            background-color: white;
+            padding: 40px;
+            border-radius: 20px;
+            max-width: 400px;
+            margin: 0 auto;
+            border: 3px dashed var(--primary-color);
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 10px 30px;
+            background-color: var(--primary-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-family: var(--font-main);
+            transition: background-color 0.3s, transform 0.3s;
+            box-shadow: 0 4px 0 #e88edf;
+            border: 2px solid white;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 0 #e88edf;
+        }
+        
+        .btn:active {
+            transform: translateY(2px);
+            box-shadow: 0 2px 0 #e88edf;
+        }
+        
+        .footer {
+            padding: 40px 0;
+            text-align: center;
+            background: #fdf5e6;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="header">
+        <div class="logo">
+            <a href="index.html">Lora-chan</a>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h1>萌即正义！</h1>
+            <p>用可爱的风格，打造你的专属网站~</p>
+            <div class="hero-image">
+                <img src="https://images.unsplash.com/photo-1578632767115-4516a10794e3?w=500" alt="二次元插画">
+            </div>
+        </div>
+    </section>
+
+    <section class="section features">
+        <div class="container">
+            <h2 class="section-title">模板特点</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fa fa-heart"></i></div>
+                    <h3>可爱图标</h3>
+                    <p>使用精心挑选的可爱图标，点缀你的页面。</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fa fa-paint-brush"></i></div>
+                    <h3>明亮配色</h3>
+                    <p>采用粉色、黄色等明亮配色，充满活力。</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fa fa-font"></i></div>
+                    <h3>专属字体</h3>
+                    <p>搭配可爱的日系字体，让文字也萌起来。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="section pricing">
+        <div class="container">
+            <div class="price-box">
+                <h2>限定优惠</h2>
+                <p style="font-size: 2rem; color: var(--primary-color); font-family: var(--font-main);">¥19.9</p>
+                <p>立即获取你的卡哇伊网站吧！</p>
+                <a href="index.html#contact" class="btn">立即订购</a>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <p>© 2025 Loralore工作室. 保留所有权利.</p>
+        <p><a href="index.html#services">返回模板选择</a></p>
+    </footer>
+
+</body>
+</html> 
