@@ -1,6 +1,6 @@
 /* 基础样式 */
 :root {
-    --primary-color: #4CAF50;     /* 清新绿色作为主题色 */
+    --primary-color: #0a18dd;     /* 清新绿色作为主题色 */
     --secondary-color: #1a73e8;   /* 蓝色作为副主题色 */
     --accent-color: #ff9800;      /* 橙色强调色调整 */
     --light-color: #f8f9fa;
@@ -441,7 +441,7 @@ nav ul li.current a {
 }
 
 .gallery-btn:hover {
-    background: #388E3C;
+    background: #0015ff;
     transform: translateY(-3px);
     box-shadow: 0 8px 20px rgba(76, 175, 80, 0.4);
 }
@@ -1187,7 +1187,7 @@ nav ul li.current a {
 
 /* 页脚样式 */
 footer {
-    background-color: #2E7D32;
+    background-color: #1500fd;
     color: #fff;
     padding: 50px 0 20px;
 }

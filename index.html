@@ -8,7 +8,167 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css">
     <link rel="icon" href="./images/favicon.ico" type="image/x-icon">
     <meta name="description" content="洛尔科技工作室是由一群充满激情的学生创业者组成的技术团队，专注于创新解决方案的开发与实现。">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
+        /* --- Theme Colors & Overrides --- */
+        :root {
+            --primary-color: #d32f2f; /* Red */
+            --primary-color-dark: #b71c1c; /* Darker Red */
+            --secondary-color: #1976d2; /* Blue */
+            --sidebar-width: 260px;
+            --sidebar-collapsed-width: 90px;
+        }
+
+        .highlight {
+            color: var(--primary-color) !important;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            border: 2px solid var(--primary-color);
+            color: #fff;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-color-dark);
+            border-color: var(--primary-color-dark);
+        }
+
+        .social-link:hover {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+        }
+
+        /* --- 层次感与个性化优化 --- */
+
+        /* 1. 字体与基础样式 */
+        body {
+            font-family: 'Lato', sans-serif;
+            background-color: #fdfdff; /* 稍微柔和的白色背景 */
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+        }
+
+        /* 2. 提升层次感的阴影和边框 */
+        .equipment-item, .service-card, .template-item, .project-detail-item, .feature-box, .school-logo a, .team-value-item {
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.04);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-radius: 12px;
+            border: 1px solid #eef;
+        }
+
+        .equipment-item:hover, .service-card:hover, .template-item:hover, .project-detail-item:hover, .feature-box:hover, .school-logo a:hover, .team-value-item:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 24px rgba(92, 107, 192, 0.1), 0 5px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        /* 3. 利用空间划分区域 */
+        section {
+            padding: 80px 0;
+        }
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 50px;
+            position: relative;
+            display: inline-block;
+            text-align: center;
+            width: 100%;
+        }
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 4px;
+            background: var(--primary-color, #5c6bc0);
+            border-radius: 2px;
+        }
+
+        /* 4. Showcase 视觉焦点 */
+        #showcase h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem); /* 响应式字号 */
+            font-weight: 700;
+            text-shadow: 0 2px 15px rgba(0,0,0,0.1);
+        }
+        #showcase p {
+            font-size: 1.25rem;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 300;
+        }
+
+        /* 5. Feature Box 个性化 */
+        .feature-box {
+            background: #fff;
+            padding: 40px 30px;
+            border: none;
+            text-align: center;
+        }
+        .feature-box i {
+            font-size: 3rem;
+            width: 80px;
+            height: 80px;
+            line-height: 80px;
+            background: linear-gradient(135deg, #ffcdd2, #ef9a9a);
+            color: var(--primary-color, #5c6bc0);
+            border-radius: 50%;
+            margin-bottom: 20px;
+            display: inline-block;
+            transition: all 0.3s ease;
+        }
+        .feature-box:hover i {
+            background: var(--primary-color, #5c6bc0);
+            color: #fff;
+            transform: rotate(15deg) scale(1.1);
+        }
+
+        /* 6. 项目详情卡片 */
+        .project-detail-item {
+            background-color: white;
+            margin-bottom: 30px;
+            padding: 30px 40px;
+        }
+        
+        /* 7. 团队部分非对称布局 */
+        .school-logo a {
+            display: block;
+            padding: 20px;
+            background: #fff;
+            text-align: center;
+            height: 100%;
+        }
+        .school-logos {
+            align-items: center; /* 垂直居中对齐 */
+        }
+        .school-logo:nth-child(even) {
+            margin-top: 40px; /* 错落感 */
+        }
+        .school-logo a:hover {
+            transform: translateY(-8px) !important;
+        }
+        .team-value-item {
+            background: #fff;
+            padding: 30px;
+        }
+
+        /* 8. 动画效果 */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+            will-change: opacity, transform;
+        }
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
         /* 设备展示部分样式 */
         #equipment {
             background-color: #f9f9f9;
@@ -354,7 +514,7 @@
         }
         
         .template-item:hover .btn-view {
-            background-color: var(--secondary-color, #3949ab);
+            background-color: var(--secondary-color, #1976d2);
             transform: scale(1.05);
         }
         
@@ -369,6 +529,171 @@
                 grid-template-columns: 1fr;
             }
         }
+
+        /* --- Sidebar Navigation & School Name Fix --- */
+        #header {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: var(--sidebar-width);
+            height: 100vh;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-right: 1px solid rgba(238, 238, 238, 0.5);
+            box-shadow: none;
+            flex-direction: column;
+            padding: 40px 20px;
+            z-index: 1000;
+            transition: transform 0.3s ease-in-out, width 0.3s ease;
+        }
+
+        #header .container {
+            flex-direction: column;
+            align-items: flex-start;
+            padding: 0;
+        }
+
+        #header .logo {
+            width: 100%;
+            margin-bottom: 50px;
+            padding-left: 10px;
+        }
+
+        #header .logo h1 {
+            display: flex;
+            align-items: center;
+        }
+        
+        #header .logo .logo-text {
+            opacity: 0;
+            transition: opacity 0.2s ease;
+        }
+
+        #header nav {
+            width: 100%;
+            flex-direction: column;
+        }
+
+        #header nav ul {
+            flex-direction: column;
+        }
+
+        #header nav ul li {
+            margin: 0 0 8px 0;
+            width: 100%;
+        }
+        
+        #header nav ul li a {
+            padding: 12px 20px;
+            border-radius: 8px;
+            font-weight: 500;
+            color: #555;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        #header nav ul li a i {
+            font-size: 1.3rem;
+            flex-shrink: 0;
+            width: 50px;
+            text-align: center;
+            margin-left: -10px;
+        }
+        
+        #header nav ul li a span {
+            opacity: 0;
+            white-space: nowrap;
+            transition: opacity 0.2s ease;
+        }
+        
+        #header nav ul li.current a,
+        #header nav ul li a:hover {
+            background: var(--primary-color, #5c6bc0);
+            color: #fff;
+            transform: translateX(5px);
+        }
+
+        body {
+            transition: padding-left 0.3s ease-in-out;
+        }
+
+        /* Shift body content on desktop */
+        @media (min-width: 993px) {
+            body {
+                padding-left: var(--sidebar-collapsed-width, 90px);
+                transition: padding-left 0.3s ease;
+            }
+            body.sidebar-expanded {
+                padding-left: var(--sidebar-width);
+            }
+
+            #header {
+                width: var(--sidebar-collapsed-width);
+            }
+            #header.is-expanded {
+                width: var(--sidebar-width);
+            }
+            #header.is-expanded .logo-text,
+            #header.is-expanded nav ul li a span {
+                opacity: 1;
+            }
+
+            #header nav ul li a:hover {
+                transform: none; /* Disable transform on hover for desktop collapsible menu */
+            }
+        }
+        
+        .menu-toggle {
+            /* display is handled by media query */
+            position: fixed;
+            top: 15px;
+            right: 20px;
+            width: 40px;
+            height: 40px;
+            background: #fff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1001;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            cursor: pointer;
+        }
+
+        /* Responsive Sidebar Logic */
+        @media (max-width: 992px) {
+            #header {
+                transform: translateX(calc(-1 * var(--sidebar-width)));
+            }
+            #header.active {
+                transform: translateX(0);
+                box-shadow: 5px 0 25px rgba(0,0,0,0.1);
+            }
+            body {
+                padding-left: 0;
+            }
+            .menu-toggle {
+                display: flex;
+            }
+        }
+        
+        @media (min-width: 993px) {
+            .menu-toggle {
+                display: none;
+            }
+            :root {
+                --sidebar-collapsed-width: 90px;
+            }
+        }
+        
+        .school-logo span {
+            white-space: nowrap;
+            display: block;
+            margin-top: 15px;
+        }
     </style>
 </head>
 <body>
@@ -376,17 +701,17 @@
         <div class="container">
             <div class="logo">
                 <a href="index.html">
-                    <h1><span class="highlight">Lora</span>lore</h1>
+                    <h1><span class="highlight">Lora</span><span class="logo-text">lore</span></h1>
                 </a>
             </div>
             <nav id="nav">
                 <ul>
-                    <li class="current"><a href="index.html">首页</a></li>
-                    <li><a href="#projects">项目</a></li>
-                    <li><a href="#services">服务</a></li>
-                    <li><a href="#equipment">3D打印资源</a></li>
-                    <li><a href="#team">团队</a></li>
-                    <li><a href="#contact">联系我们</a></li>
+                    <li><a href="#showcase"><i class="fa fa-home"></i><span>首页</span></a></li>
+                    <li><a href="#projects"><i class="fa fa-folder-open-o"></i><span>项目</span></a></li>
+                    <li><a href="#services"><i class="fa fa-briefcase"></i><span>服务</span></a></li>
+                    <li><a href="#equipment"><i class="fa fa-cubes"></i><span>资源</span></a></li>
+                    <li><a href="#team"><i class="fa fa-users"></i><span>团队</span></a></li>
+                    <li><a href="#contact"><i class="fa fa-envelope-o"></i><span>联系我们</span></a></li>
                 </ul>
             </nav>
             <div class="menu-toggle">
@@ -408,17 +733,17 @@
 
     <section id="features">
         <div class="container">
-            <div class="feature-box">
+            <div class="feature-box reveal">
                 <i class="fa fa-lightbulb-o"></i>
                 <h3>创意无限</h3>
                 <p>突破常规思维，提供富有创意的解决方案</p>
             </div>
-            <div class="feature-box">
+            <div class="feature-box reveal">
                 <i class="fa fa-code"></i>
                 <h3>技术驱动</h3>
                 <p>运用前沿技术，构建高质量应用</p>
             </div>
-            <div class="feature-box">
+            <div class="feature-box reveal">
                 <i class="fa fa-users"></i>
                 <h3>团队协作</h3>
                 <p>跨学科合作，汇聚多元化人才与视角</p>
@@ -428,7 +753,7 @@
 
     <section id="projects">
         <div class="container">
-            <h2 class="section-title">团队项目</h2>
+            <h2 class="section-title reveal">团队项目</h2>
             
             <!-- 3D旋转画廊展示 -->
             <!-- 注意：画廊内容将由JavaScript动态生成 -->
@@ -440,7 +765,7 @@
             
             <!-- 项目详情部分 -->
             <div class="project-details">
-                <div class="project-detail-item" id="project-apass">
+                <div class="project-detail-item reveal" id="project-apass">
                     <div class="project-detail-header">
                         <h3>Apass密码管理小程序</h3>
                         <p class="project-slogan">安全管理您的数字身份</p>
@@ -467,7 +792,7 @@
                     </div>
                 </div>
                 
-                <div class="project-detail-item" id="project-lovalovea">
+                <div class="project-detail-item reveal" id="project-lovalovea">
                     <div class="project-detail-header">
                         <h3>Lovalovea情侣空间</h3>
                         <p class="project-slogan">alove，不再alone</p>
@@ -495,7 +820,7 @@
                     </div>
                 </div>
                 
-                <div class="project-detail-item" id="project-ascii-wx">
+                <div class="project-detail-item reveal" id="project-ascii-wx">
                     <div class="project-detail-header">
                         <h3>字符大师</h3>
                         <p class="project-slogan">像素之美，字符之趣</p>
@@ -522,7 +847,7 @@
                     </div>
                 </div>
                 
-                <div class="project-detail-item" id="project-ascii-qt">
+                <div class="project-detail-item reveal" id="project-ascii-qt">
                     <div class="project-detail-header">
                         <h3>ASCII艺术桌面版</h3>
                         <p class="project-slogan">字符构建的视觉艺术</p>
@@ -550,7 +875,7 @@
                     </div>
                 </div>
                 
-                <div class="project-detail-item" id="project-julia">
+                <div class="project-detail-item reveal" id="project-julia">
                     <div class="project-detail-header">
                         <h3>UDP交流互动软件</h3>
                         <p class="project-slogan">创意共享，即时连接</p>
@@ -578,7 +903,7 @@
                     </div>
                 </div>
 
-                <div class="project-detail-item" id="project-calculus">
+                <div class="project-detail-item reveal" id="project-calculus">
                     <div class="project-detail-header">
                         <h3>微积分计算器</h3>
                         <p class="project-slogan">复杂数学，简单解析</p>
@@ -611,12 +936,12 @@
 
     <section id="services">
         <div class="container">
-            <h2 class="section-title">我们的服务</h2>
-            <div class="services-intro">
+            <h2 class="section-title reveal">我们的服务</h2>
+            <div class="services-intro reveal">
                 <p class="services-description">Loralore工作室提供专业的网站开发服务，让您的创意和业务在线上展现。我们关注用户体验和视觉设计，打造高品质网站。</p>
             </div>
             
-            <div class="service-highlight">
+            <div class="service-highlight reveal">
                 <div class="service-card">
                     <div class="service-header">
                         <h3>19.9元专属网站计划</h3>
@@ -656,13 +981,13 @@
                 </div>
             </div>
             
-            <div class="templates-section">
+            <div class="templates-section reveal">
                 <h3 class="templates-title">六大风格网站模板</h3>
                 <p class="templates-description">我们提供六种不同风格的现代化布局和样式，点击卡片查看详情，总有一款适合你</p>
                 
                 <div class="template-grid">
                     <!-- 简约风格 -->
-                    <div class="template-item">
+                    <div class="template-item reveal">
                         <a href="template-minimal.html" class="template-link">
                             <div class="template-preview">
                                 <img src="https://images.unsplash.com/photo-1512428559084-b3de39d36a53?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNjU5OTZ8MHwxfHNlYXJjaHw0fHxtaW5pbWFsJTIwd2Vic2l0ZXxlbnwwfHx8fDE2NzI4MDI0NTE&ixlib=rb-4.0.3&q=80&w=400" alt="简约风格">
@@ -678,7 +1003,7 @@
                     </div>
                     
                     <!-- 高交互风格 -->
-                    <div class="template-item">
+                    <div class="template-item reveal">
                         <a href="template-interactive.html" class="template-link">
                             <div class="template-preview">
                                 <img src="https://images.unsplash.com/photo-1558655146-364adaf1fcc9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNjU5OTZ8MHwxfHNlYXJjaHwyfHxpbnRlcmFjdGl2ZSUyMGRlc2lnbnxlbnwwfHx8fDE2NzI4MDI1Mzc&ixlib=rb-4.0.3&q=80&w=400" alt="高交互风格">
@@ -694,7 +1019,7 @@
                     </div>
                     
                     <!-- 二次元风格 -->
-                    <div class="template-item">
+                    <div class="template-item reveal">
                         <a href="template-anime.html" class="template-link">
                             <div class="template-preview">
                                 <img src="https://images.unsplash.com/photo-1613376023733-0a73375d8628?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNjU5OTZ8MHwxfHNlYXJjaHwxfHxhbmltZSUyMGFydHxlbnwwfHx8fDE2NzI4MDI2MDE&ixlib=rb-4.0.3&q=80&w=400" alt="二次元风格">
@@ -710,7 +1035,7 @@
                     </div>
                     
                     <!-- 插画风格 -->
-                    <div class="template-item">
+                    <div class="template-item reveal">
                         <a href="template-illustrated.html" class="template-link">
                             <div class="template-preview">
                                 <img src="https://images.unsplash.com/photo-1633469030283-5cbf86e57b16?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNjU5OTZ8MHwxfHNlYXJjaHwxfHxpbGx1c3RyYXRpb24lMjB3ZWJzaXRlfGVufDB8fHx8MTY3MjgwMjYzNA&ixlib=rb-4.0.3&q=80&w=400" alt="插画风格">
@@ -726,7 +1051,7 @@
                     </div>
 
                     <!-- 暗黑风格 -->
-                    <div class="template-item">
+                    <div class="template-item reveal">
                         <a href="template-dark.html" class="template-link">
                             <div class="template-preview">
                                 <img src="https://images.unsplash.com/photo-1533090481720-856c6e3c1fdc?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNjU5OTZ8MHwxfHNlYXJjaHw0fHxkYXJrJTIwd2Vic2l0ZXxlbnwwfHx8fDE2NzI4MDI2NzM&ixlib=rb-4.0.3&q=80&w=400" alt="暗黑风格">
@@ -742,7 +1067,7 @@
                     </div>
 
                     <!-- 卡片式风格 -->
-                    <div class="template-item">
+                    <div class="template-item reveal">
                         <a href="template-cards.html" class="template-link">
                             <div class="template-preview">
                                 <img src="https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNjU5OTZ8MHwxfHNlYXJjaHwyfHxtYXRlcmlhbCUyMGRlc2lnbnxlbnwwfHx8fDE2NzI4MDI3MTM&ixlib=rb-4.0.3&q=80&w=400" alt="卡片式风格">
@@ -767,13 +1092,13 @@
 
     <section id="equipment">
         <div class="container">
-            <h2 class="section-title">3D打印资源</h2>
-            <div class="equipment-intro">
+            <h2 class="section-title reveal">资源</h2>
+            <div class="equipment-intro reveal">
                 <p class="equipment-description">Loralore工作室配备多台专业3D打印设备，支持团队从产品原型设计到最终实物成型的全流程创新。我们的资源涵盖FDM打印、激光雕刻等不同工艺，为创意项目提供强大硬件支持。</p>
             </div>
             
             <div class="equipment-grid">
-                <div class="equipment-item">
+                <div class="equipment-item reveal">
                     <div class="equipment-image">
                         <img src="./images/创想三维Ender3v3ke.png" alt="创想三维Ender3v3ke">
                     </div>
@@ -782,7 +1107,7 @@
                     </div>
                 </div>
                 
-                <div class="equipment-item">
+                <div class="equipment-item reveal">
                     <div class="equipment-image">
                         <img src="./images/拓竹A1mini.png" alt="拓竹A1mini">
                     </div>
@@ -791,7 +1116,7 @@
                     </div>
                 </div>
                 
-                <div class="equipment-item">
+                <div class="equipment-item reveal">
                     <div class="equipment-image">
                         <img src="./images/拓竹p1s.png" alt="拓竹P1S">
                     </div>
@@ -800,7 +1125,7 @@
                     </div>
                 </div>
                 
-                <div class="equipment-item">
+                <div class="equipment-item reveal">
                     <div class="equipment-image">
                         <img src="./images/Tink3D t1.png" alt="Tink3D T1">
                     </div>
@@ -814,31 +1139,31 @@
 
     <section id="team">
         <div class="container">
-            <h2 class="section-title">团队成员</h2>
-            <div class="team-intro">
+            <h2 class="section-title reveal">团队成员</h2>
+            <div class="team-intro reveal">
                 <p class="team-description">Loralore是一支充满活力的跨校学生组成的队伍。由广东海洋大学、广东外语外贸大学、华南师范大学、湖北科技学院的热爱技术、分享、创造的同学们共同维护。</p>
             </div>
             
             <div class="school-logos">
-                <div class="school-logo">
+                <div class="school-logo reveal">
                     <a href="https://www.gdou.edu.cn/" target="_blank" rel="noopener noreferrer">
                         <img src="./images/gdhy.jpg" alt="广东海洋大学校标">
                         <span>广东海洋大学</span>
                     </a>
                 </div>
-                <div class="school-logo">
+                <div class="school-logo reveal">
                     <a href="https://www.gdufs.edu.cn/" target="_blank" rel="noopener noreferrer">
                         <img src="./images/gdwywm.jpg" alt="广东外语外贸大学校标">
                         <span>广东外语外贸大学</span>
                     </a>
                 </div>
-                <div class="school-logo">
+                <div class="school-logo reveal">
                     <a href="https://www.scnu.edu.cn/" target="_blank" rel="noopener noreferrer">
                         <img src="./images/hnsf.jpg" alt="华南师范大学校标">
                         <span>华南师范大学</span>
                     </a>
                 </div>
-                <div class="school-logo">
+                <div class="school-logo reveal">
                     <a href="https://www.hbust.edu.cn/" target="_blank" rel="noopener noreferrer">
                         <img src="./images/hbkj.jpg" alt="湖北科技学院校标">
                         <span>湖北科技学院</span>
@@ -847,21 +1172,21 @@
             </div>
             
             <div class="team-values">
-                <div class="team-value-item">
+                <div class="team-value-item reveal">
                     <div class="value-icon">
                         <i class="fa fa-code"></i>
                     </div>
                     <h3>技术驱动</h3>
                     <p>我们热爱技术，追求创新，不断探索前沿科技与应用</p>
                 </div>
-                <div class="team-value-item">
+                <div class="team-value-item reveal">
                     <div class="value-icon">
                         <i class="fa fa-lightbulb-o"></i>
                     </div>
                     <h3>创意为本</h3>
                     <p>用创造性思维解决问题，让设计与功能完美结合</p>
                 </div>
-                <div class="team-value-item">
+                <div class="team-value-item reveal">
                     <div class="value-icon">
                         <i class="fa fa-users"></i>
                     </div>
@@ -872,7 +1197,7 @@
         </div>
     </section>
 
-    <section id="contact">
+    <section id="contact" class="reveal">
         <div class="container">
             <h2 class="section-title">联系我们</h2>
             <div class="contact-container">
@@ -929,7 +1254,7 @@
                         <h3>快速链接</h3>
                         <a href="#projects">项目展示</a>
                         <a href="#services">服务</a>
-                        <a href="#equipment">3D打印资源</a>
+                        <a href="#equipment">资源</a>
                         <a href="#team">团队介绍</a>
                         <a href="#contact">联系我们</a>
                     </div>
@@ -959,6 +1284,95 @@
             } else {
                 console.error("particles.js 未加载");
             }
+
+            // 滚动显示动画
+            const reveals = document.querySelectorAll('.reveal');
+
+            const revealObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        revealObserver.unobserve(entry.target);
+                    }
+                });
+            }, {
+                threshold: 0.1,
+                rootMargin: "0px 0px -50px 0px"
+            });
+
+            reveals.forEach(reveal => {
+                revealObserver.observe(reveal);
+            });
+
+            // 左侧菜单响应式逻辑
+            const menuToggle = document.querySelector('.menu-toggle');
+            const header = document.querySelector('#header');
+            const body = document.body;
+
+            if (menuToggle && header) {
+                menuToggle.addEventListener('click', () => {
+                    header.classList.toggle('active');
+                });
+            }
+            
+            // 在移动端点击链接后关闭菜单
+            const navLinks = document.querySelectorAll('#header nav a');
+            navLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    if (window.innerWidth <= 992) {
+                        header.classList.remove('active');
+                    }
+                });
+            });
+
+            // 可收起侧边栏桌面端逻辑
+            if (window.innerWidth > 992) {
+                header.addEventListener('mouseenter', () => {
+                    header.classList.add('is-expanded');
+                    body.classList.add('sidebar-expanded');
+                });
+
+                header.addEventListener('mouseleave', () => {
+                    header.classList.remove('is-expanded');
+                    body.classList.remove('sidebar-expanded');
+                });
+            }
+
+            // 动态导航高亮逻辑
+            const sections = document.querySelectorAll('section[id]');
+            const navLi = document.querySelectorAll('#header nav ul li');
+
+            const updateActiveNav = () => {
+                const scrollY = window.pageYOffset;
+                let activeSectionId = '';
+
+                // 找到当前在视口中最顶部的section
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop - 100; // 偏移量，使高亮更自然
+                    if (scrollY >= sectionTop) {
+                        activeSectionId = section.id;
+                    }
+                });
+                
+                // 如果滚动到顶部，确保'首页'高亮
+                if (scrollY < 200) {
+                    activeSectionId = 'showcase';
+                }
+
+                navLi.forEach(li => {
+                    const link = li.querySelector('a');
+                    const href = link.getAttribute('href');
+                    
+                    if (href === `#${activeSectionId}`) {
+                        li.classList.add('current');
+                    } else {
+                        li.classList.remove('current');
+                    }
+                });
+            };
+
+            window.addEventListener('scroll', updateActiveNav);
+            updateActiveNav(); // 页面加载时立即执行一次
         });
     </script>
 </body>
