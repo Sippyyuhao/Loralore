@@ -1,6 +1,6 @@
 /* 基础样式 */
 :root {
-    --primary-color: #0a18dd;     /* 清新绿色作为主题色 */
+    --primary-color: #1a73e8;     /* 清新绿色作为主题色 */
     --secondary-color: #1a73e8;   /* 蓝色作为副主题色 */
     --accent-color: #ff9800;      /* 橙色强调色调整 */
     --light-color: #f8f9fa;
@@ -1187,7 +1187,7 @@ nav ul li.current a {
 
 /* 页脚样式 */
 footer {
-    background-color: #1500fd;
+    background-color: #1a73e8;
     color: #fff;
     padding: 50px 0 20px;
 }
