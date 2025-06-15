@@ -1,7 +1,7 @@
 # Loralore - 洛尔科技工作室官方网站
 
 <div align="center">
-  <img src="./images/logo.png" alt="Loralore Logo" width="200">
+  <img src="./favicon.ico" alt="Loralore Logo" width="200">
   <p><em>创新驱动未来，技术成就梦想</em></p>
 </div>
 
