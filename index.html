@@ -295,6 +295,44 @@
             line-height: 1.6;
         }
 
+        .service-promotion {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .promotion-title {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            position: relative;
+            display: inline-block;
+            text-align: center;
+            width: 100%;
+        }
+
+        .promotion-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 4px;
+            background: var(--primary-color, #5c6bc0);
+            border-radius: 2px;
+        }
+
+        .promotion-text {
+            font-size: 1.25rem;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 300;
+        }
+
+        .promotion-highlight {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--primary-color, #5c6bc0);
+        }
+
         .service-highlight {
             display: flex;
             justify-content: center;
@@ -327,6 +365,12 @@
         .service-header h3 {
             margin: 0;
             font-size: 1.8em;
+            margin-bottom: 10px;
+        }
+
+        .service-subtitle {
+            font-size: 1.2em;
+            font-weight: 300;
             margin-bottom: 10px;
         }
 
@@ -938,44 +982,177 @@
         <div class="container">
             <h2 class="section-title reveal">我们的服务</h2>
             <div class="services-intro reveal">
-                <p class="services-description">Loralore工作室提供专业的网站开发服务，让您的创意和业务在线上展现。我们关注用户体验和视觉设计，打造高品质网站。</p>
+                <p class="services-description">Loralore工作室提供简约静态网站开发服务，无需购买服务器或域名，即可获得优质公网访问体验。我们关注页面美观与移动端适配，为您打造个性化展示页面。</p>
+            </div>
+            
+            <div class="service-promotion reveal">
+                <h3 class="promotion-title">想拥有一个专属于你的网站吗？</h3>
+                <p class="promotion-text">个人品牌展示、学术成果分享、创意项目介绍、作品集展示、个人博客......一个属于自己的网站让你的在线形象更加专业，让世界看见你的才华！</p>
+                <p class="promotion-highlight"><span>无需技术基础</span> · <span>无需购买域名</span> · <span>无需维护服务器</span> · <span>即刻上线</span></p>
             </div>
             
             <div class="service-highlight reveal">
-                <div class="service-card">
-                    <div class="service-header">
-                        <h3>19.9元专属网站计划</h3>
-                        <div class="service-price">¥19.9</div>
-                    </div>
-                    <div class="service-content">
-                        <div class="service-features">
-                            <div class="service-feature">
-                                <i class="fa fa-check"></i>
-                                <span>精美响应式单页网站</span>
-                            </div>
-                            <div class="service-feature">
-                                <i class="fa fa-check"></i>
-                                <span>个性化设计与布局</span>
-                            </div>
-                            <div class="service-feature">
-                                <i class="fa fa-check"></i>
-                                <span>基础SEO优化</span>
-                            </div>
-                            <div class="service-feature">
-                                <i class="fa fa-check"></i>
-                                <span>手机端完美适配</span>
-                            </div>
-                            <div class="service-feature">
-                                <i class="fa fa-check"></i>
-                                <span>一次性交付源代码</span>
-                            </div>
-                            <div class="service-feature">
-                                <i class="fa fa-check"></i>
-                                <span>3天快速交付</span>
+                <div class="pricing-comparison">
+                    <!-- Regular Price Card -->
+                    <div class="service-card">
+                        <div class="service-header">
+                            <h3>基础静态网站</h3>
+                            <p class="service-subtitle">专业展示 · 提升形象</p>
+                            <div class="service-price">
+                                <div class="price-main">¥119</div>
+                                <div class="price-period">校外普通价</div>
                             </div>
                         </div>
-                        <div class="service-action">
-                            <a href="#contact" class="btn btn-primary">立即咨询</a>
+                        <div class="service-content">
+                            <div class="service-features">
+                                <div class="service-feature">
+                                    <i class="fa fa-check"></i>
+                                    <span>静态响应式网站</span>
+                                </div>
+                                <div class="service-feature">
+                                    <i class="fa fa-check"></i>
+                                    <span>个性化定制</span>
+                                </div>
+                                <div class="service-feature">
+                                    <i class="fa fa-check"></i>
+                                    <span>Azure云端部署与访问</span>
+                                </div>
+                                <div class="service-feature">
+                                    <i class="fa fa-check"></i>
+                                    <span>手机端基础适配</span>
+                                </div>
+                                <div class="service-feature">
+                                    <i class="fa fa-check"></i>
+                                    <span>源代码一次性交付</span>
+                                </div>
+                                <div class="service-feature highlight-feature delivery-time">
+                                    <i class="fa fa-clock-o"></i>
+                                    <span>一周内交付</span>
+                                </div>
+                                <div class="service-feature highlight-feature">
+                                    <i class="fa fa-globe"></i>
+                                    <span>无需服务器与域名，公网访问</span>
+                                </div>
+                            </div>
+                            <div class="service-action">
+                                <a href="#contact" class="btn">立即拥有</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Student Standard Card -->
+                    <div class="service-card student-special">
+                        <div class="service-special-tag">四校学生专属</div>
+                        <div class="service-header">
+                            <h3>学生静态网站</h3>
+                            <p class="service-subtitle">学生专享 · 超值选择</p>
+                            <div class="service-price">
+                                <div class="price-main">¥29.9</div>
+                                <div class="price-period">限四校学生</div>
+                            </div>
+                        </div>
+                        <div class="service-content">
+                            <div class="service-features">
+                                <div class="service-feature">
+                                    <i class="fa fa-check"></i>
+                                    <span>静态响应式网站</span>
+                                </div>
+                                <div class="service-feature">
+                                    <i class="fa fa-check"></i>
+                                    <span>个性化定制</span>
+                                </div>
+                                <div class="service-feature">
+                                    <i class="fa fa-check"></i>
+                                    <span>Azure云端部署与访问</span>
+                                </div>
+                                <div class="service-feature">
+                                    <i class="fa fa-check"></i>
+                                    <span>手机端基础适配</span>
+                                </div>
+                                <div class="service-feature">
+                                    <i class="fa fa-check"></i>
+                                    <span>源代码一次性交付</span>
+                                </div>
+                                <div class="service-feature highlight-feature delivery-time">
+                                    <i class="fa fa-clock-o"></i>
+                                    <span>一周内交付</span>
+                                </div>
+                                <div class="service-feature highlight-feature">
+                                    <i class="fa fa-globe"></i>
+                                    <span>无需服务器与域名，公网访问</span>
+                                </div>
+                                <div class="student-note">
+                                    <i class="fa fa-graduation-cap"></i>
+                                    <span>限四校学生，需提供学校、专业、姓名、学号认证</span>
+                                </div>
+                                <div class="student-schools">
+                                    <i class="fa fa-university"></i>
+                                    <span>广东海洋大学、广东外语外贸大学、华南师范大学、湖北科技学院</span>
+                                </div>
+                            </div>
+                            <div class="service-action">
+                                <a href="#contact" class="btn btn-primary">学生专享价</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Student Premium Card -->
+                    <div class="service-card student-special premium">
+                        <div class="service-special-tag">加急服务</div>
+                        <div class="service-header">
+                            <h3>学生加急服务</h3>
+                            <p class="service-subtitle">急速上线 · 优先支持</p>
+                            <div class="service-price">
+                                <div class="price-main">¥39.9</div>
+                                <div class="price-period">限四校学生</div>
+                            </div>
+                        </div>
+                        <div class="service-content">
+                            <div class="service-features">
+                                <div class="service-feature">
+                                    <i class="fa fa-check"></i>
+                                    <span>静态响应式网站</span>
+                                </div>
+                                <div class="service-feature">
+                                    <i class="fa fa-check"></i>
+                                    <span>个性化定制</span>
+                                </div>
+                                <div class="service-feature">
+                                    <i class="fa fa-check"></i>
+                                    <span>Azure云端部署与访问</span>
+                                </div>
+                                <div class="service-feature">
+                                    <i class="fa fa-check"></i>
+                                    <span>手机端基础适配</span>
+                                </div>
+                                <div class="service-feature">
+                                    <i class="fa fa-check"></i>
+                                    <span>源代码一次性交付</span>
+                                </div>
+                                <div class="service-feature highlight-feature">
+                                    <i class="fa fa-globe"></i>
+                                    <span>无需服务器与域名，公网访问</span>
+                                </div>
+                                <div class="service-feature highlight-feature delivery-time">
+                                    <i class="fa fa-rocket"></i>
+                                    <span>两天内加急交付</span>
+                                </div>
+                                <div class="service-feature highlight-feature">
+                                    <i class="fa fa-star"></i>
+                                    <span>后续修改支持</span>
+                                </div>
+                                <div class="student-note">
+                                    <i class="fa fa-graduation-cap"></i>
+                                    <span>限四校学生，需提供学校、专业、姓名、学号认证</span>
+                                </div>
+                                <div class="student-schools">
+                                    <i class="fa fa-university"></i>
+                                    <span>广东海洋大学、广东外语外贸大学、华南师范大学、湖北科技学院</span>
+                                </div>
+                            </div>
+                            <div class="service-action">
+                                <a href="#contact" class="btn btn-premium">急速上线</a>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -1216,9 +1393,9 @@
                     </div>
                     <div class="social-links">
                         <a href="#" class="social-link"><i class="fa fa-weixin"></i></a>
-                        <a href="#" class="social-link"><i class="fa fa-qq"></i></a>
-                        <a href="#" class="social-link"><i class="fa fa-github"></i></a>
-                        <a href="#" class="social-link"><i class="fa fa-bilibili"></i></a>
+                        <a href="javascript:alert('请添加负责人qq：2684373547')" class="social-link"><i class="fa fa-qq"></i></a>
+                        <a href="https://github.com/Sippyyuhao/Loralore" target="_blank" class="social-link"><i class="fa fa-github"></i></a>
+                        <a href="https://grabcad.com/sippy-1" target="_blank" class="social-link"><i class="fa fa-cube"></i></a>
                     </div>
                 </div>
                 <div class="contact-form">
