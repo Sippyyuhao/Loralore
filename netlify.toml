@@ -18,4 +18,4 @@ package = "netlify-plugin-critical-css"
 # Plugin 4: HTML Validation
 # Validates the generated HTML to ensure it's free of errors.
 [[plugins]]
-package = "@oliver-roick/netlify-plugin-html-validate" 
+package = "netlify-plugin-html-validate" 
