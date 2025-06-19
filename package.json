@@ -1,12 +1,12 @@
 {
-  "dependencies": {
-    "particles.js": "^2.0.0"
+  "name": "sippy_5_web",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "keywords": [],
   "author": "",
-  "license": "ISC",
-  "devDependencies": {
-    "netlify-plugin-image-optim": "^0.4.0",
-    "netlify-plugin-inline-critical-css": "^2.0.0",
-    "netlify-plugin-hashfiles": "^4.0.0"
-  }
+  "license": "ISC"
 }
