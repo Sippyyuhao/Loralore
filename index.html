@@ -92,6 +92,28 @@
         }
 
         /* 4. Showcase 视觉焦点 */
+        #showcase {
+            height: 100vh;
+            padding: 0; /* Override generic section padding */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative; /* For particles.js background */
+        }
+        #particles-js {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1;
+        }
+        #showcase .container {
+            position: relative;
+            z-index: 2;
+        }
+
         #showcase h1 {
             font-size: clamp(2.5rem, 5vw, 4rem); /* 响应式字号 */
             font-weight: 700;
@@ -268,8 +290,37 @@
             .equipment-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
+            .pricing-comparison {
+                flex-direction: column;
+                gap: 30px;
+            }
         }
         
+        @media (max-width: 768px) {
+            .template-grid {
+                grid-template-columns: 1fr;
+            }
+             .contact-container {
+                flex-direction: column;
+            }
+            .contact-info, .contact-form {
+                width: 100%;
+                margin-bottom: 30px;
+            }
+             .footer-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            .footer-links {
+                margin-top: 20px;
+                width: 100%;
+                justify-content: space-around;
+            }
+            .team-values {
+                grid-template-columns: 1fr;
+            }
+        }
+
         @media (max-width: 576px) {
             .equipment-grid {
                 grid-template-columns: 1fr;
@@ -412,6 +463,9 @@
         @media (max-width: 768px) {
             .service-card {
                 max-width: 90%;
+            }
+            .pricing-comparison {
+                grid-template-columns: 1fr;
             }
         }
         
@@ -590,6 +644,7 @@
             padding: 40px 20px;
             z-index: 1000;
             transition: transform 0.3s ease-in-out, width 0.3s ease;
+            transform: translateX(calc(-1 * var(--sidebar-width))); /* 默认在移动端隐藏 */
         }
 
         #header .container {
@@ -660,7 +715,7 @@
             transform: translateX(5px);
         }
 
-        body {
+        main {
             transition: padding-left 0.3s ease-in-out;
         }
 
@@ -676,6 +731,7 @@
 
             #header {
                 width: var(--sidebar-collapsed-width);
+                transform: translateX(0); /* Ensure sidebar is visible on desktop */
             }
             #header.is-expanded {
                 width: var(--sidebar-width);
@@ -699,7 +755,7 @@
             height: 40px;
             background: #fff;
             border-radius: 50%;
-            display: flex;
+            display: none;
             align-items: center;
             justify-content: center;
             z-index: 1001;
@@ -709,6 +765,9 @@
 
         /* Responsive Sidebar Logic */
         @media (max-width: 992px) {
+            body {
+                padding-left: 0 !important; /* 在移动端移除body的内边距 */
+            }
             #header {
                 transform: translateX(calc(-1 * var(--sidebar-width)));
             }
@@ -721,6 +780,13 @@
             }
             .menu-toggle {
                 display: flex;
+            }
+            #main-content {
+                padding-left: 0;
+            }
+            /* 确保在移动端，即使侧边栏展开，主内容也不会被推开 */
+            body.sidebar-expanded {
+                padding-left: 0;
             }
         }
         
@@ -758,698 +824,700 @@
                     <li><a href="#contact"><i class="fa fa-envelope-o"></i><span>联系我们</span></a></li>
                 </ul>
             </nav>
-            <div class="menu-toggle">
-                <i class="fa fa-bars"></i>
-            </div>
         </div>
     </header>
+    <div class="menu-toggle">
+        <i class="fa fa-bars"></i>
+    </div>
 
-    <section id="showcase">
-        <div id="particles-js"></div>
-        <div class="container">
-            <div class="showcase-content">
-                <h1>用创意改变生活</h1>
-                <p>我们是一群热爱技术的学生创业者，致力于将创意转化为现实</p>
-                <a href="#projects" class="btn btn-primary">查看我们的项目</a>
+    <main id="main-content">
+        <section id="showcase">
+            <div id="particles-js"></div>
+            <div class="container">
+                <div class="showcase-content">
+                    <h1>用创意改变生活</h1>
+                    <p>我们是一群热爱技术的学生创业者，致力于将创意转化为现实</p>
+                    <a href="#projects" class="btn btn-primary">查看我们的项目</a>
+                </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <section id="features">
-        <div class="container">
-            <div class="feature-box reveal">
-                <i class="fa fa-lightbulb-o"></i>
-                <h3>创意无限</h3>
-                <p>突破常规思维，提供富有创意的解决方案</p>
-            </div>
-            <div class="feature-box reveal">
-                <i class="fa fa-code"></i>
-                <h3>技术驱动</h3>
-                <p>运用前沿技术，构建高质量应用</p>
-            </div>
-            <div class="feature-box reveal">
-                <i class="fa fa-users"></i>
-                <h3>团队协作</h3>
-                <p>跨学科合作，汇聚多元化人才与视角</p>
-            </div>
-        </div>
-    </section>
-
-    <section id="projects">
-        <div class="container">
-            <h2 class="section-title reveal">团队项目</h2>
-            
-            <!-- 3D旋转画廊展示 -->
-            <!-- 注意：画廊内容将由JavaScript动态生成 -->
-            
-            <!-- 原有项目展示部分（现已隐藏） -->
-            <div class="services-container">
-                <!-- 原来的项目卡片... -->
-            </div>
-            
-            <!-- 项目详情部分 -->
-            <div class="project-details">
-                <div class="project-detail-item reveal" id="project-apass">
-                    <div class="project-detail-header">
-                        <h3>Apass密码管理小程序</h3>
-                        <p class="project-slogan">安全管理您的数字身份</p>
-                    </div>
-                    <div class="project-detail-content">
-                        <div class="project-detail-info">
-                            <p>模仿Samsung pass设计风格的密码管理工具，为用户提供安全、便捷的账号密码管理体验。所有数据均存储在本地，保障隐私安全。</p>
-                            <h4>核心功能</h4>
-                            <ul>
-                                <li><i class="fa fa-lock"></i> 生物识别与密码双重验证</li>
-                                <li><i class="fa fa-refresh"></i> 智能密码生成器</li>
-                                <li><i class="fa fa-shield"></i> 密码安全强度检测</li>
-                                <li><i class="fa fa-download"></i> 自动备份与恢复</li>
-                                <li><i class="fa fa-search"></i> 快速搜索与分类管理</li>
-                            </ul>
-                            <div class="project-tech">
-                                <span>技术栈：</span>
-                                <span class="tech-tag">微信小程序</span>
-                                <span class="tech-tag">WXML</span>
-                                <span class="tech-tag">WXSS</span>
-                                <span class="tech-tag">JavaScript</span>
-                            </div>
-                        </div>
-                    </div>
+        <section id="features">
+            <div class="container">
+                <div class="feature-box reveal">
+                    <i class="fa fa-lightbulb-o"></i>
+                    <h3>创意无限</h3>
+                    <p>突破常规思维，提供富有创意的解决方案</p>
                 </div>
-                
-                <div class="project-detail-item reveal" id="project-lovalovea">
-                    <div class="project-detail-header">
-                        <h3>Lovalovea情侣空间</h3>
-                        <p class="project-slogan">alove，不再alone</p>
-                    </div>
-                    <div class="project-detail-content">
-                        <div class="project-detail-info">
-                            <p>专为情侣打造的私密社交空间，提供一个专属、安全的平台，让情侣可以方便地记录、分享和回顾彼此生活的点点滴滴，增进感情。</p>
-                            <h4>核心功能</h4>
-                            <ul>
-                                <li><i class="fa fa-users"></i> 情侣配对系统</li>
-                                <li><i class="fa fa-book"></i> AI辅助情侣日志</li>
-                                <li><i class="fa fa-calendar"></i> 纪念日管理</li>
-                                <li><i class="fa fa-picture-o"></i> 私密相册</li>
-                                <li><i class="fa fa-comments"></i> 专属聊天空间</li>
-                            </ul>
-                            <div class="project-tech">
-                                <span>技术栈：</span>
-                                <span class="tech-tag">HTML</span>
-                                <span class="tech-tag">CSS</span>
-                                <span class="tech-tag">JavaScript</span>
-                                <span class="tech-tag">Node.js</span>
-                                <span class="tech-tag">MongoDB</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="project-detail-item reveal" id="project-ascii-wx">
-                    <div class="project-detail-header">
-                        <h3>字符大师</h3>
-                        <p class="project-slogan">像素之美，字符之趣</p>
-                    </div>
-                    <div class="project-detail-content">
-                        <div class="project-detail-info">
-                            <p>一款创意图像处理微信小程序，能将普通图片转换为由ASCII字符组成的艺术作品。支持多种参数调整，让您创作出独一无二的字符艺术。</p>
-                            <h4>核心功能</h4>
-                            <ul>
-                                <li><i class="fa fa-image"></i> 图片到ASCII字符转换</li>
-                                <li><i class="fa fa-sliders"></i> 自定义字符集与转换参数</li>
-                                <li><i class="fa fa-paint-brush"></i> 彩色/黑白模式切换</li>
-                                <li><i class="fa fa-save"></i> 结果保存与分享</li>
-                                <li><i class="fa fa-eye"></i> 实时预览效果</li>
-                            </ul>
-                            <div class="project-tech">
-                                <span>技术栈：</span>
-                                <span class="tech-tag">微信小程序</span>
-                                <span class="tech-tag">Canvas</span>
-                                <span class="tech-tag">JavaScript</span>
-                                <span class="tech-tag">图像处理算法</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="project-detail-item reveal" id="project-ascii-qt">
-                    <div class="project-detail-header">
-                        <h3>ASCII艺术桌面版</h3>
-                        <p class="project-slogan">字符构建的视觉艺术</p>
-                    </div>
-                    <div class="project-detail-content">
-                        <div class="project-detail-info">
-                            <p>基于Qt开发的桌面ASCII艺术转换工具，支持图片和视频的高级处理。通过集成FFmpeg视频框架，实现了视频到ASCII艺术的实时转换。</p>
-                            <h4>核心功能</h4>
-                            <ul>
-                                <li><i class="fa fa-film"></i> 视频到ASCII实时转换</li>
-                                <li><i class="fa fa-image"></i> 高精度图片处理</li>
-                                <li><i class="fa fa-cogs"></i> 多参数自定义选项</li>
-                                <li><i class="fa fa-desktop"></i> 跨平台桌面支持</li>
-                                <li><i class="fa fa-file-video-o"></i> 视频帧提取与处理</li>
-                            </ul>
-                            <div class="project-tech">
-                                <span>技术栈：</span>
-                                <span class="tech-tag">Qt</span>
-                                <span class="tech-tag">C++</span>
-                                <span class="tech-tag">FFmpeg</span>
-                                <span class="tech-tag">多媒体处理</span>
-                                <span class="tech-tag">并发计算</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="project-detail-item reveal" id="project-julia">
-                    <div class="project-detail-header">
-                        <h3>UDP交流互动软件</h3>
-                        <p class="project-slogan">创意共享，即时连接</p>
-                    </div>
-                    <div class="project-detail-content">
-                        <div class="project-detail-info">
-                            <p>基于Qt开发的网络交流平台，采用UDP协议实现高效通信，集成绘图、照片处理、即时对话和用户系统于一体，为用户提供全方位的交互体验。</p>
-                            <h4>核心功能</h4>
-                            <ul>
-                                <li><i class="fa fa-paint-brush"></i> 实时共享绘图画布</li>
-                                <li><i class="fa fa-picture-o"></i> 图像编辑与处理</li>
-                                <li><i class="fa fa-comments"></i> 低延迟即时通讯</li>
-                                <li><i class="fa fa-user-circle"></i> 用户账号管理</li>
-                                <li><i class="fa fa-exchange"></i> UDP高效数据传输</li>
-                            </ul>
-                            <div class="project-tech">
-                                <span>技术栈：</span>
-                                <span class="tech-tag">Qt</span>
-                                <span class="tech-tag">C++</span>
-                                <span class="tech-tag">UDP协议</span>
-                                <span class="tech-tag">网络通信</span>
-                                <span class="tech-tag">多线程</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="project-detail-item reveal" id="project-calculus">
-                    <div class="project-detail-header">
-                        <h3>微积分计算器</h3>
-                        <p class="project-slogan">复杂数学，简单解析</p>
-                    </div>
-                    <div class="project-detail-content">
-                        <div class="project-detail-info">
-                            <p>基于MATLAB开发的高级微积分计算工具，支持复杂函数的求导、积分、极限计算及图形可视化，为数学学习和科研提供强大的工具支持。</p>
-                            <h4>核心功能</h4>
-                            <ul>
-                                <li><i class="fa fa-superscript"></i> 多元函数导数计算</li>
-                                <li><i class="fa fa-area-chart"></i> 定积分与不定积分求解</li>
-                                <li><i class="fa fa-line-chart"></i> 函数图形可视化</li>
-                                <li><i class="fa fa-calculator"></i> 微分方程数值解法</li>
-                                <li><i class="fa fa-file-text-o"></i> 计算步骤详细解析</li>
-                            </ul>
-                            <div class="project-tech">
-                                <span>技术栈：</span>
-                                <span class="tech-tag">MATLAB</span>
-                                <span class="tech-tag">数值计算</span>
-                                <span class="tech-tag">符号计算</span>
-                                <span class="tech-tag">数据可视化</span>
-                                <span class="tech-tag">GUI设计</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="services">
-        <div class="container">
-            <h2 class="section-title reveal">我们的服务</h2>
-            <div class="services-intro reveal">
-                <p class="services-description">Loralore工作室提供简约静态网站开发服务，无需购买服务器或域名，即可获得优质公网访问体验。我们关注页面美观与移动端适配，为您打造个性化展示页面。</p>
-            </div>
-            
-            <div class="service-promotion reveal">
-                <h3 class="promotion-title">想拥有一个专属于你的网站吗？</h3>
-                <p class="promotion-text">个人品牌展示、学术成果分享、创意项目介绍、作品集展示、个人博客......一个属于自己的网站让你的在线形象更加专业，让世界看见你的才华！</p>
-                <p class="promotion-highlight"><span>无需技术基础</span> · <span>无需购买域名</span> · <span>无需维护服务器</span> · <span>即刻上线</span></p>
-            </div>
-            
-            <div class="service-highlight reveal">
-                <div class="pricing-comparison">
-                    <!-- Regular Price Card -->
-                    <div class="service-card">
-                        <div class="service-header">
-                            <h3>基础静态网站</h3>
-                            <p class="service-subtitle">专业展示 · 提升形象</p>
-                            <div class="service-price">
-                                <div class="price-main">¥119</div>
-                                <div class="price-period">校外普通价</div>
-                            </div>
-                        </div>
-                        <div class="service-content">
-                            <div class="service-features">
-                                <div class="service-feature">
-                                    <i class="fa fa-check"></i>
-                                    <span>静态响应式网站</span>
-                                </div>
-                                <div class="service-feature">
-                                    <i class="fa fa-check"></i>
-                                    <span>个性化定制</span>
-                                </div>
-                                <div class="service-feature">
-                                    <i class="fa fa-check"></i>
-                                    <span>Azure云端部署与访问</span>
-                                </div>
-                                <div class="service-feature">
-                                    <i class="fa fa-check"></i>
-                                    <span>手机端基础适配</span>
-                                </div>
-                                <div class="service-feature">
-                                    <i class="fa fa-check"></i>
-                                    <span>源代码一次性交付</span>
-                                </div>
-                                <div class="service-feature highlight-feature delivery-time">
-                                    <i class="fa fa-clock-o"></i>
-                                    <span>一周内交付</span>
-                                </div>
-                                <div class="service-feature highlight-feature">
-                                    <i class="fa fa-globe"></i>
-                                    <span>无需服务器与域名，公网访问</span>
-                                </div>
-                            </div>
-                            <div class="service-action">
-                                <a href="#contact" class="btn">立即拥有</a>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Student Standard Card -->
-                    <div class="service-card student-special">
-                        <div class="service-special-tag">四校学生专属</div>
-                        <div class="service-header">
-                            <h3>学生静态网站</h3>
-                            <p class="service-subtitle">学生专享 · 超值选择</p>
-                            <div class="service-price">
-                                <div class="price-main">¥29.9</div>
-                                <div class="price-period">限四校学生</div>
-                            </div>
-                        </div>
-                        <div class="service-content">
-                            <div class="service-features">
-                                <div class="service-feature">
-                                    <i class="fa fa-check"></i>
-                                    <span>静态响应式网站</span>
-                                </div>
-                                <div class="service-feature">
-                                    <i class="fa fa-check"></i>
-                                    <span>个性化定制</span>
-                                </div>
-                                <div class="service-feature">
-                                    <i class="fa fa-check"></i>
-                                    <span>Azure云端部署与访问</span>
-                                </div>
-                                <div class="service-feature">
-                                    <i class="fa fa-check"></i>
-                                    <span>手机端基础适配</span>
-                                </div>
-                                <div class="service-feature">
-                                    <i class="fa fa-check"></i>
-                                    <span>源代码一次性交付</span>
-                                </div>
-                                <div class="service-feature highlight-feature delivery-time">
-                                    <i class="fa fa-clock-o"></i>
-                                    <span>一周内交付</span>
-                                </div>
-                                <div class="service-feature highlight-feature">
-                                    <i class="fa fa-globe"></i>
-                                    <span>无需服务器与域名，公网访问</span>
-                                </div>
-                                <div class="student-note">
-                                    <i class="fa fa-graduation-cap"></i>
-                                    <span>限四校学生，需提供学校、专业、姓名、学号认证</span>
-                                </div>
-                                <div class="student-schools">
-                                    <i class="fa fa-university"></i>
-                                    <span>广东海洋大学、广东外语外贸大学、华南师范大学、湖北科技学院</span>
-                                </div>
-                            </div>
-                            <div class="service-action">
-                                <a href="#contact" class="btn btn-primary">学生专享价</a>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Student Premium Card -->
-                    <div class="service-card student-special premium">
-                        <div class="service-special-tag">加急服务</div>
-                        <div class="service-header">
-                            <h3>学生加急服务</h3>
-                            <p class="service-subtitle">急速上线 · 优先支持</p>
-                            <div class="service-price">
-                                <div class="price-main">¥39.9</div>
-                                <div class="price-period">限四校学生</div>
-                            </div>
-                        </div>
-                        <div class="service-content">
-                            <div class="service-features">
-                                <div class="service-feature">
-                                    <i class="fa fa-check"></i>
-                                    <span>静态响应式网站</span>
-                                </div>
-                                <div class="service-feature">
-                                    <i class="fa fa-check"></i>
-                                    <span>个性化定制</span>
-                                </div>
-                                <div class="service-feature">
-                                    <i class="fa fa-check"></i>
-                                    <span>Azure云端部署与访问</span>
-                                </div>
-                                <div class="service-feature">
-                                    <i class="fa fa-check"></i>
-                                    <span>手机端基础适配</span>
-                                </div>
-                                <div class="service-feature">
-                                    <i class="fa fa-check"></i>
-                                    <span>源代码一次性交付</span>
-                                </div>
-                                <div class="service-feature highlight-feature">
-                                    <i class="fa fa-globe"></i>
-                                    <span>无需服务器与域名，公网访问</span>
-                                </div>
-                                <div class="service-feature highlight-feature delivery-time">
-                                    <i class="fa fa-rocket"></i>
-                                    <span>两天内加急交付</span>
-                                </div>
-                                <div class="service-feature highlight-feature">
-                                    <i class="fa fa-star"></i>
-                                    <span>后续修改支持</span>
-                                </div>
-                                <div class="student-note">
-                                    <i class="fa fa-graduation-cap"></i>
-                                    <span>限四校学生，需提供学校、专业、姓名、学号认证</span>
-                                </div>
-                                <div class="student-schools">
-                                    <i class="fa fa-university"></i>
-                                    <span>广东海洋大学、广东外语外贸大学、华南师范大学、湖北科技学院</span>
-                                </div>
-                            </div>
-                            <div class="service-action">
-                                <a href="#contact" class="btn btn-premium">急速上线</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="templates-section reveal">
-                <h3 class="templates-title">六大风格网站模板</h3>
-                <p class="templates-description">我们提供六种不同风格的现代化布局和样式，点击卡片查看详情，总有一款适合你</p>
-                
-                <div class="template-grid">
-                    <!-- 简约风格 -->
-                    <div class="template-item reveal">
-                        <a href="template-minimal.html" class="template-link">
-                            <div class="template-preview">
-                                <img src="https://images.unsplash.com/photo-1512428559084-b3de39d36a53?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNjU5OTZ8MHwxfHNlYXJjaHw0fHxtaW5pbWFsJTIwd2Vic2l0ZXxlbnwwfHx8fDE2NzI4MDI0NTE&ixlib=rb-4.0.3&q=80&w=400" alt="简约风格">
-                            </div>
-                            <div class="template-info">
-                                <h4>简约风格</h4>
-                                <p>干净、清爽，通过留白和排版突出核心内容。</p>
-                                <div class="template-action">
-                                    <span class="btn-view">查看模板</span>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    
-                    <!-- 高交互风格 -->
-                    <div class="template-item reveal">
-                        <a href="template-interactive.html" class="template-link">
-                            <div class="template-preview">
-                                <img src="https://images.unsplash.com/photo-1558655146-364adaf1fcc9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNjU5OTZ8MHwxfHNlYXJjaHwyfHxpbnRlcmFjdGl2ZSUyMGRlc2lnbnxlbnwwfHx8fDE2NzI4MDI1Mzc&ixlib=rb-4.0.3&q=80&w=400" alt="高交互风格">
-                            </div>
-                            <div class="template-info">
-                                <h4>高交互风格</h4>
-                                <p>充满动效和微交互，为用户带来流畅有趣的体验。</p>
-                                <div class="template-action">
-                                    <span class="btn-view">查看模板</span>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    
-                    <!-- 二次元风格 -->
-                    <div class="template-item reveal">
-                        <a href="template-anime.html" class="template-link">
-                            <div class="template-preview">
-                                <img src="https://images.unsplash.com/photo-1613376023733-0a73375d8628?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNjU5OTZ8MHwxfHNlYXJjaHwxfHxhbmltZSUyMGFydHxlbnwwfHx8fDE2NzI4MDI2MDE&ixlib=rb-4.0.3&q=80&w=400" alt="二次元风格">
-                            </div>
-                            <div class="template-info">
-                                <h4>二次元风格</h4>
-                                <p>可爱、活泼，使用明亮的色彩和专属字体，萌即正义！</p>
-                                <div class="template-action">
-                                    <span class="btn-view">查看模板</span>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    
-                    <!-- 插画风格 -->
-                    <div class="template-item reveal">
-                        <a href="template-illustrated.html" class="template-link">
-                            <div class="template-preview">
-                                <img src="https://images.unsplash.com/photo-1633469030283-5cbf86e57b16?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNjU5OTZ8MHwxfHNlYXJjaHwxfHxpbGx1c3RyYXRpb24lMjB3ZWJzaXRlfGVufDB8fHx8MTY3MjgwMjYzNA&ixlib=rb-4.0.3&q=80&w=400" alt="插画风格">
-                            </div>
-                            <div class="template-info">
-                                <h4>插画风格</h4>
-                                <p>使用定制插画，让你的网站充满艺术感和故事性。</p>
-                                <div class="template-action">
-                                    <span class="btn-view">查看模板</span>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-
-                    <!-- 暗黑风格 -->
-                    <div class="template-item reveal">
-                        <a href="template-dark.html" class="template-link">
-                            <div class="template-preview">
-                                <img src="https://images.unsplash.com/photo-1533090481720-856c6e3c1fdc?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNjU5OTZ8MHwxfHNlYXJjaHw0fHxkYXJrJTIwd2Vic2l0ZXxlbnwwfHx8fDE2NzI4MDI2NzM&ixlib=rb-4.0.3&q=80&w=400" alt="暗黑风格">
-                            </div>
-                            <div class="template-info">
-                                <h4>暗黑风格</h4>
-                                <p>深邃、高级，利用深色背景和高对比度，创造沉浸式体验。</p>
-                                <div class="template-action">
-                                    <span class="btn-view">查看模板</span>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-
-                    <!-- 卡片式风格 -->
-                    <div class="template-item reveal">
-                        <a href="template-cards.html" class="template-link">
-                            <div class="template-preview">
-                                <img src="https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNjU5OTZ8MHwxfHNlYXJjaHwyfHxtYXRlcmlhbCUyMGRlc2lnbnxlbnwwfHx8fDE2NzI4MDI3MTM&ixlib=rb-4.0.3&q=80&w=400" alt="卡片式风格">
-                            </div>
-                            <div class="template-info">
-                                <h4>卡片式风格</h4>
-                                <p>信息模块化，布局清晰，适合展示多元化内容。</p>
-                                <div class="template-action">
-                                    <span class="btn-view">查看模板</span>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                
-                <div class="templates-note">
-                    <p><i class="fa fa-info-circle"></i> 所有模板均为响应式设计，特别针对四校（广东海洋大学、广东外语外贸大学、华南师范大学、湖北科技学院）学生需求定制优化</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="equipment">
-        <div class="container">
-            <h2 class="section-title reveal">资源</h2>
-            <div class="equipment-intro reveal">
-                <p class="equipment-description">Loralore工作室配备多台专业3D打印设备，支持团队从产品原型设计到最终实物成型的全流程创新。我们的资源涵盖FDM打印、激光雕刻等不同工艺，为创意项目提供强大硬件支持。</p>
-            </div>
-            
-            <div class="equipment-grid">
-                <div class="equipment-item reveal">
-                    <div class="equipment-image">
-                        <img src="./images/创想三维Ender3v3ke.png" alt="创想三维Ender3v3ke">
-                    </div>
-                    <div class="equipment-info">
-                        <h3>创想三维Ender3v3ke</h3>
-                    </div>
-                </div>
-                
-                <div class="equipment-item reveal">
-                    <div class="equipment-image">
-                        <img src="./images/拓竹A1mini.png" alt="拓竹A1mini">
-                    </div>
-                    <div class="equipment-info">
-                        <h3>拓竹A1mini</h3>
-                    </div>
-                </div>
-                
-                <div class="equipment-item reveal">
-                    <div class="equipment-image">
-                        <img src="./images/拓竹p1s.png" alt="拓竹P1S">
-                    </div>
-                    <div class="equipment-info">
-                        <h3>拓竹P1S</h3>
-                    </div>
-                </div>
-                
-                <div class="equipment-item reveal">
-                    <div class="equipment-image">
-                        <img src="./images/Tink3D t1.png" alt="Tink3D T1">
-                    </div>
-                    <div class="equipment-info">
-                        <h3>Tink3D T1</h3>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="team">
-        <div class="container">
-            <h2 class="section-title reveal">团队成员</h2>
-            <div class="team-intro reveal">
-                <p class="team-description">Loralore是一支充满活力的跨校学生组成的队伍。由广东海洋大学、广东外语外贸大学、华南师范大学、湖北科技学院的热爱技术、分享、创造的同学们共同维护。</p>
-            </div>
-            
-            <div class="school-logos">
-                <div class="school-logo reveal">
-                    <a href="https://www.gdou.edu.cn/" target="_blank" rel="noopener noreferrer">
-                        <img src="./images/gdhy.jpg" alt="广东海洋大学校标">
-                        <span>广东海洋大学</span>
-                    </a>
-                </div>
-                <div class="school-logo reveal">
-                    <a href="https://www.gdufs.edu.cn/" target="_blank" rel="noopener noreferrer">
-                        <img src="./images/gdwywm.jpg" alt="广东外语外贸大学校标">
-                        <span>广东外语外贸大学</span>
-                    </a>
-                </div>
-                <div class="school-logo reveal">
-                    <a href="https://www.scnu.edu.cn/" target="_blank" rel="noopener noreferrer">
-                        <img src="./images/hnsf.jpg" alt="华南师范大学校标">
-                        <span>华南师范大学</span>
-                    </a>
-                </div>
-                <div class="school-logo reveal">
-                    <a href="https://www.hbust.edu.cn/" target="_blank" rel="noopener noreferrer">
-                        <img src="./images/hbkj.jpg" alt="湖北科技学院校标">
-                        <span>湖北科技学院</span>
-                    </a>
-                </div>
-            </div>
-            
-            <div class="team-values">
-                <div class="team-value-item reveal">
-                    <div class="value-icon">
-                        <i class="fa fa-code"></i>
-                    </div>
+                <div class="feature-box reveal">
+                    <i class="fa fa-code"></i>
                     <h3>技术驱动</h3>
-                    <p>我们热爱技术，追求创新，不断探索前沿科技与应用</p>
+                    <p>运用前沿技术，构建高质量应用</p>
                 </div>
-                <div class="team-value-item reveal">
-                    <div class="value-icon">
-                        <i class="fa fa-lightbulb-o"></i>
-                    </div>
-                    <h3>创意为本</h3>
-                    <p>用创造性思维解决问题，让设计与功能完美结合</p>
-                </div>
-                <div class="team-value-item reveal">
-                    <div class="value-icon">
-                        <i class="fa fa-users"></i>
-                    </div>
-                    <h3>协作共赢</h3>
-                    <p>跨校合作，汇集多元视角，共同成长与进步</p>
+                <div class="feature-box reveal">
+                    <i class="fa fa-users"></i>
+                    <h3>团队协作</h3>
+                    <p>跨学科合作，汇聚多元化人才与视角</p>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <section id="contact" class="reveal">
-        <div class="container">
-            <h2 class="section-title">联系我们</h2>
-            <div class="contact-container">
-                <div class="contact-info">
-                    <div class="contact-item">
-                        <i class="fa fa-map-marker"></i>
-                        <p>地址：四校联合工作室</p>
-                    </div>
-                    <div class="contact-item">
-                        <i class="fa fa-phone"></i>
-                        <p>qq：2684373547</p>
-                    </div>
-                    <div class="contact-item">
-                        <i class="fa fa-envelope"></i>
-                        <p>邮箱：sippyyuhao@hotmail.com </p>
-                    </div>
-                    <div class="social-links">
-                        <a href="#" class="social-link"><i class="fa fa-weixin"></i></a>
-                        <a href="javascript:alert('请添加负责人qq：2684373547')" class="social-link"><i class="fa fa-qq"></i></a>
-                        <a href="https://github.com/Sippyyuhao/Loralore" target="_blank" class="social-link"><i class="fa fa-github"></i></a>
-                        <a href="https://grabcad.com/sippy-1" target="_blank" class="social-link"><i class="fa fa-cube"></i></a>
-                    </div>
+        <section id="projects">
+            <div class="container">
+                <h2 class="section-title reveal">团队项目</h2>
+                
+                <!-- 3D旋转画廊展示 -->
+                <!-- 注意：画廊内容将由JavaScript动态生成 -->
+                
+                <!-- 原有项目展示部分（现已隐藏） -->
+                <div class="services-container">
+                    <!-- 原来的项目卡片... -->
                 </div>
-                <div class="contact-form">
-                    <form id="contactForm" action="https://formspree.io/f/mjkrvkve" method="POST">
-                        <div class="form-group">
-                            <input type="text" id="form-name" name="name" placeholder="您的姓名" required>
+                
+                <!-- 项目详情部分 -->
+                <div class="project-details">
+                    <div class="project-detail-item reveal" id="project-apass">
+                        <div class="project-detail-header">
+                            <h3>Apass密码管理小程序</h3>
+                            <p class="project-slogan">安全管理您的数字身份</p>
                         </div>
-                        <div class="form-group">
-                            <input type="email" id="form-email" name="email" placeholder="您的邮箱" required>
+                        <div class="project-detail-content">
+                            <div class="project-detail-info">
+                                <p>模仿Samsung pass设计风格的密码管理工具，为用户提供安全、便捷的账号密码管理体验。所有数据均存储在本地，保障隐私安全。</p>
+                                <h4>核心功能</h4>
+                                <ul>
+                                    <li><i class="fa fa-lock"></i> 生物识别与密码双重验证</li>
+                                    <li><i class="fa fa-refresh"></i> 智能密码生成器</li>
+                                    <li><i class="fa fa-shield"></i> 密码安全强度检测</li>
+                                    <li><i class="fa fa-download"></i> 自动备份与恢复</li>
+                                    <li><i class="fa fa-search"></i> 快速搜索与分类管理</li>
+                                </ul>
+                                <div class="project-tech">
+                                    <span>技术栈：</span>
+                                    <span class="tech-tag">微信小程序</span>
+                                    <span class="tech-tag">WXML</span>
+                                    <span class="tech-tag">WXSS</span>
+                                    <span class="tech-tag">JavaScript</span>
+                                </div>
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <input type="text" id="form-subject" name="subject" placeholder="主题">
+                    </div>
+                    
+                    <div class="project-detail-item reveal" id="project-lovalovea">
+                        <div class="project-detail-header">
+                            <h3>Lovalovea情侣空间</h3>
+                            <p class="project-slogan">alove，不再alone</p>
                         </div>
-                        <div class="form-group">
-                            <textarea id="form-message" name="message" placeholder="您的留言" required></textarea>
+                        <div class="project-detail-content">
+                            <div class="project-detail-info">
+                                <p>专为情侣打造的私密社交空间，提供一个专属、安全的平台，让情侣可以方便地记录、分享和回顾彼此生活的点点滴滴，增进感情。</p>
+                                <h4>核心功能</h4>
+                                <ul>
+                                    <li><i class="fa fa-users"></i> 情侣配对系统</li>
+                                    <li><i class="fa fa-book"></i> AI辅助情侣日志</li>
+                                    <li><i class="fa fa-calendar"></i> 纪念日管理</li>
+                                    <li><i class="fa fa-picture-o"></i> 私密相册</li>
+                                    <li><i class="fa fa-comments"></i> 专属聊天空间</li>
+                                </ul>
+                                <div class="project-tech">
+                                    <span>技术栈：</span>
+                                    <span class="tech-tag">HTML</span>
+                                    <span class="tech-tag">CSS</span>
+                                    <span class="tech-tag">JavaScript</span>
+                                    <span class="tech-tag">Node.js</span>
+                                    <span class="tech-tag">MongoDB</span>
+                                </div>
+                            </div>
                         </div>
-                        <input type="hidden" name="_next" value="https://sippyyuhao.github.io/Loralore/thanks.html">
-                        <button type="submit" class="btn btn-primary">发送消息</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </section>
+                    </div>
+                    
+                    <div class="project-detail-item reveal" id="project-ascii-wx">
+                        <div class="project-detail-header">
+                            <h3>字符大师</h3>
+                            <p class="project-slogan">像素之美，字符之趣</p>
+                        </div>
+                        <div class="project-detail-content">
+                            <div class="project-detail-info">
+                                <p>一款创意图像处理微信小程序，能将普通图片转换为由ASCII字符组成的艺术作品。支持多种参数调整，让您创作出独一无二的字符艺术。</p>
+                                <h4>核心功能</h4>
+                                <ul>
+                                    <li><i class="fa fa-image"></i> 图片到ASCII字符转换</li>
+                                    <li><i class="fa fa-sliders"></i> 自定义字符集与转换参数</li>
+                                    <li><i class="fa fa-paint-brush"></i> 彩色/黑白模式切换</li>
+                                    <li><i class="fa fa-save"></i> 结果保存与分享</li>
+                                    <li><i class="fa fa-eye"></i> 实时预览效果</li>
+                                </ul>
+                                <div class="project-tech">
+                                    <span>技术栈：</span>
+                                    <span class="tech-tag">微信小程序</span>
+                                    <span class="tech-tag">Canvas</span>
+                                    <span class="tech-tag">JavaScript</span>
+                                    <span class="tech-tag">图像处理算法</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="project-detail-item reveal" id="project-ascii-qt">
+                        <div class="project-detail-header">
+                            <h3>ASCII艺术桌面版</h3>
+                            <p class="project-slogan">字符构建的视觉艺术</p>
+                        </div>
+                        <div class="project-detail-content">
+                            <div class="project-detail-info">
+                                <p>基于Qt开发的桌面ASCII艺术转换工具，支持图片和视频的高级处理。通过集成FFmpeg视频框架，实现了视频到ASCII艺术的实时转换。</p>
+                                <h4>核心功能</h4>
+                                <ul>
+                                    <li><i class="fa fa-film"></i> 视频到ASCII实时转换</li>
+                                    <li><i class="fa fa-image"></i> 高精度图片处理</li>
+                                    <li><i class="fa fa-cogs"></i> 多参数自定义选项</li>
+                                    <li><i class="fa fa-desktop"></i> 跨平台桌面支持</li>
+                                    <li><i class="fa fa-file-video-o"></i> 视频帧提取与处理</li>
+                                </ul>
+                                <div class="project-tech">
+                                    <span>技术栈：</span>
+                                    <span class="tech-tag">Qt</span>
+                                    <span class="tech-tag">C++</span>
+                                    <span class="tech-tag">FFmpeg</span>
+                                    <span class="tech-tag">多媒体处理</span>
+                                    <span class="tech-tag">并发计算</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="project-detail-item reveal" id="project-julia">
+                        <div class="project-detail-header">
+                            <h3>UDP交流互动软件</h3>
+                            <p class="project-slogan">创意共享，即时连接</p>
+                        </div>
+                        <div class="project-detail-content">
+                            <div class="project-detail-info">
+                                <p>基于Qt开发的网络交流平台，采用UDP协议实现高效通信，集成绘图、照片处理、即时对话和用户系统于一体，为用户提供全方位的交互体验。</p>
+                                <h4>核心功能</h4>
+                                <ul>
+                                    <li><i class="fa fa-paint-brush"></i> 实时共享绘图画布</li>
+                                    <li><i class="fa fa-picture-o"></i> 图像编辑与处理</li>
+                                    <li><i class="fa fa-comments"></i> 低延迟即时通讯</li>
+                                    <li><i class="fa fa-user-circle"></i> 用户账号管理</li>
+                                    <li><i class="fa fa-exchange"></i> UDP高效数据传输</li>
+                                </ul>
+                                <div class="project-tech">
+                                    <span>技术栈：</span>
+                                    <span class="tech-tag">Qt</span>
+                                    <span class="tech-tag">C++</span>
+                                    <span class="tech-tag">UDP协议</span>
+                                    <span class="tech-tag">网络通信</span>
+                                    <span class="tech-tag">多线程</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
-    <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-logo">
-                    <h2><span class="highlight">Lora</span>lore</h2>
-                    <p>无限进步</p>
-                </div>
-                <div class="footer-links">
-                    <div class="footer-links-column">
-                        <h3>快速链接</h3>
-                        <a href="#projects">项目展示</a>
-                        <a href="#services">服务</a>
-                        <a href="#equipment">资源</a>
-                        <a href="#team">团队介绍</a>
-                        <a href="#contact">联系我们</a>
-                    </div>
-                    <div class="footer-links-column">
-                        <h3>项目类型</h3>
-                        <a href="#project-ascii-wx">微信小程序</a>
-                        <a href="#project-ascii-qt">桌面应用</a>
-                        <a href="#project-lovalovea">Web应用</a>
-                        <a href="#project-calculus">数学应用</a>
+                    <div class="project-detail-item reveal" id="project-calculus">
+                        <div class="project-detail-header">
+                            <h3>微积分计算器</h3>
+                            <p class="project-slogan">复杂数学，简单解析</p>
+                        </div>
+                        <div class="project-detail-content">
+                            <div class="project-detail-info">
+                                <p>基于MATLAB开发的高级微积分计算工具，支持复杂函数的求导、积分、极限计算及图形可视化，为数学学习和科研提供强大的工具支持。</p>
+                                <h4>核心功能</h4>
+                                <ul>
+                                    <li><i class="fa fa-superscript"></i> 多元函数导数计算</li>
+                                    <li><i class="fa fa-area-chart"></i> 定积分与不定积分求解</li>
+                                    <li><i class="fa fa-line-chart"></i> 函数图形可视化</li>
+                                    <li><i class="fa fa-calculator"></i> 微分方程数值解法</li>
+                                    <li><i class="fa fa-file-text-o"></i> 计算步骤详细解析</li>
+                                </ul>
+                                <div class="project-tech">
+                                    <span>技术栈：</span>
+                                    <span class="tech-tag">MATLAB</span>
+                                    <span class="tech-tag">数值计算</span>
+                                    <span class="tech-tag">符号计算</span>
+                                    <span class="tech-tag">数据可视化</span>
+                                    <span class="tech-tag">GUI设计</span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="footer-bottom">
-                <p>&copy; 2025 Loralore. 保留所有权利.</p>
+        </section>
+
+        <section id="services">
+            <div class="container">
+                <h2 class="section-title reveal">我们的服务</h2>
+                <div class="services-intro reveal">
+                    <p class="services-description">Loralore工作室提供简约静态网站开发服务，无需购买服务器或域名，即可获得优质公网访问体验。我们关注页面美观与移动端适配，为您打造个性化展示页面。</p>
+                </div>
+                
+                <div class="service-promotion reveal">
+                    <h3 class="promotion-title">想拥有一个专属于你的网站吗？</h3>
+                    <p class="promotion-text">个人品牌展示、学术成果分享、创意项目介绍、作品集展示、个人博客......一个属于自己的网站让你的在线形象更加专业，让世界看见你的才华！</p>
+                    <p class="promotion-highlight"><span>无需技术基础</span> · <span>无需购买域名</span> · <span>无需维护服务器</span> · <span>即刻上线</span></p>
+                </div>
+                
+                <div class="service-highlight reveal">
+                    <div class="pricing-comparison">
+                        <!-- Regular Price Card -->
+                        <div class="service-card">
+                            <div class="service-header">
+                                <h3>基础静态网站</h3>
+                                <p class="service-subtitle">专业展示 · 提升形象</p>
+                                <div class="service-price">
+                                    <div class="price-main">¥119</div>
+                                    <div class="price-period">校外普通价</div>
+                                </div>
+                            </div>
+                            <div class="service-content">
+                                <div class="service-features">
+                                    <div class="service-feature">
+                                        <i class="fa fa-check"></i>
+                                        <span>静态响应式网站</span>
+                                    </div>
+                                    <div class="service-feature">
+                                        <i class="fa fa-check"></i>
+                                        <span>个性化定制</span>
+                                    </div>
+                                    <div class="service-feature">
+                                        <i class="fa fa-check"></i>
+                                        <span>Azure云端部署与访问</span>
+                                    </div>
+                                    <div class="service-feature">
+                                        <i class="fa fa-check"></i>
+                                        <span>手机端基础适配</span>
+                                    </div>
+                                    <div class="service-feature">
+                                        <i class="fa fa-check"></i>
+                                        <span>源代码一次性交付</span>
+                                    </div>
+                                    <div class="service-feature highlight-feature delivery-time">
+                                        <i class="fa fa-clock-o"></i>
+                                        <span>一周内交付</span>
+                                    </div>
+                                    <div class="service-feature highlight-feature">
+                                        <i class="fa fa-globe"></i>
+                                        <span>无需服务器与域名，公网访问</span>
+                                    </div>
+                                </div>
+                                <div class="service-action">
+                                    <a href="#contact" class="btn">立即拥有</a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Student Standard Card -->
+                        <div class="service-card student-special">
+                            <div class="service-special-tag">四校学生专属</div>
+                            <div class="service-header">
+                                <h3>学生静态网站</h3>
+                                <p class="service-subtitle">学生专享 · 超值选择</p>
+                                <div class="service-price">
+                                    <div class="price-main">¥29.9</div>
+                                    <div class="price-period">限四校学生</div>
+                                </div>
+                            </div>
+                            <div class="service-content">
+                                <div class="service-features">
+                                    <div class="service-feature">
+                                        <i class="fa fa-check"></i>
+                                        <span>静态响应式网站</span>
+                                    </div>
+                                    <div class="service-feature">
+                                        <i class="fa fa-check"></i>
+                                        <span>个性化定制</span>
+                                    </div>
+                                    <div class="service-feature">
+                                        <i class="fa fa-check"></i>
+                                        <span>Azure云端部署与访问</span>
+                                    </div>
+                                    <div class="service-feature">
+                                        <i class="fa fa-check"></i>
+                                        <span>手机端基础适配</span>
+                                    </div>
+                                    <div class="service-feature">
+                                        <i class="fa fa-check"></i>
+                                        <span>源代码一次性交付</span>
+                                    </div>
+                                    <div class="service-feature highlight-feature delivery-time">
+                                        <i class="fa fa-clock-o"></i>
+                                        <span>一周内交付</span>
+                                    </div>
+                                    <div class="service-feature highlight-feature">
+                                        <i class="fa fa-globe"></i>
+                                        <span>无需服务器与域名，公网访问</span>
+                                    </div>
+                                    <div class="student-note">
+                                        <i class="fa fa-graduation-cap"></i>
+                                        <span>限四校学生，需提供学校、专业、姓名、学号认证</span>
+                                    </div>
+                                    <div class="student-schools">
+                                        <i class="fa fa-university"></i>
+                                        <span>广东海洋大学、广东外语外贸大学、华南师范大学、湖北科技学院</span>
+                                    </div>
+                                </div>
+                                <div class="service-action">
+                                    <a href="#contact" class="btn btn-primary">学生专享价</a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Student Premium Card -->
+                        <div class="service-card student-special premium">
+                            <div class="service-special-tag">加急服务</div>
+                            <div class="service-header">
+                                <h3>学生加急服务</h3>
+                                <p class="service-subtitle">急速上线 · 优先支持</p>
+                                <div class="service-price">
+                                    <div class="price-main">¥39.9</div>
+                                    <div class="price-period">限四校学生</div>
+                                </div>
+                            </div>
+                            <div class="service-content">
+                                <div class="service-features">
+                                    <div class="service-feature">
+                                        <i class="fa fa-check"></i>
+                                        <span>静态响应式网站</span>
+                                    </div>
+                                    <div class="service-feature">
+                                        <i class="fa fa-check"></i>
+                                        <span>个性化定制</span>
+                                    </div>
+                                    <div class="service-feature">
+                                        <i class="fa fa-check"></i>
+                                        <span>Azure云端部署与访问</span>
+                                    </div>
+                                    <div class="service-feature">
+                                        <i class="fa fa-check"></i>
+                                        <span>手机端基础适配</span>
+                                    </div>
+                                    <div class="service-feature">
+                                        <i class="fa fa-check"></i>
+                                        <span>源代码一次性交付</span>
+                                    </div>
+                                    <div class="service-feature highlight-feature">
+                                        <i class="fa fa-globe"></i>
+                                        <span>无需服务器与域名，公网访问</span>
+                                    </div>
+                                    <div class="service-feature highlight-feature delivery-time">
+                                        <i class="fa fa-rocket"></i>
+                                        <span>两天内加急交付</span>
+                                    </div>
+                                    <div class="service-feature highlight-feature">
+                                        <i class="fa fa-star"></i>
+                                        <span>后续修改支持</span>
+                                    </div>
+                                    <div class="student-note">
+                                        <i class="fa fa-graduation-cap"></i>
+                                        <span>限四校学生，需提供学校、专业、姓名、学号认证</span>
+                                    </div>
+                                    <div class="student-schools">
+                                        <i class="fa fa-university"></i>
+                                        <span>广东海洋大学、广东外语外贸大学、华南师范大学、湖北科技学院</span>
+                                    </div>
+                                </div>
+                                <div class="service-action">
+                                    <a href="#contact" class="btn btn-premium">急速上线</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="templates-section reveal">
+                    <h3 class="templates-title">六大风格网站模板</h3>
+                    <p class="templates-description">我们提供六种不同风格的现代化布局和样式，点击卡片查看详情，总有一款适合你</p>
+                    
+                    <div class="template-grid">
+                        <!-- 简约风格 -->
+                        <div class="template-item reveal">
+                            <a href="template-minimal.html" class="template-link">
+                                <div class="template-preview">
+                                    <img src="https://images.unsplash.com/photo-1512428559084-b3de39d36a53?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNjU5OTZ8MHwxfHNlYXJjaHw0fHxtaW5pbWFsJTIwd2Vic2l0ZXxlbnwwfHx8fDE2NzI4MDI0NTE&ixlib=rb-4.0.3&q=80&w=400" alt="简约风格">
+                                </div>
+                                <div class="template-info">
+                                    <h4>简约风格</h4>
+                                    <p>干净、清爽，通过留白和排版突出核心内容。</p>
+                                    <div class="template-action">
+                                        <span class="btn-view">查看模板</span>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        
+                        <!-- 高交互风格 -->
+                        <div class="template-item reveal">
+                            <a href="template-interactive.html" class="template-link">
+                                <div class="template-preview">
+                                    <img src="https://images.unsplash.com/photo-1558655146-364adaf1fcc9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNjU5OTZ8MHwxfHNlYXJjaHwyfHxpbnRlcmFjdGl2ZSUyMGRlc2lnbnxlbnwwfHx8fDE2NzI4MDI1Mzc&ixlib=rb-4.0.3&q=80&w=400" alt="高交互风格">
+                                </div>
+                                <div class="template-info">
+                                    <h4>高交互风格</h4>
+                                    <p>充满动效和微交互，为用户带来流畅有趣的体验。</p>
+                                    <div class="template-action">
+                                        <span class="btn-view">查看模板</span>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        
+                        <!-- 二次元风格 -->
+                        <div class="template-item reveal">
+                            <a href="template-anime.html" class="template-link">
+                                <div class="template-preview">
+                                    <img src="https://images.unsplash.com/photo-1613376023733-0a73375d8628?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNjU5OTZ8MHwxfHNlYXJjaHwxfHxhbmltZSUyMGFydHxlbnwwfHx8fDE2NzI4MDI2MDE&ixlib=rb-4.0.3&q=80&w=400" alt="二次元风格">
+                                </div>
+                                <div class="template-info">
+                                    <h4>二次元风格</h4>
+                                    <p>可爱、活泼，使用明亮的色彩和专属字体，萌即正义！</p>
+                                    <div class="template-action">
+                                        <span class="btn-view">查看模板</span>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        
+                        <!-- 插画风格 -->
+                        <div class="template-item reveal">
+                            <a href="template-illustrated.html" class="template-link">
+                                <div class="template-preview">
+                                    <img src="https://images.unsplash.com/photo-1633469030283-5cbf86e57b16?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNjU5OTZ8MHwxfHNlYXJjaHwxfHxpbGx1c3RyYXRpb24lMjB3ZWJzaXRlfGVufDB8fHx8MTY3MjgwMjYzNA&ixlib=rb-4.0.3&q=80&w=400" alt="插画风格">
+                                </div>
+                                <div class="template-info">
+                                    <h4>插画风格</h4>
+                                    <p>使用定制插画，让你的网站充满艺术感和故事性。</p>
+                                    <div class="template-action">
+                                        <span class="btn-view">查看模板</span>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+
+                        <!-- 暗黑风格 -->
+                        <div class="template-item reveal">
+                            <a href="template-dark.html" class="template-link">
+                                <div class="template-preview">
+                                    <img src="https://images.unsplash.com/photo-1533090481720-856c6e3c1fdc?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNjU5OTZ8MHwxfHNlYXJjaHw0fHxkYXJrJTIwd2Vic2l0ZXxlbnwwfHx8fDE2NzI4MDI2NzM&ixlib=rb-4.0.3&q=80&w=400" alt="暗黑风格">
+                                </div>
+                                <div class="template-info">
+                                    <h4>暗黑风格</h4>
+                                    <p>深邃、高级，利用深色背景和高对比度，创造沉浸式体验。</p>
+                                    <div class="template-action">
+                                        <span class="btn-view">查看模板</span>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+
+                        <!-- 卡片式风格 -->
+                        <div class="template-item reveal">
+                            <a href="template-cards.html" class="template-link">
+                                <div class="template-preview">
+                                    <img src="https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNjU5OTZ8MHwxfHNlYXJjaHwyfHxtYXRlcmlhbCUyMGRlc2lnbnxlbnwwfHx8fDE2NzI4MDI3MTM&ixlib=rb-4.0.3&q=80&w=400" alt="卡片式风格">
+                                </div>
+                                <div class="template-info">
+                                    <h4>卡片式风格</h4>
+                                    <p>信息模块化，布局清晰，适合展示多元化内容。</p>
+                                    <div class="template-action">
+                                        <span class="btn-view">查看模板</span>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="templates-note">
+                        <p><i class="fa fa-info-circle"></i> 所有模板均为响应式设计，特别针对四校（广东海洋大学、广东外语外贸大学、华南师范大学、湖北科技学院）学生需求定制优化</p>
+                    </div>
+                </div>
             </div>
-        </div>
-    </footer>
+        </section>
+
+        <section id="equipment">
+            <div class="container">
+                <h2 class="section-title reveal">资源</h2>
+                <div class="equipment-intro reveal">
+                    <p class="equipment-description">Loralore工作室配备多台专业3D打印设备，支持团队从产品原型设计到最终实物成型的全流程创新。我们的资源涵盖FDM打印、激光雕刻等不同工艺，为创意项目提供强大硬件支持。</p>
+                </div>
+                
+                <div class="equipment-grid">
+                    <div class="equipment-item reveal">
+                        <div class="equipment-image">
+                            <img src="./images/创想三维Ender3v3ke.png" alt="创想三维Ender3v3ke">
+                        </div>
+                        <div class="equipment-info">
+                            <h3>创想三维Ender3v3ke</h3>
+                        </div>
+                    </div>
+                    
+                    <div class="equipment-item reveal">
+                        <div class="equipment-image">
+                            <img src="./images/拓竹A1mini.png" alt="拓竹A1mini">
+                        </div>
+                        <div class="equipment-info">
+                            <h3>拓竹A1mini</h3>
+                        </div>
+                    </div>
+                    
+                    <div class="equipment-item reveal">
+                        <div class="equipment-image">
+                            <img src="./images/拓竹p1s.png" alt="拓竹P1S">
+                        </div>
+                        <div class="equipment-info">
+                            <h3>拓竹P1S</h3>
+                        </div>
+                    </div>
+                    
+                    <div class="equipment-item reveal">
+                        <div class="equipment-image">
+                            <img src="./images/Think3D.png" alt="Think3D ">
+                        </div>
+                        <div class="equipment-info">
+                            <h3>Think3D </h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="team">
+            <div class="container">
+                <h2 class="section-title reveal">团队成员</h2>
+                <div class="team-intro reveal">
+                    <p class="team-description">Loralore是一支充满活力的跨校学生组成的队伍。由广东海洋大学、广东外语外贸大学、华南师范大学、湖北科技学院的热爱技术、分享、创造的同学们共同维护。</p>
+                </div>
+                
+                <div class="school-logos">
+                    <div class="school-logo reveal">
+                        <a href="https://www.gdou.edu.cn/" target="_blank" rel="noopener noreferrer">
+                            <img src="./images/gdhy.jpg" alt="广东海洋大学校标">
+                            <span>广东海洋大学</span>
+                        </a>
+                    </div>
+                    <div class="school-logo reveal">
+                        <a href="https://www.gdufs.edu.cn/" target="_blank" rel="noopener noreferrer">
+                            <img src="./images/gdwywm.jpg" alt="广东外语外贸大学校标">
+                            <span>广东外语外贸大学</span>
+                        </a>
+                    </div>
+                    <div class="school-logo reveal">
+                        <a href="https://www.scnu.edu.cn/" target="_blank" rel="noopener noreferrer">
+                            <img src="./images/hnsf.jpg" alt="华南师范大学校标">
+                            <span>华南师范大学</span>
+                        </a>
+                    </div>
+                    <div class="school-logo reveal">
+                        <a href="https://www.hbust.edu.cn/" target="_blank" rel="noopener noreferrer">
+                            <img src="./images/hbkj.jpg" alt="湖北科技学院校标">
+                            <span>湖北科技学院</span>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="team-values">
+                    <div class="team-value-item reveal">
+                        <div class="value-icon">
+                            <i class="fa fa-code"></i>
+                        </div>
+                        <h3>技术驱动</h3>
+                        <p>我们热爱技术，追求创新，不断探索前沿科技与应用</p>
+                    </div>
+                    <div class="team-value-item reveal">
+                        <div class="value-icon">
+                            <i class="fa fa-lightbulb-o"></i>
+                        </div>
+                        <h3>创意为本</h3>
+                        <p>用创造性思维解决问题，让设计与功能完美结合</p>
+                    </div>
+                    <div class="team-value-item reveal">
+                        <div class="value-icon">
+                            <i class="fa fa-users"></i>
+                        </div>
+                        <h3>协作共赢</h3>
+                        <p>跨校合作，汇集多元视角，共同成长与进步</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="reveal">
+            <div class="container">
+                <h2 class="section-title">联系我们</h2>
+                <div class="contact-container">
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <i class="fa fa-map-marker"></i>
+                            <p>地址：四校联合工作室</p>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fa fa-phone"></i>
+                            <p>qq：2684373547</p>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fa fa-envelope"></i>
+                            <p>邮箱：sippyyuhao@hotmail.com </p>
+                        </div>
+                        <div class="social-links">
+                            <a href="#" class="social-link"><i class="fa fa-weixin"></i></a>
+                            <a href="javascript:alert('请添加负责人qq：2684373547')" class="social-link"><i class="fa fa-qq"></i></a>
+                            <a href="https://github.com/Sippyyuhao/Loralore" target="_blank" class="social-link"><i class="fa fa-github"></i></a>
+                            <a href="https://grabcad.com/sippy-1" target="_blank" class="social-link"><i class="fa fa-cube"></i></a>
+                        </div>
+                    </div>
+                    <div class="contact-form">
+                        <form id="contactForm" action="https://formspree.io/f/mjkrvkve" method="POST">
+                            <div class="form-group">
+                                <input type="text" id="form-name" name="name" placeholder="您的姓名" required>
+                            </div>
+                            <div class="form-group">
+                                <input type="email" id="form-email" name="email" placeholder="您的邮箱" required>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" id="form-subject" name="subject" placeholder="主题">
+                            </div>
+                            <div class="form-group">
+                                <textarea id="form-message" name="message" placeholder="您的留言" required></textarea>
+                            </div>
+                            <input type="hidden" name="_next" value="https://sippyyuhao.github.io/Loralore/thanks.html">
+                            <button type="submit" class="btn btn-primary">发送消息</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            <div class="container">
+                <div class="footer-content">
+                    <div class="footer-logo">
+                        <h2><span class="highlight">Lora</span>lore</h2>
+                        <p>无限进步</p>
+                    </div>
+                    <div class="footer-links">
+                        <div class="footer-links-column">
+                            <h3>快速链接</h3>
+                            <a href="#projects">项目展示</a>
+                            <a href="#services">服务</a>
+                            <a href="#equipment">资源</a>
+                            <a href="#team">团队介绍</a>
+                            <a href="#contact">联系我们</a>
+                        </div>
+                        <div class="footer-links-column">
+                            <h3>项目类型</h3>
+                            <a href="#project-ascii-wx">微信小程序</a>
+                            <a href="#project-ascii-qt">桌面应用</a>
+                            <a href="#project-lovalovea">Web应用</a>
+                            <a href="#project-calculus">数学应用</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    <p>&copy; 2025 Loralore. 保留所有权利.</p>
+                </div>
+            </div>
+        </footer>
+    </main>
 
     <script src="./js/script.js"></script>
     <script src="./js/particles.js"></script>
@@ -1486,6 +1554,7 @@
             const menuToggle = document.querySelector('.menu-toggle');
             const header = document.querySelector('#header');
             const body = document.body;
+            const mainContent = document.getElementById('main-content');
 
             if (menuToggle && header) {
                 menuToggle.addEventListener('click', () => {
@@ -1514,6 +1583,9 @@
                     header.classList.remove('is-expanded');
                     body.classList.remove('sidebar-expanded');
                 });
+            } else {
+                 // 在移动端，确保body没有sidebar-expanded类
+                body.classList.remove('sidebar-expanded');
             }
 
             // 动态导航高亮逻辑
