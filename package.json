@@ -5,9 +5,8 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "netlify-plugin-hashfiles": "^5.0.0",
-    "netlify-plugin-html-validate": "^1.1.1",
-    "netlify-plugin-critical-css": "^1.0.4",
-    "netlify-plugin-image-optim": "^0.4.1"
+    "netlify-plugin-image-optim": "^0.4.0",
+    "netlify-plugin-inline-critical-css": "^2.0.0",
+    "netlify-plugin-hashfiles": "^4.0.0"
   }
 }

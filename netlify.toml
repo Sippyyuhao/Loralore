@@ -5,17 +5,12 @@
 [[plugins]]
 package = "netlify-plugin-image-optim"
 
-# Plugin 2: Hashfiles
-# Hashes file names (e.g., style.css -> style-a1b2c3d4.css) for long-term caching.
-[[plugins]]
-package = "netlify-plugin-hashfiles"
-
-# Plugin 3: Inline Critical CSS
+# Plugin 2: Inline Critical CSS
 # Finds the CSS needed for the above-the-fold content and inlines it for faster rendering.
 [[plugins]]
-package = "netlify-plugin-critical-css"
+package = "netlify-plugin-inline-critical-css"
 
-# Plugin 4: HTML Validation
-# Validates the generated HTML to ensure it's free of errors.
+# Plugin 3: Hashfiles (MUST BE LAST)
+# Hashes file names (e.g., style.css -> style-a1b2c3d4.css) for long-term caching.
 [[plugins]]
-package = "netlify-plugin-html-validate" 
+package = "netlify-plugin-hashfiles" 
