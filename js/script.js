@@ -438,478 +438,198 @@ function initGallery() {
 }
 
 function initGallery3D() {
+    const galleryContainer = document.querySelector('.gallery-container');
     const track = document.getElementById('gallery-track');
     const items = track.querySelectorAll('.gallery-item');
     const prevBtn = document.getElementById('gallery-prev');
     const nextBtn = document.getElementById('gallery-next');
-    const dots = document.querySelectorAll('.gallery-dot');
-    const galleryContent = document.querySelector('.gallery-content');
     const slider = document.getElementById('gallery-slider');
-    const sliderTicks = document.querySelectorAll('.gallery-slider-tick');
-    
-    let currentIndex = 0;
+
+    if (!track || items.length === 0) {
+        console.error("3D画廊元素未找到。");
+        return;
+    }
+
     const totalItems = items.length;
-    
-    // 计算圆柱体半径 - 增加半径让卡片之间间距更大
+    const anglePerItem = 360 / totalItems;
     const isMobile = window.innerWidth <= 768;
-    const cylinderWidth = isMobile ? 1500 : 2200;
-    let radius = cylinderWidth / (2 * Math.PI);
+    const cylinderWidth = isMobile ? 1500 : 2300;
+    const radius = cylinderWidth / (2 * Math.PI);
     
-    // 自动旋转相关变量
-    let autoRotate = false;
-    let rotateDirection = 0; // -1左旋转，0停止，1右旋转
-    let autoRotateSpeed = 0.25; // 进一步减慢旋转速度
-    
-    // 拖拽相关变量
-    let isDragging = false;
-    let startPosition = 0;
-    let currentTranslate = 0;
     let currentRotation = 0;
     let targetRotation = 0;
-    let lastDragTime = 0;
-    let dragVelocity = 0;
+    let rotationVelocity = 0;
+
+    let isDragging = false;
+    let dragStartRotation = 0; // 用于计算拖拽结束时的速度
+    let lastDragPosition = 0;
+    let isHovering = false;
+    let startPosition = 0;
     
-    // 滑块拖拽相关
-    let isDraggingSlider = false;
-    
-    // 自动播放
-    let autoplayInterval;
-    const autoplayEnabled = true;
-    const autoplayDelay = 3000;
-    
-    // 更新画廊位置
-    function updateGalleryPosition(animate = true) {
-        const anglePerItem = 360 / totalItems;
-        
-        // 计算当前旋转角度
-        const rotationAngle = currentRotation;
-        
-        if (animate) {
-            track.style.transition = 'transform 0.5s ease';
-        } else {
-            track.style.transition = 'none';
+    const autoRotateSpeed = -0.05; // 负值为向左旋转
+
+    // 1. 初始化项目位置和交互
+    items.forEach((item, index) => {
+        const angle = index * anglePerItem;
+        item.style.transform = `rotateY(${angle}deg) translateZ(${radius}px)`;
+        item.addEventListener('click', (e) => {
+            // isDragging 会在 dragEnd 后才变为 false，需要额外判断
+            const movedDistance = Math.abs(getPositionX(e) - startPosition);
+            if (isDragging && movedDistance > 5) {
+                return;
+            }
+
+            // 1. 平滑旋转到点击的item
+            const itemAngle = -index * anglePerItem;
+            targetRotation = Math.round(currentRotation / 360) * 360 + itemAngle;
+            rotationVelocity = 0; // 点击后停止惯性
+
+            // 2. 滚动到对应的详情区域
+            const targetId = item.dataset.target;
+            const targetElement = document.querySelector(targetId);
+            if (targetElement) {
+                setTimeout(() => {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }, 300); // 延迟滚动，让旋转动画先开始
+            }
+        });
+    });
+
+    // 2. 核心动画循环
+    function animate() {
+        // 自动旋转逻辑
+        if (!isDragging && !isHovering) {
+            targetRotation += autoRotateSpeed;
+        }
+
+        // 惯性逻辑
+        if (rotationVelocity !== 0 && !isDragging) {
+            targetRotation += rotationVelocity;
+            rotationVelocity *= 0.95; // 阻尼系数
+            if (Math.abs(rotationVelocity) < 0.001) {
+                rotationVelocity = 0;
+            }
         }
         
-        track.style.transform = `translateZ(${-radius}px) rotateY(${rotationAngle}deg)`;
-        
-        // 更新活跃项和当前索引
-        let activeIndex = 0;
-        
+        // 缓动动画
+        currentRotation += (targetRotation - currentRotation) * 0.08;
+
+        // 应用变换
+        track.style.transform = `translateZ(${-radius}px) rotateY(${currentRotation}deg)`;
+
+        // 更新卡片状态
+        updateItemsState();
+
+        requestAnimationFrame(animate);
+    }
+
+    // 3. 更新项目状态（透明度、激活态）
+    function updateItemsState() {
+        let closestItemIndex = -1;
+        let minAngleDiff = 360;
+
         items.forEach((item, index) => {
             const itemAngle = index * anglePerItem;
-            const offsetAngle = ((itemAngle + rotationAngle) % 360 + 360) % 360;
-            const isActive = offsetAngle < 30 || offsetAngle > 330;
-            
-            if (isActive) {
-                item.classList.add('active');
-                // 更新当前索引
-                activeIndex = index;
-                
-                // 更新分页指示器
-                dots.forEach((dot, i) => {
-                    dot.classList.toggle('active', i === activeIndex);
-                });
-                
-                // 更新滑块刻度标记
-                if (sliderTicks && sliderTicks.length) {
-                    sliderTicks.forEach((tick, i) => {
-                        tick.classList.toggle('active', i === activeIndex);
-                    });
-                }
-            } else {
-                item.classList.remove('active');
-            }
-            
-            // 定位每个项目在圆柱体上
-            item.style.transform = `rotateY(${itemAngle}deg) translateZ(${radius}px)`;
-            
-            // 计算每个卡片的可见性（根据旋转角度）
-            const visibilityAngle = Math.abs(offsetAngle - 180);
-            const opacity = visibilityAngle > 90 ? 1 - (180 - visibilityAngle) / 90 * 0.4 : 0.6;
+            // 将当前旋转角度标准化到 0-360 度范围
+            const normalizedCurrentRotation = (currentRotation % 360 + 360) % 360;
+            const diff = Math.abs(itemAngle - normalizedCurrentRotation);
+            const angleDiff = Math.min(diff, 360 - diff);
+
+            // 根据角度差计算透明度
+            const opacity = Math.max(0.4, 1 - angleDiff / 90);
             item.style.opacity = opacity;
+
+            // 找到最正对前方的项目
+            if (angleDiff < minAngleDiff) {
+                minAngleDiff = angleDiff;
+                closestItemIndex = index;
+            }
         });
-        
-        currentIndex = activeIndex;
-        
-        // 更新滑块位置（避免循环更新）
-        if (!isDraggingSlider && slider) {
-            const normalizedRotation = ((rotationAngle % 360) + 360) % 360;
-            const sliderValue = (normalizedRotation / anglePerItem) % totalItems;
-            
-            // 反向计算滑块位置
-            const invertedValue = (totalItems - sliderValue) % totalItems;
-            slider.value = invertedValue.toString();
+
+        // 更新滑块和激活状态
+        if (slider) {
+            //  让滑块的值与旋转方向对应
+            const sliderValue = (-currentRotation / 360 * totalItems);
+            slider.value = sliderValue.toString();
         }
+        items.forEach((item, index) => item.classList.toggle('active', index === closestItemIndex));
     }
-    
-    // 初始化项目位置
-    function initItemPositions() {
-        const anglePerItem = 360 / totalItems;
-        
-        items.forEach((item, index) => {
-            // 设置在圆柱体表面的位置
-            const angle = index * anglePerItem;
-            item.style.transform = `rotateY(${angle}deg) translateZ(${radius}px)`;
-        });
-        
-        // 初始设置活跃项
-        updateGalleryPosition(false);
+
+
+    // 4. 事件处理
+    function getPositionX(e) {
+        return e.type.includes('mouse') ? e.pageX : e.touches[0].pageX;
     }
-    
-    // 下一张
-    function nextSlide() {
-        const anglePerItem = 360 / totalItems;
-        currentRotation += anglePerItem;
-        targetRotation = currentRotation;
-        updateGalleryPosition();
-    }
-    
-    // 上一张
-    function prevSlide() {
-        const anglePerItem = 360 / totalItems;
-        currentRotation -= anglePerItem;
-        targetRotation = currentRotation;
-        updateGalleryPosition();
-    }
-    
-    // 绑定按钮事件
-    prevBtn.addEventListener('click', function() {
-        prevSlide();
-        resetAutoplay();
-    });
-    
-    nextBtn.addEventListener('click', function() {
-        nextSlide();
-        resetAutoplay();
-    });
-    
-    // 点击分页指示器
-    dots.forEach((dot, index) => {
-        dot.addEventListener('click', function() {
-            const targetIndex = parseInt(dot.dataset.index);
-            const anglePerItem = 360 / totalItems;
-            const currentAnglePos = currentRotation % 360;
-            const targetAnglePos = targetIndex * anglePerItem;
-            const diff = (targetAnglePos - currentAnglePos + 540) % 360 - 180;
-            
-            currentRotation += diff;
-            targetRotation = currentRotation;
-            updateGalleryPosition();
-            resetAutoplay();
-        });
-    });
-    
-    // 点击刻度标记
-    if (sliderTicks && sliderTicks.length) {
-        sliderTicks.forEach((tick, index) => {
-            tick.addEventListener('click', function() {
-                const targetIndex = parseInt(tick.dataset.index);
-                const anglePerItem = 360 / totalItems;
-                const currentAnglePos = currentRotation % 360;
-                const targetAnglePos = targetIndex * anglePerItem;
-                const diff = (targetAnglePos - currentAnglePos + 540) % 360 - 180;
-                
-                currentRotation += diff;
-                targetRotation = currentRotation;
-                updateGalleryPosition();
-                resetAutoplay();
-                
-                // 更新滑块位置
-                if (slider) {
-                    slider.value = targetIndex.toString();
-                }
-            });
-        });
-    }
-    
-    // 滑块拖拽
-    if (slider) {
-        slider.addEventListener('input', function() {
-            isDraggingSlider = true;
-            
-            const anglePerItem = 360 / totalItems;
-            const sliderValue = parseFloat(this.value);
-            
-            // 反转滑块值为旋转角度
-            const targetRotationDegrees = (totalItems - sliderValue) * anglePerItem;
-            
-            // 设置旋转角度
-            currentRotation = targetRotationDegrees;
-            targetRotation = currentRotation;
-            
-            updateGalleryPosition();
-            
-            // 暂停自动播放
-            clearInterval(autoplayInterval);
-        });
-        
-        slider.addEventListener('change', function() {
-            isDraggingSlider = false;
-            resetAutoplay();
-        });
-    } else {
-        console.warn("滑块元素未找到");
-    }
-    
-    // 处理拖拽
+
     function dragStart(e) {
-        if (e.type.includes('mouse') && e.button !== 0) return; // 只响应鼠标左键
-        
+        e.preventDefault();
         isDragging = true;
+        rotationVelocity = 0;
         startPosition = getPositionX(e);
-        track.classList.add('grabbing');
-        track.style.transition = 'none';
-        lastDragTime = Date.now();
-        dragVelocity = 0;
-        
-        // 停止自动播放和自动旋转
-        clearInterval(autoplayInterval);
-        autoRotate = false;
-        
-        // 防止文本选择
-        e.preventDefault();
+        dragStartRotation = currentRotation;
+        lastDragPosition = startPosition;
+        track.style.cursor = 'grabbing';
     }
-    
-    function drag(e) {
+
+    function dragMove(e) {
         if (!isDragging) return;
-        
-        const currentPosition = getPositionX(e);
-        currentTranslate = currentPosition - startPosition;
-        
-        // 计算拖拽速度
-        const now = Date.now();
-        const timeElapsed = now - lastDragTime;
-        if (timeElapsed > 0) {
-            dragVelocity = currentTranslate / timeElapsed * 10;
-            lastDragTime = now;
-            startPosition = currentPosition;
-        }
-        
-        // 转换拖拽距离为旋转角度
-        const dragFactor = 0.2;
-        const rotationChange = currentTranslate * dragFactor;
-        currentRotation = targetRotation + rotationChange;
-        
-        updateGalleryPosition(false);
-        
-        // 防止页面滚动
         e.preventDefault();
+        const currentPosition = getPositionX(e);
+        const move = (currentPosition - startPosition);
+        targetRotation = dragStartRotation + move * 0.25; // 调整拖拽灵敏度
+        
+        // 为了计算惯性速度
+        rotationVelocity = (currentPosition - lastDragPosition) * 0.05;
+        lastDragPosition = currentPosition;
     }
-    
+
     function dragEnd(e) {
         if (!isDragging) return;
         isDragging = false;
-        track.classList.remove('grabbing');
-        
-        // 根据拖拽速度确定惯性滚动
-        const inertiaFactor = 20;
-        const velocity = Math.abs(dragVelocity) > 0.5 ? dragVelocity * inertiaFactor : 0;
-        
-        // 如果有足够的惯性，继续滚动一段距离
-        if (velocity !== 0) {
-            const anglePerItem = 360 / totalItems;
-            const inertiaRotation = velocity;
-            
-            // 添加惯性旋转
-            currentRotation = targetRotation + inertiaRotation;
-            
-            // 舍入到最近的项
-            const angleModulo = ((currentRotation % 360) + 360) % 360;
-            const itemIndex = Math.round(angleModulo / anglePerItem);
-            currentRotation = itemIndex * anglePerItem;
-        }
-        
-        targetRotation = currentRotation;
-        updateGalleryPosition();
-        
-        // 重启自动播放
-        resetAutoplay();
+        track.style.cursor = 'grab';
     }
-    
-    function getPositionX(e) {
-        return e.type.includes('mouse') ? e.clientX : e.touches[0].clientX;
-    }
-    
-    // 添加鼠标悬停区域自动旋转功能
-    function handleMouseMove(e) {
-        if (isDragging) return; // 拖拽时不触发自动旋转
-        
-        const containerRect = galleryContent.getBoundingClientRect();
-        const containerWidth = containerRect.width;
-        const containerCenterX = containerRect.left + containerWidth / 2;
-        const mouseX = e.clientX;
-        
-        // 确定鼠标位置相对于中心的位置
-        const distanceFromCenter = mouseX - containerCenterX;
-        const threshold = 80; // 中间不旋转的区域宽度
-        
-        if (distanceFromCenter < -threshold) {
-            // 鼠标在左半区，向左旋转
-            rotateDirection = -1;
-            // 速度随距离变化，但整体降低
-            autoRotateSpeed = Math.min(1, 0.25 + Math.abs(distanceFromCenter - threshold) / containerWidth * 2);
-            
-            if (!autoRotate) {
-                autoRotate = true;
-                startAutoRotate();
-            }
-        } else if (distanceFromCenter > threshold) {
-            // 鼠标在右半区，向右旋转
-            rotateDirection = 1;
-            // 速度随距离变化，但整体降低
-            autoRotateSpeed = Math.min(1, 0.25 + Math.abs(distanceFromCenter - threshold) / containerWidth * 2);
-            
-            if (!autoRotate) {
-                autoRotate = true;
-                startAutoRotate();
-            }
-        } else {
-            // 鼠标在中间区域，停止旋转
-            rotateDirection = 0;
-            autoRotate = false;
-        }
-    }
-    
-    // 自动旋转函数
-    function startAutoRotate() {
-        if (!autoRotate) return;
-        
-        const anglePerItem = 360 / totalItems / 30; // 更加平滑的旋转
-        
-        // 根据旋转方向更新角度
-        if (rotateDirection < 0) {
-            // 向左旋转
-            currentRotation -= anglePerItem * autoRotateSpeed;
-        } else if (rotateDirection > 0) {
-            // 向右旋转
-            currentRotation += anglePerItem * autoRotateSpeed;
-        }
-        
-        targetRotation = currentRotation;
-        updateGalleryPosition();
-        
-        // 下一帧继续旋转
-        if (autoRotate) {
-            requestAnimationFrame(startAutoRotate);
-        }
-    }
-    
-    // 添加鼠标移动事件
-    galleryContent.addEventListener('mousemove', handleMouseMove);
-    
-    // 鼠标离开时停止自动旋转
-    galleryContent.addEventListener('mouseleave', function() {
-        autoRotate = false;
-        if (autoplayEnabled) {
-            startAutoplay();
-        }
-    });
-    
-    // 添加拖拽事件
+
+    // 绑定事件监听器
     track.addEventListener('mousedown', dragStart);
-    track.addEventListener('touchstart', dragStart, { passive: false });
-    window.addEventListener('mousemove', drag);
-    window.addEventListener('touchmove', drag, { passive: false });
+    window.addEventListener('mousemove', dragMove);
     window.addEventListener('mouseup', dragEnd);
+    window.addEventListener('mouseleave', dragEnd); // 处理鼠标移出窗口的情况
+
+    track.addEventListener('touchstart', dragStart, { passive: false });
+    window.addEventListener('touchmove', dragMove, { passive: false });
     window.addEventListener('touchend', dragEnd);
-    window.addEventListener('mouseleave', dragEnd);
+
+    galleryContainer.addEventListener('mouseover', () => isHovering = true);
+    galleryContainer.addEventListener('mouseout', () => isHovering = false);
     
-    // 阻止触摸时的默认行为
-    track.addEventListener('touchstart', function(e) {
-        e.preventDefault();
-    }, { passive: false });
-    
-    // 点击项目导航到详情
-    items.forEach(item => {
-        item.addEventListener('click', function(e) {
-            if (isDragging || Math.abs(currentTranslate) > 10) {
-                e.preventDefault();
-                return; // 拖拽时或有明显位移时不触发点击
-            }
-            
-            const targetId = this.dataset.target;
-            if (!targetId) return;
-            
-            const targetElement = document.querySelector(targetId);
-            if (targetElement) {
-                // 添加点击动画
-                this.animate([
-                    { transform: `${this.style.transform} scale(0.95)` },
-                    { transform: `${this.style.transform} scale(1.05)` },
-                    { transform: this.style.transform }
-                ], {
-                    duration: 300,
-                    easing: 'cubic-bezier(0.34, 1.56, 0.64, 1)'
-                });
-                
-                // 滚动到目标详情
-                setTimeout(() => {
-                    window.scrollTo({
-                        top: targetElement.offsetTop - 100,
-                        behavior: 'smooth'
-                    });
-                }, 300);
-            }
+    prevBtn.addEventListener('click', () => {
+        targetRotation = Math.round(currentRotation / anglePerItem) * anglePerItem - anglePerItem;
+        rotationVelocity = 0;
+    });
+
+    nextBtn.addEventListener('click', () => {
+        targetRotation = Math.round(currentRotation / anglePerItem) * anglePerItem + anglePerItem;
+        rotationVelocity = 0;
+    });
+
+    if (slider) {
+        slider.min = -360;
+        slider.max = 360;
+        slider.step = 0.1;
+        slider.addEventListener('input', () => {
+            rotationVelocity = 0; // 使用滑块时禁用惯性
+            isHovering = true; // 暂时禁用自动旋转
+            const sliderValue = parseFloat(slider.value);
+            targetRotation = -sliderValue * (360 / totalItems);
         });
-    });
-    
-    // 监听窗口大小变化
-    window.addEventListener('resize', function() {
-        const isMobile = window.innerWidth <= 768;
-        const newCylinderWidth = isMobile ? 1500 : 2200;
-        const newRadius = newCylinderWidth / (2 * Math.PI);
-        
-        // 更新半径
-        radius = newRadius;
-        initItemPositions();
-    });
-    
-    // 自动播放函数
-    function startAutoplay() {
-        if (autoplayEnabled) {
-            autoplayInterval = setInterval(() => {
-                // 降低自动旋转速度，3秒转1个
-                const anglePerItem = 360 / totalItems;
-                currentRotation += anglePerItem / 9; // 更平滑的旋转，9次更新完成一次旋转
-                targetRotation = currentRotation;
-                updateGalleryPosition();
-            }, 1000 / 3); // 3次更新/秒
-        }
+         slider.addEventListener('mouseup', () => {
+            isHovering = false;
+        });
     }
-    
-    // 重置自动播放
-    function resetAutoplay() {
-        clearInterval(autoplayInterval);
-        startAutoplay();
-    }
-    
-    // 鼠标悬停暂停自动播放
-    track.addEventListener('mouseenter', () => {
-        clearInterval(autoplayInterval);
-    });
-    
-    track.addEventListener('mouseleave', () => {
-        if (autoplayEnabled && !autoRotate) {
-            startAutoplay();
-        }
-    });
-    
-    // 键盘左右箭头控制
-    document.addEventListener('keydown', function(e) {
-        if (e.key === 'ArrowLeft') {
-            prevSlide();
-            resetAutoplay();
-        } else if (e.key === 'ArrowRight') {
-            nextSlide();
-            resetAutoplay();
-        }
-    });
-    
-    // 初始化
-    initItemPositions();
-    startAutoplay();
-    
-    // 在控制台输出调试信息
-    console.log("画廊初始化完成，滑块元素：", slider ? "已找到" : "未找到");
-    console.log("刻度标记元素：", sliderTicks.length ? `已找到 ${sliderTicks.length} 个` : "未找到");
+
+    // 启动动画
+    animate();
 } 
