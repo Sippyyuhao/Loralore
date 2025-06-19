@@ -1,5 +1,13 @@
 {
   "dependencies": {
     "particles.js": "^2.0.0"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@peter-muller/netlify-plugin-hash-files": "^1.2.1",
+    "@oliver-roick/netlify-plugin-html-validate": "^3.0.0",
+    "netlify-plugin-critical-css": "^3.0.1",
+    "netlify-plugin-image-optim": "^0.4.1"
   }
 }
