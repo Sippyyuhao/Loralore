@@ -8,7 +8,7 @@ package = "netlify-plugin-image-optim"
 # Plugin 2: Hashfiles
 # Hashes file names (e.g., style.css -> style-a1b2c3d4.css) for long-term caching.
 [[plugins]]
-package = "@peter-muller/netlify-plugin-hash-files"
+package = "netlify-plugin-hashfiles"
 
 # Plugin 3: Inline Critical CSS
 # Finds the CSS needed for the above-the-fold content and inlines it for faster rendering.
