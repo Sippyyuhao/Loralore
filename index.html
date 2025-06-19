@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Loralore - 洛尔工作室 | 创新技术解决方案</title>
     <link rel="stylesheet" href="./css/style.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="icon" href="./images/favicon.png" type="image/x-icon">
     <meta name="description" content="洛尔科技工作室是由一群充满激情的学生创业者组成的技术团队，专注于创新解决方案的开发与实现。">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -703,7 +703,7 @@
         }
         
         #header nav ul li a span {
-            opacity: 0;
+            opacity: 1; /* Default to visible, will be hidden on desktop collapsed */
             white-space: nowrap;
             transition: opacity 0.2s ease;
         }
@@ -739,6 +739,11 @@
             #header.is-expanded .logo-text,
             #header.is-expanded nav ul li a span {
                 opacity: 1;
+            }
+
+            #header:not(.is-expanded) .logo-text,
+            #header:not(.is-expanded) nav ul li a span {
+                opacity: 0;
             }
 
             #header nav ul li a:hover {
@@ -1082,7 +1087,7 @@
                                     </div>
                                     <div class="service-feature">
                                         <i class="fa fa-check"></i>
-                                        <span>Azure云端部署与访问</span>
+                                        <span>Netlify云托管</span>
                                     </div>
                                     <div class="service-feature">
                                         <i class="fa fa-check"></i>
@@ -1114,7 +1119,7 @@
                                 <h3>学生静态网站</h3>
                                 <p class="service-subtitle">学生专享 · 超值选择</p>
                                 <div class="service-price">
-                                    <div class="price-main">¥29.9</div>
+                                    <div class="price-main">29.9</div>
                                     <div class="price-period">限四校学生</div>
                                 </div>
                             </div>
@@ -1130,7 +1135,7 @@
                                     </div>
                                     <div class="service-feature">
                                         <i class="fa fa-check"></i>
-                                        <span>Azure云端部署与访问</span>
+                                        <span>Netlify云托管</span>
                                     </div>
                                     <div class="service-feature">
                                         <i class="fa fa-check"></i>
@@ -1170,7 +1175,7 @@
                                 <h3>学生加急服务</h3>
                                 <p class="service-subtitle">急速上线 · 优先支持</p>
                                 <div class="service-price">
-                                    <div class="price-main">¥39.9</div>
+                                    <div class="price-main">¥59.9</div>
                                     <div class="price-period">限四校学生</div>
                                 </div>
                             </div>
@@ -1186,7 +1191,7 @@
                                     </div>
                                     <div class="service-feature">
                                         <i class="fa fa-check"></i>
-                                        <span>Azure云端部署与访问</span>
+                                        <span>Netlify云托管</span>
                                     </div>
                                     <div class="service-feature">
                                         <i class="fa fa-check"></i>
@@ -1226,19 +1231,19 @@
                 </div>
                 
                 <div class="templates-section reveal">
-                    <h3 class="templates-title">六大风格网站模板</h3>
-                    <p class="templates-description">我们提供六种不同风格的现代化布局和样式，点击卡片查看详情，总有一款适合你</p>
+                    <h3 class="templates-title">三大风格网站模板</h3>
+                    <p class="templates-description">我们提供三种不同风格的现代化布局和样式，点击卡片查看详情，总有一款适合你</p>
                     
                     <div class="template-grid">
                         <!-- 简约风格 -->
                         <div class="template-item reveal">
-                            <a href="template-minimal.html" class="template-link">
+                            <a href="简约风格/html/index.html" class="template-link" target="_blank">
                                 <div class="template-preview">
-                                    <img src="https://images.unsplash.com/photo-1512428559084-b3de39d36a53?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNjU5OTZ8MHwxfHNlYXJjaHw0fHxtaW5pbWFsJTIwd2Vic2l0ZXxlbnwwfHx8fDE2NzI4MDI0NTE&ixlib=rb-4.0.3&q=80&w=400" alt="简约风格">
+                                    <img src="简约风格/html/images/projects.jpg" alt="简约风格">
                                 </div>
                                 <div class="template-info">
                                     <h4>简约风格</h4>
-                                    <p>干净、清爽，通过留白和排版突出核心内容。</p>
+                                    <p>干净、清爽，通过留白和精心的排版突出核心内容。</p>
                                     <div class="template-action">
                                         <span class="btn-view">查看模板</span>
                                     </div>
@@ -1246,15 +1251,15 @@
                             </a>
                         </div>
                         
-                        <!-- 高交互风格 -->
+                        <!-- 复古风格 -->
                         <div class="template-item reveal">
-                            <a href="template-interactive.html" class="template-link">
+                            <a href="复古风格/html/index.html" class="template-link" target="_blank">
                                 <div class="template-preview">
-                                    <img src="https://images.unsplash.com/photo-1558655146-364adaf1fcc9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNjU5OTZ8MHwxfHNlYXJjaHwyfHxpbnRlcmFjdGl2ZSUyMGRlc2lnbnxlbnwwfHx8fDE2NzI4MDI1Mzc&ixlib=rb-4.0.3&q=80&w=400" alt="高交互风格">
+                                    <img src="复古风格/html/img/portofolio/1.jpg" alt="复古风格">
                                 </div>
                                 <div class="template-info">
-                                    <h4>高交互风格</h4>
-                                    <p>充满动效和微交互，为用户带来流畅有趣的体验。</p>
+                                    <h4>复古风格</h4>
+                                    <p>采用经典的布局和视觉元素，营造怀旧、典雅的网站氛围。</p>
                                     <div class="template-action">
                                         <span class="btn-view">查看模板</span>
                                     </div>
@@ -1264,61 +1269,13 @@
                         
                         <!-- 二次元风格 -->
                         <div class="template-item reveal">
-                            <a href="template-anime.html" class="template-link">
+                            <a href="二次元风格/ACG-Home-main/index.html" class="template-link" target="_blank">
                                 <div class="template-preview">
-                                    <img src="https://images.unsplash.com/photo-1613376023733-0a73375d8628?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNjU5OTZ8MHwxfHNlYXJjaHwxfHxhbmltZSUyMGFydHxlbnwwfHx8fDE2NzI4MDI2MDE&ixlib=rb-4.0.3&q=80&w=400" alt="二次元风格">
+                                    <img src="二次元风格/ACG-Home-main/assets/images/backgrounds/page-head/wallhaven-r7mgow.jpg" alt="二次元风格">
                                 </div>
                                 <div class="template-info">
                                     <h4>二次元风格</h4>
                                     <p>可爱、活泼，使用明亮的色彩和专属字体，萌即正义！</p>
-                                    <div class="template-action">
-                                        <span class="btn-view">查看模板</span>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                        
-                        <!-- 插画风格 -->
-                        <div class="template-item reveal">
-                            <a href="template-illustrated.html" class="template-link">
-                                <div class="template-preview">
-                                    <img src="https://images.unsplash.com/photo-1633469030283-5cbf86e57b16?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNjU5OTZ8MHwxfHNlYXJjaHwxfHxpbGx1c3RyYXRpb24lMjB3ZWJzaXRlfGVufDB8fHx8MTY3MjgwMjYzNA&ixlib=rb-4.0.3&q=80&w=400" alt="插画风格">
-                                </div>
-                                <div class="template-info">
-                                    <h4>插画风格</h4>
-                                    <p>使用定制插画，让你的网站充满艺术感和故事性。</p>
-                                    <div class="template-action">
-                                        <span class="btn-view">查看模板</span>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-
-                        <!-- 暗黑风格 -->
-                        <div class="template-item reveal">
-                            <a href="template-dark.html" class="template-link">
-                                <div class="template-preview">
-                                    <img src="https://images.unsplash.com/photo-1533090481720-856c6e3c1fdc?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNjU5OTZ8MHwxfHNlYXJjaHw0fHxkYXJrJTIwd2Vic2l0ZXxlbnwwfHx8fDE2NzI4MDI2NzM&ixlib=rb-4.0.3&q=80&w=400" alt="暗黑风格">
-                                </div>
-                                <div class="template-info">
-                                    <h4>暗黑风格</h4>
-                                    <p>深邃、高级，利用深色背景和高对比度，创造沉浸式体验。</p>
-                                    <div class="template-action">
-                                        <span class="btn-view">查看模板</span>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-
-                        <!-- 卡片式风格 -->
-                        <div class="template-item reveal">
-                            <a href="template-cards.html" class="template-link">
-                                <div class="template-preview">
-                                    <img src="https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNjU5OTZ8MHwxfHNlYXJjaHwyfHxtYXRlcmlhbCUyMGRlc2lnbnxlbnwwfHx8fDE2NzI4MDI3MTM&ixlib=rb-4.0.3&q=80&w=400" alt="卡片式风格">
-                                </div>
-                                <div class="template-info">
-                                    <h4>卡片式风格</h4>
-                                    <p>信息模块化，布局清晰，适合展示多元化内容。</p>
                                     <div class="template-action">
                                         <span class="btn-view">查看模板</span>
                                     </div>
