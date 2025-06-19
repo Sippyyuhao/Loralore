@@ -1,6 +1,6 @@
 # Netlify plugins configuration for site optimization
 
-# Plugin 1: Image Optimization
+# Plugin 1: Image Optimization (MUST BE FIRST)
 # Automatically compresses images to reduce their file size and improve load times.
 [[plugins]]
 package = "netlify-plugin-image-optim"
