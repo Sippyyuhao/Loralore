@@ -1,0 +1,21 @@
+# Netlify plugins configuration for site optimization
+
+# Plugin 1: Image Optimization
+# Automatically compresses images to reduce their file size and improve load times.
+[[plugins]]
+package = "netlify-plugin-image-optim"
+
+# Plugin 2: Hashfiles
+# Hashes file names (e.g., style.css -> style-a1b2c3d4.css) for long-term caching.
+[[plugins]]
+package = "@peter-muller/netlify-plugin-hash-files"
+
+# Plugin 3: Inline Critical CSS
+# Finds the CSS needed for the above-the-fold content and inlines it for faster rendering.
+[[plugins]]
+package = "netlify-plugin-critical-css"
+
+# Plugin 4: HTML Validation
+# Validates the generated HTML to ensure it's free of errors.
+[[plugins]]
+package = "@oliver-roick/netlify-plugin-html-validate" 
