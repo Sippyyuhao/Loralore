@@ -43,7 +43,6 @@ $(function(){
    $('.project-close').hover(cursorhover,cursor);
    $('.blogs-close').hover(cursorhover,cursor);
    $('.gallery-close').hover(cursorhover,cursor);
-   $('.contact-close').hover(cursorhover,cursor);
    $('.imgs').hover(cursorhover,cursor);
    
 })
@@ -217,6 +216,30 @@ $(function(){
 
     var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 
+    var mySwiper = new Swiper('.swiper-container', {
+      direction: 'horizontal',
+      loop: true,
+      slidesPerView: 'auto',
+      speed: 1000,
+      spaceBetween: 70,
+      centeredSlides: true,
+      grabCursor: true,
+      autoplay: {
+        delay: 2500,
+        disableOnInteraction: false,
+      },
+      pagination: {
+        el: '.progress-bar-container-swiper',
+        type: 'progressbar',
+      },
+      navigation: {
+        nextEl: '#next',
+        prevEl: '#prev',
+      },
+      mousewheel: true,
+      observer: true,  
+      observeParents: true,
+    });
 
     function sendEmail() {
       var name = $("#name");
@@ -279,28 +302,7 @@ $(function(){
 
 // GALLERY PAGE SLIDER
 
-new Swiper('#gallery .swiper-container', {
-  slidesPerView: 'auto',
-  speed: 1000,
-  spaceBetween: 70,
-  centeredSlides: true,
-  grabCursor: true,
-  navigation: {
-    nextEl: '#next',
-    prevEl: '#prev'
-  },
-  autoplay: {
-    delay: 8000,
-    disableOnInteraction: true,
-  },
-  pagination: {
-    el: '.progress-bar-container-swiper',
-    type: 'progressbar',
-  },
-  mousewheel: true,
-  observer: true,  
-  observeParents: true,
-});
+
 // SLIDER ON GALLERY PAGE
 
 
