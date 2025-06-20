@@ -67,7 +67,7 @@ setInterval(slideshow,5000);
 
 
 //slideshow on mobile
-/*
+
 var imgarray = Array.from(images);
 var imgholder = document.querySelector('.main-home-pic')
 var imagesrc =  imgarray.map(image => image.src);
@@ -78,10 +78,22 @@ function slideshowmobile(){
   if(index2 > images.length-1){
     index2 = 0;
   }
-  gsap.to(imgholder,1,{backgroundImage:`url('${imagesrc[index2]}')`,duration:1});
+  gsap.to(imgholder, {
+    duration: 0.5,
+    opacity: 0,
+    ease: "power1.inOut",
+    onComplete: () => {
+      imgholder.style.backgroundImage = `url('${imagesrc[index2]}')`;
+      gsap.to(imgholder, {
+        duration: 0.5,
+        opacity: 1,
+        ease: "power1.inOut"
+      });
+    }
+  });
 }
 setInterval(slideshowmobile,5000);
-*/
+
 //animation-on-scroll
 $(function(){
 

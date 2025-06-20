@@ -988,8 +988,7 @@ form button:hover{
       opacity: 1;
     }
     .social-links-home{
-        display: none;
-        pointer-events: none;
+        display: flex;
     }
  .navigation-logo{
         font-size: 24px;
@@ -1009,7 +1008,7 @@ form button:hover{
         color: rgb(235, 235, 235,.9);
     }
     .navigation-line{
-        background: rgb(235, 235, 235,.9);
+        background: white;
     }
     .main-home-pic{
         background-position: center;
