@@ -1606,11 +1606,11 @@ footer {
 }
 
 .service-card.premium {
-    transform: scale(1.03);
+    /* transform: scale(1.03); */
 }
 
 .service-card.premium:hover {
-    transform: translateY(-8px) scale(1.03);
+    /* transform: translateY(-8px) scale(1.03); */
 }
 
 /* 重置默认样式 */
@@ -1782,7 +1782,7 @@ footer {
 }
 
 .btn-premium:hover {
-    background: darkorange;
+    background: #c62828;
 }
 
 /* 服务介绍样式 */
@@ -1800,22 +1800,21 @@ footer {
 
 @media screen and (max-width: 992px) {
     .pricing-comparison {
-        flex-direction: column;
-        align-items: center;
+        display: block;
     }
     
     .service-card {
         width: 100%;
         max-width: 400px;
-        margin-bottom: 30px;
+        margin: 0 auto 30px;
     }
     
     .service-card.premium {
-        transform: scale(1);
+        /* transform: scale(1); */
     }
     
     .service-card.premium:hover {
-        transform: translateY(-8px);
+        /* transform: translateY(-8px); */
     }
 }
 
@@ -1829,28 +1828,40 @@ footer {
 
 .service-promotion {
     text-align: center;
-    margin-bottom: 50px;
-    padding: 30px;
-    background: rgba(26, 115, 232, 0.05);
-    border-radius: 15px;
+    margin: 0 auto 60px;
+    padding: 50px 40px;
+    background: linear-gradient(135deg, #f5f7fa, #eef2f7);
+    border-radius: 20px;
     position: relative;
     overflow: hidden;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
 }
 
 .service-promotion::before {
     content: '';
     position: absolute;
-    top: -30px;
-    right: -30px;
-    width: 150px;
-    height: 150px;
-    background: rgba(26, 115, 232, 0.08);
-    border-radius: 50%;
+    top: -50px;
+    left: -50px;
+    width: 200px;
+    height: 200px;
+    background: radial-gradient(circle, rgba(26, 115, 232, 0.08) 0%, transparent 70%);
+    z-index: 0;
+}
+
+.service-promotion::after {
+    content: '';
+    position: absolute;
+    bottom: -80px;
+    right: -60px;
+    width: 250px;
+    height: 250px;
+    background: radial-gradient(circle, rgba(26, 115, 232, 0.06) 0%, transparent 70%);
     z-index: 0;
 }
 
 .promotion-title {
-    font-size: 2rem;
+    font-size: 2.2rem;
     margin-bottom: 20px;
     position: relative;
     display: inline-block;
@@ -1867,39 +1878,51 @@ footer {
     left: 50%;
     transform: translateX(-50%);
     width: 60px;
-    height: 3px;
+    height: 4px;
     background: #1a73e8;
     border-radius: 2px;
 }
 
 .promotion-text {
-    font-size: 1.2rem;
-    margin-bottom: 20px;
-    line-height: 1.6;
+    font-size: 1.1rem;
+    margin-bottom: 30px;
+    line-height: 1.7;
     z-index: 1;
     position: relative;
-    max-width: 800px;
+    max-width: 700px;
     margin-left: auto;
     margin-right: auto;
+    color: #555;
 }
 
 .promotion-highlight {
-    font-size: 1.1rem;
     z-index: 1;
     position: relative;
-    margin-top: 25px;
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
 }
 
 .promotion-highlight span {
     font-weight: 600;
     color: #1a73e8;
-    display: inline-block;
-    margin: 0 5px;
+    background-color: #fff;
+    padding: 8px 18px;
+    border-radius: 50px;
+    border: 1px solid rgba(26, 115, 232, 0.2);
+    box-shadow: 0 4px 10px rgba(26, 115, 232, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.promotion-highlight span:hover {
+    transform: translateY(-3px);
 }
 
 @media screen and (max-width: 768px) {
     .service-promotion {
-        padding: 20px 15px;
+        padding: 40px 20px;
     }
     
     .promotion-title {
@@ -2087,4 +2110,73 @@ footer {
 
 .promotion-highlight span {
     color: #1a73e8;
+}
+
+/* Intellectual Property Section */
+#intellectual-property {
+    padding: 80px 0;
+    background: #f5f7fa;
+}
+
+.section-subtitle {
+    text-align: center;
+    max-width: 700px;
+    margin: -30px auto 40px;
+    font-size: 1.1rem;
+    color: #666;
+}
+
+.certs-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+}
+
+.cert-item {
+    flex: 0 1 320px;
+    border: 1px solid #eef;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.04);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+}
+.cert-item:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 24px rgba(92, 107, 192, 0.1), 0 5px 10px rgba(0, 0, 0, 0.05);
+}
+
+.cert-link {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    text-decoration: none;
+    color: inherit;
+}
+.cert-item img {
+    width: 100%;
+    height: 400px;
+    object-fit: contain;
+    background-color: #fff;
+    display: block;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+.cert-item:hover img {
+    transform: scale(1.05);
+}
+.cert-info {
+    padding: 20px;
+    text-align: center;
+    background-color: #fff;
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.cert-info h3 {
+    margin: 0;
+    font-size: 1.2rem;
 } 

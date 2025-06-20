@@ -809,6 +809,149 @@
             display: block;
             margin-top: 15px;
         }
+
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+
+        .modal-overlay.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-content {
+            background: #fff;
+            padding: 40px;
+            border-radius: 12px;
+            text-align: center;
+            max-width: 500px;
+            width: 90%;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+            transform: scale(0.9);
+            transition: transform 0.3s ease;
+        }
+
+        .modal-overlay.visible .modal-content {
+            transform: scale(1);
+        }
+        
+        .thanks-icon {
+            font-size: 70px;
+            color: var(--primary-color, #5c6bc0);
+            margin-bottom: 20px;
+        }
+        
+        .thanks-title {
+            font-size: 2.2em;
+            margin-bottom: 15px;
+            color: #333;
+        }
+        
+        .thanks-message {
+            font-size: 1.1em;
+            margin: 0 auto 25px;
+            line-height: 1.6;
+            color: #666;
+        }
+
+        .team-value-item p {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            color: var(--text-color);
+        }
+
+        /* Intellectual Property Section */
+        #intellectual-property {
+            padding: 80px 0;
+            background: #f5f7fa;
+        }
+
+        .certs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .cert-item {
+            border: 1px solid #eef;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.04);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .cert-item:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 24px rgba(92, 107, 192, 0.1), 0 5px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .cert-link {
+            display: block;
+            text-decoration: none;
+            color: inherit;
+        }
+        .cert-item img {
+            width: 100%;
+            height: auto;
+            display: block;
+            cursor: pointer;
+        }
+        .cert-info {
+            padding: 20px;
+            text-align: center;
+            background-color: #fff;
+        }
+        .cert-info h3 {
+            margin: 0;
+            font-size: 1.2rem;
+            color: var(--dark-color, #333);
+        }
+
+        .image-modal-content {
+            background: transparent;
+            padding: 0;
+            max-width: 90vw;
+            max-height: 90vh;
+            box-shadow: none;
+        }
+
+        .image-modal-content img {
+            max-width: 100%;
+            max-height: 90vh;
+            display: block;
+            border-radius: 8px;
+        }
+        
+        .modal-overlay.visible .image-modal-content {
+            transform: scale(1);
+        }
+
+        .modal-content {
+            background: #fff;
+            padding: 40px;
+            border-radius: 12px;
+            text-align: center;
+            max-width: 500px;
+            width: 90%;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+            transform: scale(0.9);
+            transition: transform 0.3s ease;
+        }
+
+        .modal-overlay.visible .modal-content {
+            transform: scale(1);
+        }
     </style>
 </head>
 <body>
@@ -826,6 +969,7 @@
                     <li><a href="#services"><i class="fa fa-briefcase"></i><span>服务</span></a></li>
                     <li><a href="#equipment"><i class="fa fa-cubes"></i><span>资源</span></a></li>
                     <li><a href="#team"><i class="fa fa-users"></i><span>团队</span></a></li>
+                    <li><a href="#intellectual-property"><i class="fa fa-certificate"></i><span>知识产权</span></a></li>
                     <li><a href="#contact"><i class="fa fa-envelope-o"></i><span>联系我们</span></a></li>
                 </ul>
             </nav>
@@ -1060,7 +1204,12 @@
                 <div class="service-promotion reveal">
                     <h3 class="promotion-title">想拥有一个专属于你的网站吗？</h3>
                     <p class="promotion-text">个人品牌展示、学术成果分享、创意项目介绍、作品集展示、个人博客......一个属于自己的网站让你的在线形象更加专业，让世界看见你的才华！</p>
-                    <p class="promotion-highlight"><span>无需技术基础</span> · <span>无需购买域名</span> · <span>无需维护服务器</span> · <span>即刻上线</span></p>
+                    <div class="promotion-highlight">
+                        <span>无需技术基础</span>
+                        <span>无需购买域名</span>
+                        <span>无需维护服务器</span>
+                        <span>即刻上线</span>
+                    </div>
                 </div>
                 
                 <div class="service-highlight reveal">
@@ -1071,7 +1220,7 @@
                                 <h3>基础静态网站</h3>
                                 <p class="service-subtitle">专业展示 · 提升形象</p>
                                 <div class="service-price">
-                                    <div class="price-main">¥119</div>
+                                    <div class="price-main">¥169.9</div>
                                     <div class="price-period">校外普通价</div>
                                 </div>
                             </div>
@@ -1107,7 +1256,7 @@
                                     </div>
                                 </div>
                                 <div class="service-action">
-                                    <a href="#contact" class="btn">立即拥有</a>
+                                    <a href="#contact" class="btn" id="btn-regular">立即拥有</a>
                                 </div>
                             </div>
                         </div>
@@ -1119,7 +1268,7 @@
                                 <h3>学生静态网站</h3>
                                 <p class="service-subtitle">学生专享 · 超值选择</p>
                                 <div class="service-price">
-                                    <div class="price-main">29.9</div>
+                                    <div class="price-main">39.9</div>
                                     <div class="price-period">限四校学生</div>
                                 </div>
                             </div>
@@ -1163,7 +1312,7 @@
                                     </div>
                                 </div>
                                 <div class="service-action">
-                                    <a href="#contact" class="btn btn-primary">学生专享价</a>
+                                    <a href="#contact" class="btn btn-primary" id="btn-student">学生专享价</a>
                                 </div>
                             </div>
                         </div>
@@ -1223,7 +1372,7 @@
                                     </div>
                                 </div>
                                 <div class="service-action">
-                                    <a href="#contact" class="btn btn-premium">急速上线</a>
+                                    <a href="#contact" class="btn btn-premium" id="btn-premium">急速上线</a>
                                 </div>
                             </div>
                         </div>
@@ -1398,6 +1547,47 @@
             </div>
         </section>
 
+        <section id="intellectual-property" class="reveal">
+            <div class="container">
+                <h2 class="section-title">知识产权</h2>
+                <p class="section-subtitle">我们致力于创新与技术研发，并已获得多项国家认证的知识产权。</p>
+                <div class="certs-grid">
+                    <div class="cert-item">
+                        <a href="images/weijif 1 of 1.jpg" class="cert-link">
+                            <img src="images/weijif 1 of 1.jpg" alt="微积分计算软件著作权证书">
+                            <div class="cert-info">
+                                <h3>软件著作权：微积分计算软件</h3>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="cert-item">
+                        <a href="images/LAN 1 of 1.jpg" class="cert-link">
+                            <img src="images/LAN 1 of 1.jpg" alt="LAN交流互动软件著作权证书">
+                            <div class="cert-info">
+                                <h3>软件著作权：LAN交流互动软件</h3>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="cert-item">
+                        <a href="images/ASCIIfy 1 of 1.jpg" class="cert-link">
+                            <img src="images/ASCIIfy 1 of 1.jpg" alt="图像转ASCII软件著作权证书">
+                            <div class="cert-info">
+                                <h3>软件著作权：图像转ASCII软件</h3>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="cert-item">
+                        <a href="images/patent.png" class="cert-link">
+                            <img src="images/patent.png" alt="发明与实用新型专利证书">
+                            <div class="cert-info">
+                                <h3>多项发明与实用新型专利</h3>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <section id="contact" class="reveal">
             <div class="container">
                 <h2 class="section-title">联系我们</h2>
@@ -1436,13 +1626,29 @@
                             <div class="form-group">
                                 <textarea id="form-message" name="message" placeholder="您的留言" required></textarea>
                             </div>
-                            <input type="hidden" name="_next" value="https://sippyyuhao.github.io/Loralore/thanks.html">
                             <button type="submit" class="btn btn-primary">发送消息</button>
                         </form>
                     </div>
                 </div>
             </div>
         </section>
+
+        <div id="thank-you-modal" class="modal-overlay">
+            <div class="modal-content">
+                <div class="thanks-icon">
+                    <i class="fa fa-check-circle"></i>
+                </div>
+                <h1 class="thanks-title">感谢留言！</h1>
+                <p class="thanks-message">我们已收到您的信息，并会尽快通过刚刚预留的邮箱与您联系。</p>
+                <a href="#" id="close-modal-btn" class="btn btn-primary">关闭</a>
+            </div>
+        </div>
+
+        <div id="image-modal" class="modal-overlay">
+            <div class="modal-content image-modal-content">
+                <img id="modal-img-content" src="" alt="Certificate Preview">
+            </div>
+        </div>
 
         <footer>
             <div class="container">
@@ -1588,20 +1794,144 @@
                 const newForm = contactForm.cloneNode(true);
                 contactForm.parentNode.replaceChild(newForm, contactForm);
                 
-                // 添加简单的调试
+                // 添加AJAX提交逻辑
                 newForm.addEventListener('submit', function(e) {
-                    // 只做日志记录，不做其他干预
-                    const formData = new FormData(this);
-                    const formValues = {};
-                    
-                    formData.forEach((value, key) => {
-                        formValues[key] = value;
-                        console.log(`${key}: ${value}`);
+                    e.preventDefault(); // 阻止表单的默认提交行为
+                    const form = e.target;
+                    const button = form.querySelector('button[type="submit"]');
+                    const originalButtonText = button.textContent;
+                    button.disabled = true;
+                    button.textContent = '正在发送...';
+
+                    const data = new FormData(form);
+
+                    fetch(form.action, {
+                        method: form.method,
+                        body: data,
+                        headers: {
+                            'Accept': 'application/json'
+                        }
+                    }).then(response => {
+                        if (response.ok) {
+                            // 提交成功，显示感谢模态框
+                            const thankYouModal = document.getElementById('thank-you-modal');
+                            if(thankYouModal) {
+                                thankYouModal.classList.add('visible');
+                            }
+                            // 重置表单以便下次使用
+                            newForm.reset();
+                            button.disabled = false;
+                            button.textContent = originalButtonText;
+                        } else {
+                            response.json().then(data => {
+                                if (Object.hasOwn(data, 'errors')) {
+                                    alert(data["errors"].map(error => error["message"]).join(", "));
+                                } else {
+                                    alert('表单提交失败，请稍后重试。');
+                                }
+                                button.disabled = false;
+                                button.textContent = originalButtonText;
+                            })
+                        }
+                    }).catch(error => {
+                        alert('网络错误，请检查您的网络连接。');
+                        button.disabled = false;
+                        button.textContent = originalButtonText;
                     });
-                    
-                    console.log('提交表单数据:', formValues);
-                    localStorage.setItem('formSubmitTime', new Date().toString());
-                    // 正常提交表单
+                });
+
+                const returnBtn = document.getElementById('return-btn');
+                if (returnBtn) {
+                    returnBtn.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        const contactSection = document.getElementById('contact');
+                        const thankYouSection = document.getElementById('thank-you-section');
+                        
+                        if (thankYouSection) thankYouSection.style.display = 'none';
+                        if (contactSection) contactSection.style.display = 'block';
+                        
+                        if (newForm) {
+                            newForm.reset();
+                            const button = newForm.querySelector('button[type="submit"]');
+                            if (button) {
+                                button.disabled = false;
+                                button.textContent = '发送消息';
+                            }
+                        }
+                    });
+                }
+
+                // 模态框关闭逻辑
+                const thankYouModal = document.getElementById('thank-you-modal');
+                const closeModalBtn = document.getElementById('close-modal-btn');
+
+                function closeModal() {
+                    if (thankYouModal) {
+                        thankYouModal.classList.remove('visible');
+                    }
+                }
+
+                if (closeModalBtn) {
+                    closeModalBtn.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        closeModal();
+                    });
+                }
+
+                if (thankYouModal) {
+                    thankYouModal.addEventListener('click', function(e) {
+                        if (e.target === thankYouModal) { // 点击背景遮罩时关闭
+                            closeModal();
+                        }
+                    });
+                }
+
+                // 服务按钮联动联系表单
+                const serviceButtons = [
+                    { id: 'btn-regular', subject: '咨询：校外普通服务', message: '' },
+                    { id: 'btn-student', subject: '咨询：学生专享服务', message: '学校：\n学号：\n专业：' },
+                    { id: 'btn-premium', subject: '咨询：学生加急服务', message: '学校：\n学号：\n专业：' }
+                ];
+
+                const contactSection = document.getElementById('contact');
+                const subjectInput = document.getElementById('form-subject');
+                const messageTextarea = document.getElementById('form-message');
+                const nameInput = document.getElementById('form-name');
+
+                serviceButtons.forEach(buttonInfo => {
+                    const buttonEl = document.getElementById(buttonInfo.id);
+                    if (buttonEl) {
+                        buttonEl.addEventListener('click', (e) => {
+                            e.preventDefault();
+                            if (subjectInput) subjectInput.value = buttonInfo.subject;
+                            if (messageTextarea) messageTextarea.value = buttonInfo.message;
+                            if (contactSection) contactSection.scrollIntoView({ behavior: 'smooth' });
+                            if (nameInput) {
+                                setTimeout(() => nameInput.focus(), 500);
+                            }
+                        });
+                    }
+                });
+            }
+
+            // Image Modal Logic
+            const imageModal = document.getElementById('image-modal');
+            const modalImg = document.getElementById('modal-img-content');
+            const certLinks = document.querySelectorAll('.cert-link');
+
+            if (imageModal && modalImg && certLinks.length > 0) {
+                certLinks.forEach(link => {
+                    link.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        modalImg.src = this.href;
+                        imageModal.classList.add('visible');
+                    });
+                });
+
+                imageModal.addEventListener('click', function(e) {
+                    if (e.target === imageModal) {
+                        imageModal.classList.remove('visible');
+                    }
                 });
             }
         });
