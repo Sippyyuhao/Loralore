@@ -990,6 +990,9 @@ form button:hover{
     .social-links-home{
         display: flex;
     }
+    .navigation-bar{
+        padding: 20px;
+    }
  .navigation-logo{
         font-size: 24px;
     }
@@ -1009,6 +1012,9 @@ form button:hover{
     }
     .navigation-line{
         background: white;
+        height: 4px;
+        box-shadow: 0 0 6px rgba(0,0,0,0.9);
+        border-radius: 2px;
     }
     .main-home-pic{
         background-position: center;
