@@ -1469,7 +1469,7 @@ footer {
     width: 80px;
     height: 80px;
     border-radius: 50%;
-    background: linear-gradient(135deg, var(--primary-color), #388E3C);
+    background: linear-gradient(135deg, var(--primary-color), #e53935);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1583,7 +1583,7 @@ footer {
 .service-card {
     background: white;
     border-radius: 15px;
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+    box-shadow: 0 5px 20px #e53935;
     overflow: hidden;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     position: relative;
@@ -1826,38 +1826,26 @@ footer {
     background: #c62828;
 }
 
+/* 服务推广区 - Netlify风格改造 */
 .service-promotion {
     text-align: center;
     margin: 0 auto 60px;
-    padding: 50px 40px;
-    background: linear-gradient(135deg, #f5f7fa, #eef2f7);
+    padding: 60px 40px;
     border-radius: 20px;
     position: relative;
     overflow: hidden;
-    border: 1px solid rgba(0, 0, 0, 0.05);
-    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    border: none;
+    box-shadow: 0 10px 40px rgba(229, 57, 53, 0.3);
+
+    /* Animated background */
+    background: linear-gradient(110deg, #e53935 45%, white 50%, #e53935 55%);
+    background-size: 300% 200%;
+    animation: gradient-flow 4s ease-in-out infinite;
 }
 
-.service-promotion::before {
-    content: '';
-    position: absolute;
-    top: -50px;
-    left: -50px;
-    width: 200px;
-    height: 200px;
-    background: radial-gradient(circle, rgba(26, 115, 232, 0.08) 0%, transparent 70%);
-    z-index: 0;
-}
-
+.service-promotion::before,
 .service-promotion::after {
-    content: '';
-    position: absolute;
-    bottom: -80px;
-    right: -60px;
-    width: 250px;
-    height: 250px;
-    background: radial-gradient(circle, rgba(26, 115, 232, 0.06) 0%, transparent 70%);
-    z-index: 0;
+    display: none; /* 移除旧的浅色图案 */
 }
 
 .promotion-title {
@@ -1867,8 +1855,9 @@ footer {
     display: inline-block;
     text-align: center;
     width: 100%;
-    color: #1a73e8;
+    color: #ffffff; /* 白色标题 */
     z-index: 1;
+    text-shadow: 0 1px 4px rgba(0,0,0,0.15);
 }
 
 .promotion-title::after {
@@ -1879,7 +1868,7 @@ footer {
     transform: translateX(-50%);
     width: 60px;
     height: 4px;
-    background: #1a73e8;
+    background: rgba(255, 255, 255, 0.5); /* 半透明白色点缀线 */
     border-radius: 2px;
 }
 
@@ -1892,58 +1881,58 @@ footer {
     max-width: 700px;
     margin-left: auto;
     margin-right: auto;
-    color: #555;
+    color: rgba(255, 255, 255, 0.9); /* 浅白色副标题 */
+    text-shadow: 0 1px 4px rgba(0,0,0,0.1);
 }
 
 .promotion-highlight {
     z-index: 1;
     position: relative;
-    margin-top: 30px;
+    margin-top: 40px;
     display: flex;
     justify-content: center;
-    gap: 15px;
+    gap: 20px;
     flex-wrap: wrap;
 }
 
 .promotion-highlight span {
-    font-weight: 600;
-    color: #1a73e8;
-    background-color: #fff;
-    padding: 8px 18px;
-    border-radius: 50px;
-    border: 1px solid rgba(26, 115, 232, 0.2);
-    box-shadow: 0 4px 10px rgba(26, 115, 232, 0.1);
-    transition: transform 0.3s ease;
+    font-weight: 500;
+    color: #ffffff; /* 白色文字 */
+    background-color: rgba(255, 255, 255, 0.12); /* 玻璃效果背景 */
+    padding: 10px 20px;
+    border-radius: 8px; /* 更现代的圆角 */
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: none;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+    display: flex;
+    align-items: center;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.1);
 }
 
 .promotion-highlight span:hover {
+    background-color: rgba(255, 255, 255, 0.2);
     transform: translateY(-3px);
 }
 
-@media screen and (max-width: 768px) {
-    .service-promotion {
-        padding: 40px 20px;
-    }
-    
-    .promotion-title {
-        font-size: 1.6rem;
-    }
-    
-    .promotion-text {
-        font-size: 1.1rem;
-    }
-    
-    .promotion-highlight {
-        font-size: 0.95rem;
-    }
+.promotion-highlight span::before {
+    content: '\f00c';
+    font-family: 'FontAwesome';
+    margin-right: 10px;
+    color: #34d399; /* 绿色对勾图标 */
+    font-weight: normal;
 }
 
-.service-subtitle {
-    font-size: 0.9rem;
-    opacity: 0.9;
-    margin-bottom: 15px;
-    font-weight: 400;
-    letter-spacing: 0.5px;
+/* 渐变流动动画 */
+@keyframes gradient-flow {
+    0% {
+        background-position: 150% 50%;
+    }
+    50% {
+        background-position: -50% 50%;
+    }
+    100% {
+        background-position: 150% 50%;
+    }
 }
 
 /* 服务卡片个性化颜色 */
@@ -2075,41 +2064,6 @@ footer {
 
 .service-card:nth-of-type(3) .student-schools {
     background: rgba(229, 57, 53, 0.03);
-}
-
-/* 营销推广区样式 */
-.service-promotion {
-    text-align: center;
-    margin-bottom: 50px;
-    padding: 30px;
-    background: rgba(26, 115, 232, 0.05);
-    border-radius: 15px;
-    position: relative;
-    overflow: hidden;
-}
-
-.service-promotion::before {
-    content: '';
-    position: absolute;
-    top: -30px;
-    right: -30px;
-    width: 150px;
-    height: 150px;
-    background: rgba(26, 115, 232, 0.08);
-    border-radius: 50%;
-    z-index: 0;
-}
-
-.promotion-title {
-    color: #1a73e8;
-}
-
-.promotion-title::after {
-    background: #1a73e8;
-}
-
-.promotion-highlight span {
-    color: #1a73e8;
 }
 
 /* Intellectual Property Section */
