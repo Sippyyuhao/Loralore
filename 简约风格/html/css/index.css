@@ -832,7 +832,7 @@ form button:hover{
     height: 70vh;
   }
   #gallery .align-center{
-      position: absolute;
+    position: absolute;
       left: 50%;
       top: 60%;
       transform: translate(-50%,-50%);
@@ -854,9 +854,9 @@ form button:hover{
   #gallery .swiper-slide img{
       width: 100%;
       height: auto;
-      margin: auto;
-      pointer-events: none;
-      border-radius: 0px;
+    margin: auto;
+    pointer-events: none;
+    border-radius: 0px;
   }
   .gallery-header{
       position: absolute;
