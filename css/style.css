@@ -2346,6 +2346,59 @@ footer {
     justify-content: center;
 }
 .cert-info h3 {
+    font-size: 1rem;
+    color: #fff;
     margin: 0;
-    font-size: 1.2rem;
+}
+
+/* 响应式设计 */
+@media screen and (max-width: 768px) {
+    .partner-schools {
+        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+        gap: 20px;
+        margin-top: 20px;
+        padding-top: 20px;
+    }
+
+    .school-logo.special-collaboration {
+        padding: 30px 15px;
+    }
+
+    .school-logo.special-collaboration img {
+        width: 150px;
+        height: 150px;
+    }
+
+    .school-logo.special-collaboration span {
+        font-size: 1.1rem;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .team-content-wrapper {
+        padding: 10px;
+    }
+
+    .special-collaboration-wrapper::before {
+        font-size: 0.8rem;
+        padding: 5px 15px;
+    }
+
+    .school-logo.special-collaboration img {
+        width: 120px;
+        height: 120px;
+    }
+
+    .partner-schools {
+        gap: 15px;
+    }
+
+    .school-logo img {
+        width: 70px;
+        height: 70px;
+    }
+
+    .school-logo span {
+        font-size: 0.9rem;
+    }
 } 
