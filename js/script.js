@@ -223,6 +223,21 @@ document.addEventListener('DOMContentLoaded', function() {
     setTimeout(() => {
         window.dispatchEvent(new Event('scroll'));
     }, 500);
+
+    // Team card download logic
+    const downloadBtn = document.getElementById('download-team-card-btn');
+
+    if (downloadBtn) {
+        downloadBtn.addEventListener('click', () => {
+            const link = document.createElement('a');
+            link.href = 'images/Loralore with cmu.png';
+            link.download = 'Loralore-with-CMU.png';
+            
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        });
+    }
 });
 
 // 3D旋转画廊

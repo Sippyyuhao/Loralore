@@ -46,6 +46,44 @@ img {
     height: auto;
 }
 
+.section-title-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 50px;
+    flex-wrap: wrap;
+}
+
+.section-title-wrapper .section-title {
+    width: auto;
+    margin-bottom: 0;
+}
+
+.btn.btn-icon {
+    padding: 8px 18px;
+    font-size: 0.9rem;
+    background: var(--accent-color, #e53935);
+    border: none;
+    color: white;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+}
+
+.btn.btn-icon:hover {
+    background: #c62828;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.btn.btn-icon .fa {
+    margin-right: 8px;
+}
+
 .section-title {
     text-align: center;
     font-size: 2.5rem;
@@ -1010,11 +1048,24 @@ nav ul li.current a {
 }
 
 .team-content-wrapper {
-    background: #ffffff;
-    border-radius: 20px;
-    box-shadow: 0 15px 40px rgba(49, 56, 100, 0.08);
-    padding: 40px;
-    border: 1px solid #f0f0f0;
+    background: linear-gradient(to bottom, #ffffff, #fdfdff);
+    border-radius: 24px;
+    box-shadow: 0 4px 15px rgba(49, 56, 100, 0.05), 0 20px 50px rgba(49, 56, 100, 0.08);
+    padding: 50px 40px 40px;
+    border: 1px solid #eef0f4;
+    position: relative;
+    overflow: hidden;
+}
+
+.team-content-wrapper::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(to right, var(--accent-color), #f85c59);
+    z-index: 2;
 }
 
 /* 学校标识样式 */
@@ -1076,10 +1127,10 @@ nav ul li.current a {
     align-items: center;
     flex-direction: column;
     width: 100%;
-    padding: 40px 25px;
-    background: linear-gradient(145deg, #ffffff, #f9f9fc);
+    padding: 50px 25px;
+    background: linear-gradient(145deg, #ffffff 50%, #ffebee);
     border-radius: 18px;
-    border: 1px solid #e8e8ee;
+    border: 1px solid #fce4ec;
     box-shadow: 0 10px 30px -5px rgba(211, 47, 47, 0.15);
     animation: pulse-glow 3.5s infinite ease-in-out;
     position: relative; /* For the new connector */
@@ -1094,15 +1145,15 @@ nav ul li.current a {
     transform: translateX(-50%) rotate(45deg);
     width: 26px;
     height: 26px;
-    background: #f9f9fc;
-    border-right: 1px solid #e8e8ee;
-    border-bottom: 1px solid #e8e8ee;
+    background: #ffebee;
+    border-right: 1px solid #fce4ec;
+    border-bottom: 1px solid #fce4ec;
     z-index: 1;
 }
 
 .school-logo.special-collaboration img {
-    width: 180px;
-    height: 180px;
+    width: 220px;
+    height: 220px;
     box-shadow: 0 0 15px rgba(255, 255, 255, 0.8) inset; /* 内发光 */
     border: 1px solid rgba(0,0,0,0.05);
 }
@@ -1120,7 +1171,7 @@ nav ul li.current a {
     max-width: 800px;
     margin-top: 40px;
     padding-top: 30px;
-    border-top: 1px dashed #d0d0d5;
+    border-top: 1px solid #eef0f4;
 }
 
 /* 清理旧样式 */
