@@ -688,7 +688,8 @@
             border-radius: 8px;
             font-weight: 500;
             color: #555;
-            transition: all 0.2s ease;
+            transition: background-color 0.2s ease, color 0.2s ease, transform 0.2s ease; /* 1. 更明确的过渡动画 */
+            transform: translateX(0); /* 2. 强制设置初始状态为不偏移 */
             display: flex;
             align-items: center;
             overflow: hidden;
@@ -708,17 +709,23 @@
             transition: opacity 0.2s ease;
         }
         
+        /* 3. 仅应用背景和颜色，不应用transform */
         #header nav ul li.current a,
         #header nav ul li a:hover {
             background: var(--primary-color, #5c6bc0);
             color: #fff;
+        }
+
+        /* 4. 只在侧边栏展开时才应用位移 */
+        #header.is-expanded nav ul li.current a,
+        #header.is-expanded nav ul li a:hover {
             transform: translateX(5px);
         }
 
         main {
             transition: padding-left 0.3s ease-in-out;
         }
-
+        
         /* Shift body content on desktop */
         @media (min-width: 993px) {
             body {
@@ -732,9 +739,13 @@
             #header {
                 width: var(--sidebar-collapsed-width);
                 transform: translateX(0); /* Ensure sidebar is visible on desktop */
+                padding-left: 0;
+                padding-right: 0;
             }
             #header.is-expanded {
                 width: var(--sidebar-width);
+                padding-left: 20px;
+                padding-right: 20px;
             }
             #header.is-expanded .logo-text,
             #header.is-expanded nav ul li a span {
@@ -1906,19 +1917,20 @@
                     const link = li.querySelector('a');
                     // 修复：只处理包含<a>链接的<li>元素
                     if (link) {
-                        const href = link.getAttribute('href');
-                        
-                        if (href === `#${activeSectionId}`) {
-                            li.classList.add('current');
-                        } else {
-                            li.classList.remove('current');
+                    const href = link.getAttribute('href');
+                    
+                    if (href === `#${activeSectionId}`) {
+                        li.classList.add('current');
+                    } else {
+                        li.classList.remove('current');
                         }
                     }
                 });
             };
 
             window.addEventListener('scroll', updateActiveNav);
-            updateActiveNav(); // 页面加载时立即执行一次
+            // 延迟执行初始高亮，避免加载时的样式竞争问题
+            setTimeout(updateActiveNav, 100);
 
             // 联系表单调试 - 简化版本
             const contactForm = document.getElementById('contactForm');

@@ -144,27 +144,27 @@ document.addEventListener('DOMContentLoaded', function() {
             item.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
         });
 
-        function checkVisible() {
-            projectDetailItems.forEach((item, index) => {
-                const rect = item.getBoundingClientRect();
-                const isVisible = (rect.top <= window.innerHeight * 0.8 && rect.bottom >= 0);
-                
-                if (isVisible) {
-                    setTimeout(() => {
-                        item.style.opacity = '1';
-                        item.style.transform = 'translateY(0)';
-                    }, index * 150);
-                }
-            });
-        }
-        
-        checkVisible();
-        window.addEventListener('scroll', checkVisible);
+    function checkVisible() {
+        projectDetailItems.forEach((item, index) => {
+            const rect = item.getBoundingClientRect();
+            const isVisible = (rect.top <= window.innerHeight * 0.8 && rect.bottom >= 0);
+            
+            if (isVisible) {
+                setTimeout(() => {
+                    item.style.opacity = '1';
+                    item.style.transform = 'translateY(0)';
+                }, index * 150);
+            }
+        });
     }
     
+    checkVisible();
+    window.addEventListener('scroll', checkVisible);
+    }
+
     // 3D旋转画廊实现
     initGallery();
-    
+
     // Team card download logic
     const downloadBtn = document.getElementById('download-team-card-btn');
 
@@ -179,6 +179,49 @@ document.addEventListener('DOMContentLoaded', function() {
             document.body.removeChild(link);
         });
     }
+    
+    // 动态导航高亮逻辑
+    const sections = document.querySelectorAll('section[id]');
+    const navLi = document.querySelectorAll('#header nav ul li');
+
+    const updateActiveNav = () => {
+        const scrollY = window.pageYOffset;
+        let activeSectionId = '';
+
+        // 找到当前在视口中最顶部的section
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop - 100; // 偏移量，使高亮更自然
+            if (scrollY >= sectionTop) {
+                activeSectionId = section.id;
+            }
+        });
+        
+        // 如果滚动到顶部，确保'首页'高亮
+        if (scrollY < 200) {
+            activeSectionId = 'showcase';
+        }
+
+        // 清除所有当前高亮
+        navLi.forEach(li => li.classList.remove('current'));
+        
+        // 设置当前高亮
+        navLi.forEach(li => {
+            const link = li.querySelector('a');
+            // 只处理包含<a>链接的<li>元素
+            if (link) {
+                const href = link.getAttribute('href');
+                if (href === `#${activeSectionId}`) {
+                    li.classList.add('current');
+                }
+            }
+        });
+    };
+
+    // 延迟执行初始高亮，避免加载时的样式竞争问题
+    setTimeout(updateActiveNav, 300);
+    
+    // 添加滚动事件监听器
+    window.addEventListener('scroll', updateActiveNav);
 });
 
 // 3D旋转画廊
