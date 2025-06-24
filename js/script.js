@@ -117,7 +117,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // 添加简单动画效果
-    const animateElements = document.querySelectorAll('.product-item, .feature-box, .project-detail-item, .equipment-item, .template-item, .cert-item');
+    const animateElements = document.querySelectorAll('.feature-box, .project-detail-item, .equipment-item, .template-item, .cert-item');
     
     if ('IntersectionObserver' in window) {
         const animationObserver = new IntersectionObserver((entries) => {
@@ -133,64 +133,38 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // 项目卡片堆叠效果增强
+    // 项目详情相关逻辑
     const projectDetailItems = document.querySelectorAll('.project-detail-item');
     
-    // 为项目详情添加入场动画
-    function checkVisible() {
-        projectDetailItems.forEach((item, index) => {
-            const rect = item.getBoundingClientRect();
-            const isVisible = (rect.top <= window.innerHeight * 0.8 && rect.bottom >= 0);
-            
-            if (isVisible) {
-                setTimeout(() => {
-                    item.style.opacity = '1';
-                    item.style.transform = 'translateY(0)';
-                }, index * 150);
-            }
+    // 初始化项目详情样式并设置进场动画
+    if (projectDetailItems.length > 0) {
+        projectDetailItems.forEach(item => {
+            item.style.opacity = '0';
+            item.style.transform = 'translateY(30px)';
+            item.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
         });
+
+        function checkVisible() {
+            projectDetailItems.forEach((item, index) => {
+                const rect = item.getBoundingClientRect();
+                const isVisible = (rect.top <= window.innerHeight * 0.8 && rect.bottom >= 0);
+                
+                if (isVisible) {
+                    setTimeout(() => {
+                        item.style.opacity = '1';
+                        item.style.transform = 'translateY(0)';
+                    }, index * 150);
+                }
+            });
+        }
+        
+        checkVisible();
+        window.addEventListener('scroll', checkVisible);
     }
     
-    // 初始化项目详情样式
-    projectDetailItems.forEach(item => {
-        item.style.opacity = '0';
-        item.style.transform = 'translateY(30px)';
-        item.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-    });
-    
-    // 检查可见性
-    checkVisible();
-    window.addEventListener('scroll', checkVisible);
-
     // 3D旋转画廊实现
     initGallery();
     
-    // 为项目详情添加动画效果
-    const projectDetails = document.querySelectorAll('.project-detail-item');
-    projectDetails.forEach(detail => {
-        detail.style.opacity = '0';
-        detail.style.transform = 'translateY(30px)';
-        detail.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-    });
-    
-    // 监听滚动，显示项目详情
-    window.addEventListener('scroll', function() {
-        projectDetails.forEach(detail => {
-            const rect = detail.getBoundingClientRect();
-            const isVisible = rect.top <= window.innerHeight * 0.8 && rect.bottom >= 0;
-            
-            if (isVisible) {
-                detail.style.opacity = '1';
-                detail.style.transform = 'translateY(0)';
-            }
-        });
-    });
-    
-    // 初始触发一次滚动检测
-    setTimeout(() => {
-        window.dispatchEvent(new Event('scroll'));
-    }, 500);
-
     // Team card download logic
     const downloadBtn = document.getElementById('download-team-card-btn');
 
