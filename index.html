@@ -952,6 +952,84 @@
         .modal-overlay.visible .modal-content {
             transform: scale(1);
         }
+
+        /* 访问计数器样式 */
+        .visit-counter {
+            position: absolute;
+            bottom: 20px;
+            left: 0;
+            width: 100%;
+            padding: 10px 20px;
+            display: flex;
+            align-items: center;
+            color: #555;
+            font-size: 0.9rem;
+            overflow: hidden;
+            border-top: 1px solid #eee;
+            padding-top: 15px;
+            margin-top: 15px;
+        }
+
+        .visit-counter i {
+            font-size: 1.2rem;
+            flex-shrink: 0;
+            width: 50px;
+            text-align: center;
+            margin-left: -10px;
+        }
+
+        .visit-counter .counter-text {
+            white-space: nowrap;
+            opacity: 1; /* 默认可见 */
+            transition: opacity 0.2s ease;
+        }
+
+        /* 桌面端收起时隐藏文字 */
+        @media (min-width: 993px) {
+            #header:not(.is-expanded) .visit-counter .counter-text {
+                opacity: 0;
+            }
+        }
+
+        /* 访问计数器菜单项样式 */
+        #header nav ul li.visit-counter-li {
+            padding: 12px 20px;
+            font-weight: 500;
+            color: #555;
+            display: flex;
+            align-items: center;
+            cursor: default;
+            margin-top: 15px;
+            border-top: 1px solid #eee;
+            padding-top: 15px;
+        }
+        
+        #header nav ul li.visit-counter-li:hover {
+            background: none;
+            transform: none;
+            color: #555;
+        }
+        
+        #header nav ul li.visit-counter-li i {
+            font-size: 1.3rem;
+            flex-shrink: 0;
+            width: 50px;
+            text-align: center;
+            margin-left: -10px;
+        }
+
+        #header nav ul li.visit-counter-li span {
+            opacity: 1;
+            white-space: nowrap;
+            transition: opacity 0.2s ease;
+        }
+
+        /* 桌面端收起时隐藏文字 */
+        @media (min-width: 993px) {
+            #header:not(.is-expanded) nav ul li.visit-counter-li span {
+                opacity: 0;
+            }
+        }
     </style>
 </head>
 <body>
@@ -971,6 +1049,7 @@
                     <li><a href="#team"><i class="fa fa-users"></i><span>团队</span></a></li>
                     <li><a href="#intellectual-property"><i class="fa fa-certificate"></i><span>知识产权</span></a></li>
                     <li><a href="#contact"><i class="fa fa-envelope-o"></i><span>联系我们</span></a></li>
+                    <li class="visit-counter-li"><i class="fa fa-eye"></i><span>累计访问: <span id="visit-count">0</span></span></li>
                 </ul>
             </nav>
         </div>
@@ -1706,6 +1785,15 @@
     <script src="./js/particles/config.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
+            // 访问计数器功能
+            const visitCountElement = document.getElementById('visit-count');
+            if (visitCountElement) {
+                let count = localStorage.getItem('page_view_count');
+                count = (count) ? Number(count) + 1 : 1;
+                localStorage.setItem('page_view_count', count);
+                visitCountElement.innerText = count;
+            }
+
             if (typeof particlesJS !== 'undefined') {
                 // 使用配置文件初始化粒子效果
                 particlesJS("particles-js", particlesConfig);
