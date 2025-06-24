@@ -30,8 +30,20 @@ export const handler = async (event) => {
   }
   
   try {
-    // 'visitor-counts' is the name of our data store.
-    const store = getStore('visitor-counts');
+    const siteID = process.env.NETLIFY_SITE_ID;
+    const token = process.env.NETLIFY_API_TOKEN;
+
+    if (!siteID || !token) {
+      // This error will now be visible in the function logs.
+      throw new Error('Required environment variables NETLIFY_SITE_ID and/or NETLIFY_API_TOKEN are not set.');
+    }
+
+    // Manually provide the siteID and token.
+    const store = getStore({
+      name: 'visitor-counts',
+      siteID,
+      token,
+    });
     
     // Get the current count for the key 'total_visits'.
     // If it doesn't exist, default to 0.

@@ -1904,12 +1904,15 @@
 
                 navLi.forEach(li => {
                     const link = li.querySelector('a');
-                    const href = link.getAttribute('href');
-                    
-                    if (href === `#${activeSectionId}`) {
-                        li.classList.add('current');
-                    } else {
-                        li.classList.remove('current');
+                    // 修复：只处理包含<a>链接的<li>元素
+                    if (link) {
+                        const href = link.getAttribute('href');
+                        
+                        if (href === `#${activeSectionId}`) {
+                            li.classList.add('current');
+                        } else {
+                            li.classList.remove('current');
+                        }
                     }
                 });
             };
