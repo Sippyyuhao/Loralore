@@ -1785,13 +1785,36 @@
     <script src="./js/particles/config.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // 访问计数器功能
+            // 访问计数器功能 - 支持跨域调用
             const visitCountElement = document.getElementById('visit-count');
             if (visitCountElement) {
-                let count = localStorage.getItem('page_view_count');
-                count = (count) ? Number(count) + 1 : 1;
-                localStorage.setItem('page_view_count', count);
-                visitCountElement.innerText = count;
+                // 定义Netlify云函数的绝对地址
+                const netlifyFunctionUrl = 'https://loralore.netlify.app/.netlify/functions/visitor-count';
+                // 判断当前页面的域名
+                const currentHostname = window.location.hostname;
+                
+                // 如果在GitHub Pages上，使用Netlify的绝对地址，否则使用相对地址
+                const apiUrl = (currentHostname === 'sippyyuhao.github.io') 
+                               ? netlifyFunctionUrl 
+                               : '/.netlify/functions/visitor-count';
+
+                fetch(apiUrl)
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('Network response was not ok');
+                        }
+                        return response.json();
+                    })
+                    .then(data => {
+                        if (data.count !== undefined) {
+                            visitCountElement.innerText = data.count;
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error fetching visit count:', error);
+                        // 在出错时给用户一个反馈
+                        visitCountElement.innerText = 'N/A';
+                    });
             }
 
             if (typeof particlesJS !== 'undefined') {
