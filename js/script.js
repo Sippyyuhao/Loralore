@@ -117,7 +117,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // 添加简单动画效果
-    const animateElements = document.querySelectorAll('.service-item, .product-item, .feature-box');
+    const animateElements = document.querySelectorAll('.product-item, .feature-box, .project-detail-item, .equipment-item, .template-item, .cert-item');
     
     if ('IntersectionObserver' in window) {
         const animationObserver = new IntersectionObserver((entries) => {
@@ -134,40 +134,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // 项目卡片堆叠效果增强
-    const serviceItems = document.querySelectorAll('.service-item');
     const projectDetailItems = document.querySelectorAll('.project-detail-item');
-    
-    // 为项目卡片添加鼠标移动视差效果
-    serviceItems.forEach(item => {
-        item.addEventListener('mousemove', function(e) {
-            const { left, top, width, height } = this.getBoundingClientRect();
-            const x = (e.clientX - left) / width - 0.5;
-            const y = (e.clientY - top) / height - 0.5;
-            
-            this.style.transform = `translateY(-15px) rotateX(${-y * 10}deg) rotateY(${x * 10}deg)`;
-        });
-        
-        item.addEventListener('mouseleave', function() {
-            this.style.transform = 'translateY(0) rotateX(0) rotateY(0)';
-            setTimeout(() => {
-                this.style.transition = 'transform 0.5s ease, box-shadow 0.5s ease';
-            }, 100);
-        });
-        
-        item.addEventListener('mouseenter', function() {
-            this.style.transition = 'transform 0.1s ease';
-            
-            // 添加轻微弹起效果
-            this.animate([
-                { transform: 'translateY(0)' },
-                { transform: 'translateY(-20px)' },
-                { transform: 'translateY(-15px)' }
-            ], {
-                duration: 300,
-                easing: 'cubic-bezier(0.34, 1.56, 0.64, 1)'
-            });
-        });
-    });
     
     // 为项目详情添加入场动画
     function checkVisible() {

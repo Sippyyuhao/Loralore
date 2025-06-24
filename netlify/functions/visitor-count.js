@@ -2,15 +2,20 @@ import { getStore } from '@netlify/blobs';
 
 const allowedOrigins = [
   'https://loralore.netlify.app',
-  'https://sippyyuhao.github.io'
+  'https://sippyyuhao.github.io',
+  // Add 'null' for local file testing (opening index.html directly)
+  'null' 
 ];
 
 export const handler = async (event) => {
-  const origin = event.headers.origin;
+  // Use optional chaining for safer access
+  const origin = event.headers?.origin || (event.headers?.host?.includes('localhost') ? `http://${event.headers.host}` : 'null');
+  
   const headers = {
     'Content-Type': 'application/json'
   };
 
+  // Only add CORS headers if the origin is in our allowed list
   if (allowedOrigins.includes(origin)) {
     headers['Access-Control-Allow-Origin'] = origin;
     headers['Vary'] = 'Origin';
@@ -19,7 +24,7 @@ export const handler = async (event) => {
   // Handle CORS preflight requests
   if (event.httpMethod === 'OPTIONS') {
     return {
-      statusCode: 204, // No Content
+      statusCode: 204,
       headers,
     };
   }
@@ -50,7 +55,7 @@ export const handler = async (event) => {
     return {
       statusCode: 500,
       headers,
-      body: JSON.stringify({ error: 'Failed to update visit count.' }),
+      body: JSON.stringify({ error: 'Failed to update visit count.', details: error.message }),
     };
   }
 }; 
