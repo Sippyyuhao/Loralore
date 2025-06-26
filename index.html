@@ -1041,6 +1041,39 @@
                 opacity: 0;
             }
         }
+
+/* --- Shiny Text Effect --- */
+.shiny-text {
+  /* Set original text color as the background, and make the text color transparent */
+  color: transparent;
+  background-color: #e53935; /* Base color of the text, matching theme red */
+  background-image: linear-gradient(
+    120deg,
+    rgba(255, 255, 255, 0) 35%,
+    rgba(255, 255, 255, 0.8) 50%,
+    rgba(255, 255, 255, 0) 65%
+  );
+  background-size: 200% 100%;
+  background-repeat: no-repeat;
+  -webkit-background-clip: text;
+  background-clip: text;
+  animation: shine 3s linear infinite; /* Increased speed */
+  /* Ensure it doesn't break layout */
+  display: inline-block;
+}
+
+@keyframes shine {
+  0% {
+    background-position: 150%;
+  }
+  100% {
+    background-position: -50%;
+  }
+}
+
+.shiny-text.disabled {
+  animation: none;
+}
     </style>
 </head>
 <body>
@@ -1103,7 +1136,7 @@
 
         <section id="projects">
             <div class="container">
-                <h2 class="section-title reveal">团队项目</h2>
+                <h2 class="section-title reveal shiny-text">团队项目</h2>
                 
                 <!-- 3D旋转画廊展示 -->
                 <!-- 注意：画廊内容将由JavaScript动态生成 -->
@@ -1286,7 +1319,7 @@
 
         <section id="services">
             <div class="container">
-                <h2 class="section-title reveal">我们的服务</h2>
+                <h2 class="section-title reveal shiny-text">我们的服务</h2>
                 <div class="services-intro reveal">
                     <p class="services-description">Loralore工作室提供简约静态网站开发服务，无需购买服务器或域名，即可获得优质公网访问体验。我们关注页面美观与移动端适配，为您打造个性化展示页面。</p>
                 </div>
@@ -1532,7 +1565,7 @@
 
         <section id="equipment">
             <div class="container">
-                <h2 class="section-title reveal">资源</h2>
+                <h2 class="section-title reveal shiny-text">资源</h2>
                 <div class="equipment-intro reveal">
                     <p class="equipment-description">Loralore工作室配备多台专业3D打印设备，支持团队从产品原型设计到最终实物成型的全流程创新。我们的资源涵盖FDM打印、激光雕刻等不同工艺，为创意项目提供强大硬件支持。</p>
                 </div>
@@ -1580,7 +1613,7 @@
         <section id="team">
             <div class="container">
                 <div class="section-title-wrapper reveal">
-                    <h2 class="section-title">团队成员</h2>
+                    <h2 class="section-title shiny-text">团队成员</h2>
                     <button id="download-team-card-btn" class="btn btn-icon" title="下载团队介绍图片">
                         <i class="fa fa-download"></i>&nbsp;生成分享卡
                     </button>
@@ -1657,7 +1690,7 @@
 
         <section id="intellectual-property" class="reveal">
             <div class="container">
-                <h2 class="section-title">知识产权</h2>
+                <h2 class="section-title shiny-text">知识产权</h2>
                 <p class="section-subtitle">我们致力于创新与技术研发，并已获得多项国家认证的知识产权。</p>
                 <div class="certs-grid">
                     <div class="cert-item">
@@ -1698,7 +1731,7 @@
 
         <section id="contact" class="reveal">
             <div class="container">
-                <h2 class="section-title">联系我们</h2>
+                <h2 class="section-title shiny-text">联系我们</h2>
                 <div class="contact-container">
                     <div class="contact-info">
                         <div class="contact-item">
@@ -1791,11 +1824,27 @@
     </main>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="./js/fuzzy-text.js"></script>
     <script src="./js/script.js"></script>
     <script src="./js/particles.js"></script>
     <script src="./js/particles/config.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
+            // Fuzzy Text Effect for Showcase Title
+            const showcaseTitle = document.querySelector('#showcase .showcase-content h1');
+            if(showcaseTitle) {
+                applyFuzzyEffect(showcaseTitle);
+            }
+
+            // Fuzzy Text Effect for Showcase Subtitle
+            const showcaseSubtitle = document.querySelector('#showcase .showcase-content p');
+            if (showcaseSubtitle) {
+                applyFuzzyEffect(showcaseSubtitle, {
+                    baseIntensity: 0.12, // More subtle effect for subtitle
+                    hoverIntensity: 0.35
+                });
+            }
+
             // 访问计数器功能 - 支持跨域调用
             const visitCountElement = document.getElementById('visit-count');
             if (visitCountElement) {
