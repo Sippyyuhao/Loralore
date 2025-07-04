@@ -228,45 +228,45 @@ document.addEventListener('DOMContentLoaded', function() {
 function initGallery() {
     const galleryData = [
         {
-            img: "./images/service1.jpg",
+            img: "./images/service1.webp",
             title: "Apass密码管理",
             description: "安全便捷的账号密码管理微信小程序，具备密码生成、安全检测、自动备份等功能",
             tags: ["微信小程序", "安全", "工具类"],
             target: "#project-apass"
         },
         {
-            img: "./images/service2.jpg",
+            img: "./images/service2.webp",
             title: "Lovalovea情侣空间",
             description: "专为情侣打造的私密社交空间，记录美好瞬间，分享生活点滴，愿景：alove，不再alone",
             tags: ["Web应用", "Node.js", "社交类"],
             target: "#project-lovalovea"
         },
         {
-            img: "./images/service3.jpg",
+            img: "./images/service3.webp",
             title: "字符大师",
             description: "将普通图片转换为ASCII字符艺术的创意微信小程序，支持多种转换参数调整和样式自定义",
             tags: ["微信小程序", "创意类", "图像处理"],
             target: "#project-ascii-wx"
         },
         {
-            img: "./images/service4.png",
+            img: "./images/service4.webp",
             title: "ASCII艺术桌面版",
-            description: "桌面端ASCII艺术转换工具，支持图片和视频处理，视频实时转换为字符动画",
-            tags: ["桌面应用", "Qt", "多媒体"],
+            description: "基于Qt开发的桌面端ASCII艺术转换工具，能将图片甚至视频转换成字符动画",
+            tags: ["桌面应用", "Qt", "C++", "FFmpeg"],
             target: "#project-ascii-qt"
         },
         {
-            img: "./images/service5.jpg",
+            img: "./images/service5.webp",
             title: "UDP交流互动软件",
-            description: "基于UDP协议的网络交流平台，实现低延迟即时通讯、共享绘图画布等功能",
-            tags: ["桌面应用", "C++", "网络通信"],
+            description: "基于Qt开发的局域网UDP白板书画与聊天工具，支持多人实时互动与文件传输",
+            tags: ["桌面应用", "Qt", "C++", "网络通信"],
             target: "#project-julia"
         },
         {
-            img: "./images/service6.jpg",
+            img: "./images/service6.webp",
             title: "微积分计算器",
-            description: "基于MATLAB开发的高级微积分计算工具，支持复杂函数求导、积分、图形可视化",
-            tags: ["数学工具", "MATLAB", "教育类"],
+            description: "基于MATLAB开发的微积分计算与可视化工具，支持函数求导、积分、极限等高级运算",
+            tags: ["MATLAB", "科学计算", "教育工具"],
             target: "#project-calculus"
         }
     ];
