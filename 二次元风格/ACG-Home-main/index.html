@@ -1,0 +1,410 @@
+<!doctype html>
+<html lang="zh">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>二次元个人主页</title>
+        <meta name="description" content="A simple anime-style personal homepage" />
+        <link rel="icon" href="./favicon.ico" />
+
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" />
+
+        <link rel="stylesheet" href="./assets/styles/elements.css" />
+        <link rel="stylesheet" href="./assets/styles/index.css" />
+        <link rel="stylesheet" href="./assets/styles/responsive/index.css" />
+    </head>
+    <body>
+        <div class="background-container" id="background-container"></div>
+        <!-- 飘落的樱花效果 -->
+        <div id="sakura-container"></div>
+
+        <main class="primary-container">
+            <section class="card-item hero-card" id="personal-info">
+                <img class="avatar" src="./assets/images/avatar.png" alt="头像" />
+                <h2 class="name">网站标题</h2>
+                <div class="social-icons">
+                    <a href="#" target="_blank" class="social-icon" title="微信">
+                        <i class="fa-brands fa-weixin"></i>
+                    </a>
+                    <a href="#" target="_blank" class="social-icon" title="QQ">
+                        <i class="fa-brands fa-qq"></i>
+                    </a>
+                    <a href="#" target="_blank" class="social-icon" title="B站">
+                        <i class="fa-brands fa-bilibili"></i>
+                    </a>
+                </div>
+            </section>
+
+            <div class="content-layout">
+                <section class="card-item main-content">
+                    <div class="content-block">
+                        <h2><span class="highlight">欢迎来到我的二次元小窝！</span> <span class="emoji">ヾ(≧▽≦*)o</span></h2>
+                        <p>这里是我的个人空间，请随意逛逛吧！</p>
+        </div>
+
+                    <div class="decorative-hr">✽</div>
+
+                    <div class="content-block">
+                        <h3>关于我</h3>
+                        <p>这里可以介绍一下你自己，比如兴趣爱好、个人特长等。</p>
+                        <p>喜欢的动漫、游戏、音乐，或者其他任何想分享的内容~</p>
+                    </div>
+
+                    <div class="decorative-hr">✽</div>
+                    
+                    <div class="content-block">
+                        <h3>我的作品</h3>
+                        <div class="project-cards">
+                            <div class="project-card">
+                                <div class="project-title">项目标题</div>
+                                <div class="project-desc">这里是项目描述，可以简单介绍一下你的作品内容和特点。</div>
+                            </div>
+                            <div class="project-card">
+                                <div class="project-title">项目标题</div>
+                                <div class="project-desc">这里是项目描述，可以简单介绍一下你的作品内容和特点。</div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                
+                <aside class="secondary-cards">
+                    <div class="card-item secondary-card" id="music-player">
+                        <div class="player-header">
+                            <h3 class="title"><i class="fa-solid fa-compact-disc"></i>音乐播放器</h3>
+                            <label for="upload-song-input" class="upload-btn" title="上传本地音乐">
+                                <i class="fa-solid fa-cloud-arrow-up"></i>
+                            </label>
+                            <input type="file" id="upload-song-input" accept="audio/*" style="display: none;">
+                        </div>
+                        <div class="player-content">
+                            <div class="song-info">
+                                <div class="song-title" id="song-title">歌曲名称</div>
+                                <div class="song-artist" id="song-artist">歌手</div>
+                            </div>
+                            <div class="progress-container" id="progress-container">
+                                <div class="progress-bar" id="progress-bar"></div>
+                            </div>
+                            <div class="player-controls">
+                                <button id="prev-btn" class="control-btn"><i class="fa-solid fa-backward-step"></i></button>
+                                <button id="play-btn" class="control-btn play-pause"><i class="fa-solid fa-play"></i></button>
+                                <button id="next-btn" class="control-btn"><i class="fa-solid fa-forward-step"></i></button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card-item secondary-card" id="recommend">
+                        <h3 class="title"><i class="fa-solid fa-bullhorn"></i>公告</h3>
+                        <div class="content">
+                            <p>在这里放置重要通知或者网站更新信息！</p>
+                        </div>
+                    </div>
+                    <div class="card-item secondary-card" id="hitokoto">
+                        <h3 class="title"><i class="fa-solid fa-scroll"></i>一言</h3>
+                        <div class="content">
+                            <a id="hitokoto-text" href="#" target="_blank">生活，需要一些温柔的坚持。</a>
+                        </div>
+                    </div>
+                    <div class="card-item secondary-card" id="settings">
+                        <h3 class="title"><i class="fa-solid fa-sliders"></i>浏览设置</h3>
+                        <div class="content">
+                            <div class="settings-item theme-settings">
+                                <span class="settings-title"><i class="fa-solid fa-palette"></i>配色方案</span>
+                                <div class="themes">
+                                    <div class="theme-item active" data-theme="default">
+                                        <div class="color"></div>
+                                        <span class="name">少女粉</span>
+                                    </div>
+                                    <div class="theme-item" data-theme="blue">
+                                        <div class="color" style="background: #7AC0F0"></div>
+                                        <span class="name">天空蓝</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </aside>
+        </div>
+
+        </main>
+
+        <footer class="footer">
+            <span>网站模板 <span class="webmaster-info"><a href="#" target="_blank">二次元个人主页</a></span> <i class="fa-solid fa-heart"></i></span>
+            <span>&copy; 2025 二次元风格_loralore</span>
+        </footer>
+
+        <audio id="audio-player" src="./assets/music/song1.mp3"></audio>
+
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                const sakuraContainer = document.getElementById('sakura-container');
+                const bgContainer = document.getElementById('background-container');
+                
+                let mouseInfluence = 0;
+                let sakuraColors = []; // Will be set by the theme
+
+                // --- THEME DEFINITIONS ---
+                const themes = {
+                    default: {
+                        '--theme-primary': '#ffb6c1',
+                        '--theme-primary-dark': '#e09aa4',
+                        '--theme-primary-light': '#ffd1d9',
+                        '--theme-accent': '#87ceeb',
+                        '--theme-text-main': '#3d3d3d',
+                        '--theme-text-secondary': '#6a6a6a',
+                        '--theme-page-background': '#ffd1d9',
+                        '--theme-hr-gradient-color': 'rgba(255, 218, 225, 0.7)',
+                        'sakuraColors': ['#ffc9f6', '#ffb7dc', '#ffd1e6']
+                    },
+                    blue: {
+                        '--theme-primary': '#87ceeb',
+                        '--theme-primary-dark': '#6ca8c7',
+                        '--theme-primary-light': '#b0e0f6',
+                        '--theme-accent': '#ffb6c1',
+                        '--theme-text-main': '#2c3e50',
+                        '--theme-text-secondary': '#576a7c',
+                        '--theme-page-background': '#cdeefd',
+                        '--theme-hr-gradient-color': 'rgba(176, 224, 246, 0.7)',
+                        'sakuraColors': ['#b0e0f6', '#cdeefd', '#a3d9f3']
+                    }
+                };
+
+                function applyTheme(themeName) {
+                    const theme = themes[themeName];
+                    if (!theme) return;
+
+                    for (const [key, value] of Object.entries(theme)) {
+                        if (key !== 'sakuraColors') {
+                            document.documentElement.style.setProperty(key, value);
+                        }
+                    }
+                    sakuraColors = theme.sakuraColors;
+                }
+
+                // --- HITOKOTO API ---
+                function fetchHitokoto() {
+                    const hitokotoText = document.getElementById('hitokoto-text');
+                    fetch('https://v1.hitokoto.cn')
+                        .then(response => response.json())
+                        .then(data => {
+                            hitokotoText.textContent = data.hitokoto;
+                            hitokotoText.href = `https://hitokoto.cn/?uuid=${data.uuid}`;
+                        })
+                        .catch(error => {
+                            console.error('Error fetching Hitokoto:', error);
+                            hitokotoText.textContent = '无法获取一言。';
+                        });
+                }
+
+                // --- MUSIC PLAYER ---
+                const audioPlayer = document.getElementById('audio-player');
+                const playBtn = document.getElementById('play-btn');
+                const prevBtn = document.getElementById('prev-btn');
+                const nextBtn = document.getElementById('next-btn');
+                const progressBar = document.getElementById('progress-bar');
+                const progressContainer = document.getElementById('progress-container');
+                const songTitle = document.getElementById('song-title');
+                const songArtist = document.getElementById('song-artist');
+                const uploadInput = document.getElementById('upload-song-input');
+
+                const playlist = [
+                    {
+                        title: "Bravely You",
+                        artist: "Lia",
+                        src: "./assets/music/song1.mp3"
+                    },
+                    {
+                        title: "My Soul, Your Beats!",
+                        artist: "Lia",
+                        src: "./assets/music/song2.mp3"
+                    }
+                ];
+
+                let currentSongIndex = 0;
+                let isPlaying = false;
+
+                function loadSong(song) {
+                    songTitle.textContent = song.title;
+                    songArtist.textContent = song.artist;
+                    audioPlayer.src = song.src;
+                }
+
+                function playSong() {
+                    isPlaying = true;
+                    playBtn.innerHTML = '<i class="fa-solid fa-pause"></i>';
+                    audioPlayer.play();
+                }
+
+                function pauseSong() {
+                    isPlaying = false;
+                    playBtn.innerHTML = '<i class="fa-solid fa-play"></i>';
+                    audioPlayer.pause();
+                }
+
+                function updateProgress(e) {
+                    const { duration, currentTime } = e.srcElement;
+                    const progressPercent = (currentTime / duration) * 100;
+                    progressBar.style.width = `${progressPercent}%`;
+                }
+
+                function setProgress(e) {
+                    const width = this.clientWidth;
+                    const clickX = e.offsetX;
+                    const duration = audioPlayer.duration;
+                    audioPlayer.currentTime = (clickX / width) * duration;
+                }
+
+                uploadInput.addEventListener('change', (e) => {
+                    const file = e.target.files[0];
+                    if (file) {
+                        const newSong = {
+                            title: file.name.replace(/\.[^/.]+$/, ""), // Remove file extension
+                            artist: "本地上传",
+                            src: URL.createObjectURL(file)
+                        };
+                        
+                        // Add the new song to the beginning of the playlist
+                        playlist.unshift(newSong);
+                        currentSongIndex = 0;
+                        loadSong(playlist[currentSongIndex]);
+                        playSong();
+                    }
+                });
+
+                playBtn.addEventListener('click', () => {
+                    if (isPlaying) {
+                        pauseSong();
+                    } else {
+                        playSong();
+                    }
+                });
+
+                prevBtn.addEventListener('click', () => {
+                    currentSongIndex = (currentSongIndex - 1 + playlist.length) % playlist.length;
+                    loadSong(playlist[currentSongIndex]);
+                    playSong();
+                });
+
+                nextBtn.addEventListener('click', () => {
+                    currentSongIndex = (currentSongIndex + 1) % playlist.length;
+                    loadSong(playlist[currentSongIndex]);
+                    playSong();
+                });
+
+                audioPlayer.addEventListener('timeupdate', updateProgress);
+                progressContainer.addEventListener('click', setProgress);
+                audioPlayer.addEventListener('ended', () => {
+                    nextBtn.click();
+                });
+
+                // --- INTERACTION LISTENERS ---
+                window.addEventListener('mousemove', (e) => {
+                    mouseInfluence = (e.clientX / window.innerWidth - 0.5) * 2;
+                    if (e.target.closest('.primary-container, .footer')) {
+                        bgContainer.classList.remove('show-clear-bg');
+                    } else {
+                        bgContainer.classList.add('show-clear-bg');
+                    }
+                });
+
+                // --- SAKURA EFFECT ---
+                function createSakura() {
+                    if (sakuraColors.length === 0) return;
+                    const sakura = document.createElement('div');
+                    sakura.classList.add('sakura');
+                    
+                    const size = Math.random() * 15 + 5;
+                    const posX = Math.random() * window.innerWidth;
+                    const color = sakuraColors[Math.floor(Math.random() * sakuraColors.length)];
+                    
+                    sakura.style.width = `${size}px`;
+                    sakura.style.height = `${size}px`;
+                    sakura.style.left = `${posX}px`;
+                    sakura.style.backgroundColor = color;
+                    sakura.style.borderRadius = '50% 0 50% 50%';
+                    sakura.style.position = 'fixed';
+                    sakura.style.top = `-${size + 10}px`;
+                    sakura.style.zIndex = '9999';
+                    sakura.style.opacity = '0.7';
+                    sakura.style.transform = `rotate(${Math.random() * 360}deg)`;
+                    sakura.style.filter = 'blur(1px)';
+                    
+                    sakuraContainer.appendChild(sakura);
+                    
+                    const animationDuration = Math.random() * 8 + 7;
+                    let startTime = null;
+                    
+                    function animate(timestamp) {
+                        if (!startTime) startTime = timestamp;
+                        const progress = (timestamp - startTime) / (animationDuration * 1000);
+                        
+                        if (progress < 1) {
+                            const currentTop = progress * (window.innerHeight + 50);
+                            const sway = Math.sin(progress * Math.PI * 2) * (size / 2);
+                            const drift = mouseInfluence * 150 * progress;
+                            const currentLeft = posX + sway + drift;
+                            const currentRotate = parseFloat(sakura.style.transform.replace(/[^\d.]/g, '')) + 1;
+                            
+                            sakura.style.top = `${currentTop}px`;
+                            sakura.style.left = `${currentLeft}px`;
+                            sakura.style.transform = `rotate(${currentRotate}deg)`;
+                            
+                            requestAnimationFrame(animate);
+                        } else {
+                            sakura.remove();
+                        }
+                    }
+                    
+                    requestAnimationFrame(animate);
+                }
+                
+                setInterval(createSakura, 250);
+                
+                // --- THEME SWITCHER ---
+                document.querySelectorAll('.theme-item').forEach(themeBtn => {
+                    themeBtn.addEventListener('click', function() {
+                        const themeType = this.getAttribute('data-theme');
+                        document.querySelectorAll('.theme-item').forEach(t => t.classList.remove('active'));
+                        this.classList.add('active');
+                        applyTheme(themeType);
+                    });
+                });
+                
+                // --- BACKGROUND CYCLER ---
+                const images = [
+                    './assets/images/backgrounds/page-head/wallhaven-r7mgow.jpg',
+                    './assets/images/backgrounds/page-head/wallhaven-5we787.jpg',
+                    './assets/images/backgrounds/page-head/wallhaven-9delkw.jpg'
+                ];
+                let currentImageIndex = 0;
+
+                function changeBackground() {
+                    const oldImage = bgContainer.querySelector('.background-image.active');
+                    if (oldImage) {
+                        oldImage.classList.remove('active');
+                    }
+                    
+                    let newImage = bgContainer.querySelector(`[data-index='${currentImageIndex}']`);
+                    if (!newImage) {
+                        newImage = document.createElement('div');
+                        newImage.classList.add('background-image');
+                        newImage.style.backgroundImage = `url(${images[currentImageIndex]})`;
+                        newImage.setAttribute('data-index', currentImageIndex);
+                        bgContainer.appendChild(newImage);
+                    }
+                    
+                    newImage.classList.add('active');
+                    
+                    currentImageIndex = (currentImageIndex + 1) % images.length;
+                }
+                
+                changeBackground();
+                setInterval(changeBackground, 7000);
+
+                // Initialize with default theme and features
+                applyTheme('default');
+                fetchHitokoto();
+                loadSong(playlist[currentSongIndex]);
+            });
+        </script>
+    </body>
+</html>
