@@ -180,6 +180,38 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
+    // QR Code download logic
+    const downloadQRCodeBtn = document.getElementById('download-qr-code-btn');
+    if (downloadQRCodeBtn) {
+        downloadQRCodeBtn.addEventListener('click', () => {
+            const tempDiv = document.createElement('div');
+            tempDiv.style.display = 'none';
+            document.body.appendChild(tempDiv);
+
+            new QRCode(tempDiv, {
+                text: window.location.href,
+                width: 256,
+                height: 256,
+                colorDark : "#000000",
+                colorLight : "#ffffff",
+                correctLevel : QRCode.CorrectLevel.H
+            });
+
+            setTimeout(() => {
+                const qrCanvas = tempDiv.querySelector('canvas');
+                if (qrCanvas) {
+                    const link = document.createElement('a');
+                    link.href = qrCanvas.toDataURL("image/png");
+                    link.download = 'Loralore_QRCode.png';
+                    document.body.appendChild(link);
+                    link.click();
+                    document.body.removeChild(link);
+                }
+                document.body.removeChild(tempDiv);
+            }, 100);
+        });
+    }
+
     // 动态导航高亮逻辑
     const sections = document.querySelectorAll('section[id]');
     const navLi = document.querySelectorAll('#header nav ul li');

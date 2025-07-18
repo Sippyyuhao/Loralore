@@ -1260,6 +1260,29 @@
         .modal-overlay.visible .modal-content {
             transform: scale(1);
         }
+
+        .team-value-item p {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            color: var(--text-color);
+        }
+        
+        .section-title-wrapper {
+            position: relative;
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .section-title-wrapper .btn-group {
+            position: absolute;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+        
+        .section-title-wrapper .btn-icon {
+            margin-left: 10px;
+        }
     </style>
 </head>
 <body>
@@ -1800,9 +1823,14 @@
             <div class="container">
                 <div class="section-title-wrapper reveal">
                     <h2 class="section-title shiny-text">团队成员</h2>
-                    <button id="download-team-card-btn" class="btn btn-icon" title="下载团队介绍图片">
-                        <i class="fa fa-download"></i>&nbsp;生成分享卡
-                    </button>
+                    <div class="btn-group">
+                        <button id="download-team-card-btn" class="btn btn-icon" title="下载团队介绍图片">
+                            <i class="fa fa-download"></i>&nbsp;生成分享卡
+                        </button>
+                        <button id="download-qr-code-btn" class="btn btn-icon" title="生成主页二维码">
+                            <i class="fa fa-qrcode"></i>&nbsp;生成二维码
+                        </button>
+                    </div>
                 </div>
                 <div class="team-intro reveal">
                     <p class="team-description">Loralore是一支充满活力的跨校学生团队，由广东海洋大学、广东外语外贸大学、华南师范大学三校热爱技术、分享、创造的同学共同创立，并与卡内基梅隆大学（Carnegie Mellon University）机械工程专业的Winston同学特别合作。</p>
@@ -2011,6 +2039,7 @@
     </main>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
     <script src="./js/fuzzy-text.js"></script>
     <script src="./js/script.js"></script>
     <script src="./js/particles.js"></script>
