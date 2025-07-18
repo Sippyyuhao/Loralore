@@ -171,8 +171,8 @@ document.addEventListener('DOMContentLoaded', function() {
     if (downloadBtn) {
         downloadBtn.addEventListener('click', () => {
             const link = document.createElement('a');
-            link.href = 'images/Loralore with cmu.webp';
-            link.download = 'Loralore with cmu.webp';
+            link.href = 'images/Loralore with cmu.jpg';
+            link.download = 'Loralore with cmu.jpg';
             
             document.body.appendChild(link);
             link.click();
