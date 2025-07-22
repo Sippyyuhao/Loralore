@@ -11,6 +11,22 @@ function debounce(func, wait) {
   };
 }
 
+/**
+ * 对目标元素应用模糊文本效果
+ * @param {HTMLElement} targetElement - 要应用效果的目标DOM元素
+ * @param {Object} [options] - 配置选项
+ * @param {boolean} [options.enableHover=true] - 是否启用悬停效果
+ * @param {number} [options.baseIntensity=0.18] - 基础模糊强度
+ * @param {number} [options.hoverIntensity=0.5] - 悬停时的模糊强度
+ * @returns {Function} 清理函数，调用后可移除效果并恢复原始状态
+ * 
+ * 功能说明：
+ * 1. 隐藏原始文本但保留给屏幕阅读器
+ * 2. 创建canvas绘制模糊文本效果
+ * 3. 支持悬停时改变模糊强度
+ * 4. 自动处理窗口大小变化
+ * 5. 返回清理函数用于移除效果
+ */
 function applyFuzzyEffect(
   targetElement,
   {

@@ -46,7 +46,7 @@
         /* 1. 字体与基础样式 */
         body {
             font-family: 'Lato', sans-serif;
-            background-color: #fdfdff; /* 稍微柔和的白色背景 */
+            background-color: #ffffff; /* 稍微柔和的白色背景 */
         }
 
         h1, h2, h3, h4, h5, h6 {
@@ -69,7 +69,7 @@
 
         /* 3. 利用空间划分区域 */
         section {
-            padding: 80px 0;
+            padding: 100px 0;
         }
         .section-title {
             font-size: 2.5rem;
@@ -116,13 +116,13 @@
         }
         #showcase .container {
             position: relative;
-            z-index: 2;
+            z-index: 10;
         }
 
         #showcase h1 {
             font-size: clamp(2.5rem, 5vw, 4rem); /* 响应式字号 */
             font-weight: 700;
-            text-shadow: 0 2px 15px rgba(0,0,0,0.1);
+            text-shadow: 0 2px 15px rgba(128, 40, 40, 0.1);
         }
         #showcase p {
             font-size: 1.25rem;
@@ -494,7 +494,7 @@
         
         .template-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns: repeat(4, 1fr);
             gap: 30px;
             margin-bottom: 30px;
         }
@@ -1712,8 +1712,8 @@
                 </div>
                 
                 <div class="templates-section reveal">
-                    <h3 class="templates-title">三大风格网站模板</h3>
-                    <p class="templates-description">我们提供三种不同风格的现代化布局和样式，点击卡片查看详情，总有一款适合你</p>
+                    <h3 class="templates-title">探索更多网站模板</h3>
+                    <p class="templates-description">我们提供多种风格和功能的现代化布局和样式，无论是个人品牌、作品展示还是兴趣分享，总有一款适合你。</p>
                     
                     <div class="template-grid">
                         <!-- 简约风格 -->
@@ -1732,22 +1732,6 @@
                             </a>
                         </div>
                         
-                        <!-- 复古风格 -->
-                        <div class="template-item reveal">
-                            <a href="复古风格/html/index.html" class="template-link" target="_blank">
-                                <div class="template-preview">
-                                    <img src="复古风格/html/img/portofolio/1.jpg" alt="复古风格" loading="lazy">
-                                </div>
-                                <div class="template-info">
-                                    <h4>复古风格</h4>
-                                    <p>采用经典的布局和视觉元素，营造怀旧、典雅的网站氛围。</p>
-                                    <div class="template-action">
-                                        <span class="btn-view">查看模板</span>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                        
                         <!-- 二次元风格 -->
                         <div class="template-item reveal">
                             <a href="二次元风格/ACG-Home-main/index.html" class="template-link" target="_blank">
@@ -1757,6 +1741,38 @@
                                 <div class="template-info">
                                     <h4>二次元风格</h4>
                                     <p>可爱、活泼，使用明亮的色彩和专属字体，萌即正义！</p>
+                                    <div class="template-action">
+                                        <span class="btn-view">查看模板</span>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        
+                        <!-- 光影画廊 -->
+                        <div class="template-item reveal">
+                            <a href="影/index.html" class="template-link" target="_blank">
+                                <div class="template-preview">
+                                    <img src="简约风格/html/images/画廊1.jpg" alt="光影画廊" loading="lazy">
+                                </div>
+                                <div class="template-info">
+                                    <h4>影</h4>
+                                    <p>创建专属个性化影相站点，记录美好瞬间。</p>
+                                    <div class="template-action">
+                                        <span class="btn-view">查看模板</span>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+
+                        <!-- 回音岛 -->
+                        <div class="template-item reveal">
+                            <a href="#" class="template-link" target="_blank">
+                                <div class="template-preview">
+                                    <img src="二次元风格/ACG-Home-main/assets/images/backgrounds/page-head/wallhaven-9delkw.jpg" alt="回音岛" loading="lazy">
+                                </div>
+                                <div class="template-info">
+                                    <h4>音</h4>
+                                    <p>创建和分享你的个人歌单，让朋友们沉浸在你的音乐世界里。</p>
                                     <div class="template-action">
                                         <span class="btn-view">查看模板</span>
                                     </div>
@@ -1824,9 +1840,9 @@
                 <div class="section-title-wrapper reveal">
                     <h2 class="section-title shiny-text">团队成员</h2>
                     <div class="btn-group">
-                        <button id="download-team-card-btn" class="btn btn-icon" title="下载团队介绍图片">
-                            <i class="fa fa-download"></i>&nbsp;生成分享卡
-                        </button>
+                    <button id="download-team-card-btn" class="btn btn-icon" title="下载团队介绍图片">
+                        <i class="fa fa-download"></i>&nbsp;生成分享卡
+                    </button>
                         <button id="download-qr-code-btn" class="btn btn-icon" title="生成主页二维码">
                             <i class="fa fa-qrcode"></i>&nbsp;生成二维码
                         </button>
