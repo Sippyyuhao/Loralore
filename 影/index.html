@@ -13,10 +13,9 @@
         <div class="container">
             <h1 class="logo">影<span class="logo-alt"> - 个人影像馆</span></h1>
             <nav class="main-nav">
-                <a href="#" class="nav-link active">所有作品</a>
-                <a href="#" class="nav-link">相册</a>
-                <a href="#" class="nav-link">视频</a>
-                <a href="#" class="nav-link">关于</a>
+                <a href="index.html" class="nav-link active">所有作品</a>
+                <a href="albums.html" class="nav-link">相册</a>
+                <a href="about.html" class="nav-link">关于</a>
             </nav>
             <div class="header-actions">
                 <button id="upload-btn" class="btn btn-primary"><i class="fas fa-plus"></i> 上传</button>
@@ -35,7 +34,7 @@
                 <select id="sort-filter">
                     <option value="latest">最新</option>
                     <option value="oldest">最早</option>
-                    <option value="collected">已收藏</option>
+                    <option value="liked">已点赞</option>
                 </select>
             </div>
         </div>
@@ -45,30 +44,6 @@
         </div>
     </main>
 
-    <div id="upload-modal" class="modal-overlay">
-        <div class="modal-content">
-            <button class="modal-close">&times;</button>
-            <h2>上传新作品</h2>
-            <div class="upload-area">
-                <i class="fas fa-cloud-upload-alt"></i>
-                <p>拖拽文件到这里，或<span>点击选择文件</span></p>
-                <input type="file" id="file-input" multiple hidden>
-            </div>
-            <div class="upload-preview"></div>
-            <div class="upload-form">
-                <input type="text" placeholder="标题（可选）">
-                <textarea placeholder="描述（可选）"></textarea>
-                <select>
-                    <option value="">选择相册</option>
-                    <option value="album1">风景</option>
-                    <option value="album2">人像</option>
-                    <option value="album3">生活</option>
-                </select>
-                <button class="btn btn-primary">确认上传</button>
-            </div>
-        </div>
-    </div>
-    
     <div id="image-detail-modal" class="modal-overlay">
         <button class="modal-close">&times;</button>
         <div class="image-detail-content">
@@ -80,10 +55,6 @@
             </div>
             <a href="#" class="btn btn-primary download-btn" download><i class="fas fa-download"></i> 下载</a>
         </div>
-    </div>
-
-    <div id="fab" class="floating-action-button">
-        <i class="fas fa-magic"></i>
     </div>
     
     <script src="js/script.js"></script>
