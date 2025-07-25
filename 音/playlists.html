@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>歌单 - 音-个人音乐站</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header class="main-header">
+        <div class="container">
+            <div class="logo">音<span class="logo-alt">-个人音乐站</span></div>
+            <nav class="main-nav">
+                <a href="index.html" class="nav-link">所有音乐</a>
+                <a href="playlists.html" class="nav-link active">歌单</a>
+                <a href="about.html" class="nav-link">关于</a>
+            </nav>
+            <div class="header-actions">
+                <button class="btn btn-primary" id="upload-btn-dummy"><i class="fas fa-cloud-upload-alt"></i> 上传音乐</button>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="toolbar">
+            <div class="search-box">
+                <input type="text" placeholder="搜索歌单...">
+                <i class="fas fa-search"></i>
+            </div>
+            <div class="filter-options">
+                 <button class="btn btn-primary" id="create-playlist-btn"><i class="fas fa-plus"></i> 创建歌单</button>
+            </div>
+        </div>
+
+        <div class="playlist-grid" id="playlist-list">
+            <!-- Test Playlist 1 -->
+            <div class="playlist-item">
+                <div class="playlist-cover">
+                    <i class="fas fa-music"></i>
+                </div>
+                <div class="playlist-info">
+                    <div class="playlist-title">测试歌单</div>
+                    <div class="playlist-desc">包含2首歌曲</div>
+                </div>
+            </div>
+             <!-- Test Playlist 2 -->
+            <div class="playlist-item">
+                <div class="playlist-cover">
+                    <i class="fas fa-headphones-alt"></i>
+                </div>
+                <div class="playlist-info">
+                    <div class="playlist-title">我的最爱</div>
+                    <div class="playlist-desc">包含0首歌曲</div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+
+            <p>&copy; 2025 音 - Loralore 模板</p>
+        </div>
+    </footer>
+
+    <script src="js/playlists.js"></script>
+</body>
+</html>
