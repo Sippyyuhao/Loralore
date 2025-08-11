@@ -443,7 +443,7 @@ nav ul li.current a {
 }
 
 .gallery-tag {
-    background: rgba(76, 175, 80, 0.1);
+    background: rgba(229, 57, 53, 0.1);
     color: var(--primary-color);
     font-size: 0.75rem;
     padding: 3px 8px;
@@ -452,7 +452,7 @@ nav ul li.current a {
 }
 
 .gallery-item:hover .gallery-tag {
-    background: rgba(76, 175, 80, 0.2);
+    background: rgba(229, 57, 53, 0.2);
     transform: scale(1.05);
 }
 
@@ -477,15 +477,15 @@ nav ul li.current a {
     display: flex;
     justify-content: center;
     align-items: center;
-    box-shadow: 0 5px 15px rgba(76, 175, 80, 0.3);
+    box-shadow: 0 5px 15px rgba(229, 57, 53, 0.25);
     transition: all 0.3s ease;
     z-index: 20;
 }
 
 .gallery-btn:hover {
-    background: #0015ff;
+    background: #c62828;
     transform: translateY(-3px);
-    box-shadow: 0 8px 20px rgba(76, 175, 80, 0.4);
+    box-shadow: 0 8px 20px rgba(229, 57, 53, 0.25);
 }
 
 .gallery-btn:active {
@@ -528,7 +528,7 @@ nav ul li.current a {
     box-shadow: 0 3px 15px rgba(0, 0, 0, 0.12);
     position: relative;
     z-index: 50;
-    border: 1px solid rgba(76, 175, 80, 0.2);
+    border: 1px solid rgba(229, 57, 53, 0.15);
 }
 
 .gallery-slider-label {
@@ -558,7 +558,7 @@ nav ul li.current a {
     background: var(--primary-color);
     border-radius: 50%;
     cursor: pointer;
-    box-shadow: 0 2px 8px rgba(76, 175, 80, 0.4);
+    box-shadow: 0 2px 8px rgba(229, 57, 53, 0.25);
     transition: all 0.2s ease;
 }
 
@@ -569,7 +569,7 @@ nav ul li.current a {
     border-radius: 50%;
     cursor: pointer;
     border: none;
-    box-shadow: 0 2px 8px rgba(76, 175, 80, 0.4);
+    box-shadow: 0 2px 8px rgba(229, 57, 53, 0.25);
     transition: all 0.2s ease;
 }
 
@@ -1799,9 +1799,9 @@ footer {
 }
 
 .service-card {
-    background: white;
+    background: #fff;
     border-radius: 15px;
-    box-shadow: 0 5px 20px #e53935;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
     overflow: hidden;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     position: relative;
@@ -1811,7 +1811,7 @@ footer {
     display: flex;
     flex-direction: column;
     margin: 0 auto;
-    border: 2px solid transparent;
+    border: 1px solid rgba(0, 0, 0, 0.06);
 }
 
 .service-card:hover {
@@ -1901,10 +1901,20 @@ footer {
 }
 
 .price-main {
-    font-size: 2.5rem;
+    font-size: 2.6rem;
     font-weight: 700;
     color: white;
     line-height: 1;
+}
+
+.price-main .price-currency {
+    font-size: 1.4rem;
+    opacity: 0.9;
+    margin-right: 2px;
+}
+
+.price-main .price-amount {
+    letter-spacing: 0.5px;
 }
 
 .price-period {
@@ -2350,7 +2360,7 @@ footer {
 }
 .cert-info h3 {
     font-size: 1rem;
-    color: #fff;
+    color: #333;
     margin: 0;
 }
 
