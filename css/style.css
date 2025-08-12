@@ -24,6 +24,8 @@ body {
     overflow-x: hidden;
 }
 
+html, body { height: 100%; }
+
 .container {
     max-width: var(--max-width);
     margin: 0 auto;
@@ -211,7 +213,7 @@ nav ul li.current a {
     display: flex;
     align-items: center;
     text-align: center;
-    margin-top: 60px;
+    margin-top: 0; /* 移除顶部空白 */
     position: relative;
     overflow: hidden;
     background-image: url('./images/showcase.webp');
@@ -1139,7 +1141,7 @@ nav ul li.current a {
     font-weight: bold;
     white-space: nowrap;
     box-shadow: 0 4px 12px rgba(229, 57, 53, 0.4);
-    z-index: 10;
+    z-index: 2;
 }
 
 .special-collaboration-wrapper::after {
@@ -1161,6 +1163,24 @@ nav ul li.current a {
     animation: pulse-glow 3.5s infinite ease-in-out;
     position: relative; /* For the new connector */
     z-index: 1;
+    overflow: hidden; /* 使背景铺满且不外溢 */
+}
+
+.school-logo.special-collaboration::before {
+    /* 背景使用 CMU logo 铺满并模糊，营造层次感 */
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url('./images/CMU.webp');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    filter: blur(16px);
+    transform: translateY(var(--parallax-y, 0)) scale(1.1);
+    opacity: 0.28;
+    z-index: 0;
+    transition: transform 0.3s ease-out; /* 平滑视差 */
+    will-change: transform;
 }
 
 .school-logo.special-collaboration::after {
@@ -1182,11 +1202,15 @@ nav ul li.current a {
     height: 220px;
     box-shadow: 0 0 15px rgba(255, 255, 255, 0.8) inset; /* 内发光 */
     border: 1px solid rgba(0,0,0,0.05);
+    position: relative;
+    z-index: 1; /* 置于模糊背景之上 */
 }
 .school-logo.special-collaboration span {
     font-size: 1.2rem;
     font-weight: 700;
     transform: translateY(-8px);
+    position: relative;
+    z-index: 1;
 }
 
 .partner-schools {
@@ -1472,12 +1496,18 @@ nav ul li.current a {
 footer {
     background-color: #663939;
     color: #fff;
-    padding: 50px 0 20px;
+    padding: 60px 0 30px;
 }
 
+.footer-content,
+footer .container { /* 扩大 footer 可用宽度 */ }
+footer .container { max-width: 1400px; padding-left: 28px; padding-right: 28px; }
+
 .footer-content {
-    display: flex;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: 1.2fr 1fr 1.2fr; /* 左中右三列分散布局 */
+    align-items: start;
+    gap: 48px;
     margin-bottom: 30px;
 }
 
@@ -1486,10 +1516,25 @@ footer {
     margin-bottom: 10px;
 }
 
-.footer-links {
-    display: flex;
-    gap: 50px;
+.footer-tagline {
+    font-weight: 600;
+    letter-spacing: 2px;
 }
+
+.footer-desc {
+    margin-top: 8px;
+    max-width: 420px;
+    color: rgba(255,255,255,0.8);
+}
+
+.footer-social { display: flex; gap: 12px; margin-top: 12px; }
+.footer-social a {
+    width: 36px; height: 36px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center;
+    background: rgba(255,255,255,0.08); color: #fff; transition: transform .2s ease, background .2s ease;
+}
+.footer-social a:hover { transform: translateY(-3px); background: rgba(255,255,255,0.18); }
+
+.footer-links { display: grid; grid-template-columns: repeat(2, minmax(160px, 1fr)); gap: 12px 48px; }
 
 .footer-links-column h3 {
     font-size: 1.2rem;
@@ -1513,7 +1558,43 @@ footer {
     text-align: center;
     padding-top: 20px;
     border-top: 1px solid rgba(255, 255, 255, 0.1);
+    position: relative;
 }
+
+.back-to-top {
+    position: fixed; /* 永久浮动 */
+    right: 24px;
+    bottom: 24px;
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: radial-gradient(ellipse at 30% 30%, #ff6b6b, #e53935);
+    color: #fff;
+    box-shadow: 0 12px 30px rgba(229,57,53,.35), 0 2px 6px rgba(0,0,0,.1);
+    z-index: 1500;
+    opacity: 0;               /* 默认隐藏，滚动后出现 */
+    transform: translateY(12px) scale(.95);
+    pointer-events: none;
+    transition: opacity .25s ease, transform .25s ease, box-shadow .2s ease;
+}
+.back-to-top.is-visible {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    pointer-events: auto;
+}
+.back-to-top:hover { box-shadow: 0 16px 36px rgba(229,57,53,.45), 0 4px 10px rgba(0,0,0,.12); transform: translateY(-2px) scale(1.03); }
+.back-to-top .fa { font-size: 18px; }
+
+/* 联系信息列 */
+.footer-contact h3 { font-size: 1.2rem; margin-bottom: 15px; }
+.footer-contact ul { list-style: none; padding: 0; margin: 0 0 12px; }
+.footer-contact li { margin-bottom: 8px; color: rgba(255,255,255,0.85); }
+.footer-contact li .fa { color: #fff; }
+.footer-contact li i { width: 18px; margin-right: 8px; }
+.footer-contact .footer-cta { margin-top: 10px; }
 
 /* 响应式设计 */
 @media screen and (max-width: 968px) {
@@ -1545,15 +1626,8 @@ footer {
         grid-template-columns: 1fr;
     }
     
-    .footer-content {
-        flex-direction: column;
-        gap: 30px;
-    }
-    
-    .footer-links {
-        flex-direction: column;
-        gap: 20px;
-    }
+    .footer-content { display: grid; grid-template-columns: 1fr; gap: 30px; }
+    .footer-links { display: grid; grid-template-columns: 1fr; gap: 16px; }
 }
 
 @media screen and (max-width: 768px) {
@@ -2425,6 +2499,12 @@ footer {
 
     .school-logo.special-collaboration span {
         font-size: 1.1rem;
+    }
+
+    /* 背景模糊在移动端略微减弱，避免过度占据视觉 */
+    .school-logo.special-collaboration::before {
+        filter: blur(12px);
+        opacity: 0.24;
     }
 }
 

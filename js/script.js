@@ -254,6 +254,37 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // 添加滚动事件监听器
     window.addEventListener('scroll', updateActiveNav);
+
+    // 团队区：特别合作背景视差
+    const specialCollab = document.querySelector('.school-logo.special-collaboration');
+    if (specialCollab) {
+        const updateParallax = () => {
+            const rect = specialCollab.getBoundingClientRect();
+            const viewportH = window.innerHeight || document.documentElement.clientHeight;
+            // 视差量：元素在视口中越靠中间，偏移越小
+            const centerOffset = (rect.top + rect.height / 2) - viewportH / 2;
+            const parallax = Math.max(-40, Math.min(40, centerOffset * 0.06)); // 限制在 [-40, 40]px
+            specialCollab.style.setProperty('--parallax-y', parallax + 'px');
+        };
+        updateParallax();
+        window.addEventListener('scroll', updateParallax);
+        window.addEventListener('resize', updateParallax);
+    }
+
+    // 回到顶部浮动按钮显示/隐藏逻辑
+    const backToTop = document.querySelector('.back-to-top');
+    if (backToTop) {
+        const toggleBackToTop = () => {
+            if (window.scrollY > 300) backToTop.classList.add('is-visible');
+            else backToTop.classList.remove('is-visible');
+        };
+        toggleBackToTop();
+        window.addEventListener('scroll', toggleBackToTop);
+        backToTop.addEventListener('click', (e) => {
+            e.preventDefault();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    }
 });
 
 // 3D旋转画廊
