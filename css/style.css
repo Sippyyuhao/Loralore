@@ -52,7 +52,7 @@ img {
     justify-content: center;
     align-items: center;
     gap: 20px;
-    margin-bottom: 50px;
+    margin-bottom: 36px; /* 标题下间距收紧 */
     flex-wrap: wrap;
     position: relative; /* 让右上角按钮组可绝对定位 */
 }
@@ -729,7 +729,7 @@ nav ul li.current a {
 
 /* 项目区样式 */
 #projects {
-    padding: 80px 0;
+    padding: 64px 0; /* 收紧垂直留白 */
 }
 
 .services-container {
@@ -854,7 +854,7 @@ nav ul li.current a {
 
 /* 项目详情样式 */
 .project-details {
-    margin-top: 60px;
+    margin-top: 36px; /* 收紧分组之间的垂直间距 */
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
     gap: 30px;
@@ -1026,7 +1026,7 @@ nav ul li.current a {
 
 /* 团队区样式 */
 #team {
-    padding: 80px 0;
+    padding: 64px 0;
     background: #fdfdff;
     position: relative;
     overflow: hidden;
@@ -1079,7 +1079,7 @@ nav ul li.current a {
     background: linear-gradient(to bottom, #ffffff, #fdfdff);
     border-radius: 24px;
     box-shadow: 0 4px 15px rgba(49, 56, 100, 0.05), 0 20px 50px rgba(49, 56, 100, 0.08);
-    padding: 40px 40px 32px; /* 稍微收紧，增强留白感 */
+    padding: 28px 28px 24px; /* 再次收紧，减少内部留白 */
     border: 1px solid #eef0f4;
     position: relative;
     overflow: hidden;
@@ -1279,7 +1279,7 @@ nav ul li.current a {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 25px;
+    gap: 20px;
 }
 
 .team-value-item {
@@ -1339,7 +1339,7 @@ nav ul li.current a {
 
 /* 博客区样式 */
 #blog {
-    padding: 80px 0;
+    padding: 64px 0;
 }
 
 .blog-container {
@@ -1405,14 +1405,14 @@ nav ul li.current a {
 
 /* 联系区样式 */
 #contact {
-    padding: 80px 0;
+    padding: 64px 0;
     background-color: var(--light-color);
 }
 
 .contact-container {
     display: grid;
     grid-template-columns: 1fr 2fr;
-    gap: 50px;
+    gap: 36px; /* 收紧左右列间距 */
 }
 
 .contact-info {
@@ -2393,7 +2393,7 @@ footer .container { max-width: 1400px; padding-left: 28px; padding-right: 28px; 
 
 /* Intellectual Property Section */
 #intellectual-property {
-    padding: 80px 0;
+    padding: 64px 0;
     background: #f5f7fa;
 }
 

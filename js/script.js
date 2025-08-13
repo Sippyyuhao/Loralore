@@ -514,36 +514,50 @@ function initGallery3D() {
 
     const totalItems = items.length;
     const anglePerItem = 360 / totalItems;
+    // 优化半径计算，确保在不同屏幕尺寸下都有合适的旋转效果
     const isMobile = window.innerWidth <= 768;
-    const cylinderWidth = isMobile ? 1500 : 2300;
-    const radius = cylinderWidth / (2 * Math.PI);
+    const cylinderWidth = Math.min(Math.max(window.innerWidth * 1.8, 1200), 2800);
+    let radius = cylinderWidth / (2 * Math.PI);
     
     let currentRotation = 0;
     let targetRotation = 0;
     let rotationVelocity = 0;
+    let isAnimating = false; // 新增：防止动画冲突
+    let animationFrameId = null; // 新增：管理动画帧
 
     let isDragging = false;
     let dragStartRotation = 0; // 用于计算拖拽结束时的速度
     let lastDragPosition = 0;
     let isHovering = false;
     let startPosition = 0;
+    let dragStartTime = 0; // 新增：记录拖拽开始时间
     
-    const autoRotateSpeed = -0.05; // 负值为向左旋转
+    const autoRotateSpeed = -0.03; // 降低自动旋转速度，更平滑
 
     // 1. 初始化项目位置和交互
     items.forEach((item, index) => {
         const angle = index * anglePerItem;
         item.style.transform = `rotateY(${angle}deg) translateZ(${radius}px)`;
+        // 添加触摸事件支持
+        item.addEventListener('touchstart', (e) => e.stopPropagation());
         item.addEventListener('click', (e) => {
-            // isDragging 会在 dragEnd 后才变为 false，需要额外判断
+            // 优化点击判断逻辑
             const movedDistance = Math.abs(getPositionX(e) - startPosition);
-            if (isDragging && movedDistance > 5) {
+            const timeDiff = Date.now() - dragStartTime;
+            if (isDragging && (movedDistance > 8 || timeDiff < 200)) {
                 return;
             }
 
             // 1. 平滑旋转到点击的item
             const itemAngle = -index * anglePerItem;
-            targetRotation = Math.round(currentRotation / 360) * 360 + itemAngle;
+            // 计算最短旋转路径
+            let targetAngle = Math.round(currentRotation / 360) * 360 + itemAngle;
+            const currentAngle = currentRotation % 360;
+            const diff = targetAngle - currentAngle;
+            if (Math.abs(diff) > 180) {
+                targetAngle += diff > 0 ? -360 : 360;
+            }
+            targetRotation = targetAngle;
             rotationVelocity = 0; // 点击后停止惯性
 
             // 2. 滚动到对应的详情区域
@@ -562,6 +576,9 @@ function initGallery3D() {
 
     // 2. 核心动画循环
     function animate() {
+        if (isAnimating) return; // 防止重复调用
+        isAnimating = true;
+        
         // 自动旋转逻辑
         if (!isDragging && !isHovering) {
             targetRotation += autoRotateSpeed;
@@ -570,14 +587,15 @@ function initGallery3D() {
         // 惯性逻辑
         if (rotationVelocity !== 0 && !isDragging) {
             targetRotation += rotationVelocity;
-            rotationVelocity *= 0.95; // 阻尼系数
+            rotationVelocity *= 0.92; // 调整阻尼系数，让惯性更自然
             if (Math.abs(rotationVelocity) < 0.001) {
                 rotationVelocity = 0;
             }
         }
         
         // 缓动动画
-        currentRotation += (targetRotation - currentRotation) * 0.08;
+        const easing = 0.06; // 降低缓动强度，让旋转更平滑
+        currentRotation += (targetRotation - currentRotation) * easing;
 
         // 应用变换
         track.style.transform = `translateZ(${-radius}px) rotateY(${currentRotation}deg)`;
@@ -585,7 +603,10 @@ function initGallery3D() {
         // 更新卡片状态
         updateItemsState();
 
-        requestAnimationFrame(animate);
+        animationFrameId = requestAnimationFrame(() => {
+            isAnimating = false;
+            animate();
+        });
     }
 
     // 3. 更新项目状态（透明度、激活态）
@@ -629,11 +650,13 @@ function initGallery3D() {
     function dragStart(e) {
         e.preventDefault();
         isDragging = true;
+        dragStartTime = Date.now();
         rotationVelocity = 0;
         startPosition = getPositionX(e);
         dragStartRotation = currentRotation;
         lastDragPosition = startPosition;
         track.style.cursor = 'grabbing';
+        track.style.userSelect = 'none'; // 防止拖拽时选中文本
     }
 
     function dragMove(e) {
@@ -641,10 +664,12 @@ function initGallery3D() {
         e.preventDefault();
         const currentPosition = getPositionX(e);
         const move = (currentPosition - startPosition);
-        targetRotation = dragStartRotation + move * 0.25; // 调整拖拽灵敏度
+        // 优化拖拽灵敏度，根据屏幕宽度调整
+        const sensitivity = window.innerWidth <= 768 ? 0.35 : 0.25;
+        targetRotation = dragStartRotation + move * sensitivity;
         
         // 为了计算惯性速度
-        rotationVelocity = (currentPosition - lastDragPosition) * 0.05;
+        rotationVelocity = (currentPosition - lastDragPosition) * 0.08;
         lastDragPosition = currentPosition;
     }
 
@@ -652,6 +677,16 @@ function initGallery3D() {
         if (!isDragging) return;
         isDragging = false;
         track.style.cursor = 'grab';
+        track.style.userSelect = 'auto';
+        
+        // 优化惯性结束后的对齐
+        if (Math.abs(rotationVelocity) > 0.5) {
+            // 如果有足够的速度，让惯性自然结束
+        } else {
+            // 速度较小时，自动对齐到最近的卡片
+            const nearestAngle = Math.round(currentRotation / anglePerItem) * anglePerItem;
+            targetRotation = nearestAngle;
+        }
     }
 
     // 绑定事件监听器
@@ -668,13 +703,20 @@ function initGallery3D() {
     galleryContainer.addEventListener('mouseout', () => isHovering = false);
     
     prevBtn.addEventListener('click', () => {
-        targetRotation = Math.round(currentRotation / anglePerItem) * anglePerItem - anglePerItem;
+        // 优化按钮点击逻辑
+        const currentAngle = Math.round(currentRotation / anglePerItem) * anglePerItem;
+        targetRotation = currentAngle - anglePerItem;
         rotationVelocity = 0;
+        isHovering = true; // 暂时禁用自动旋转
+        setTimeout(() => { isHovering = false; }, 1000);
     });
 
     nextBtn.addEventListener('click', () => {
-        targetRotation = Math.round(currentRotation / anglePerItem) * anglePerItem + anglePerItem;
+        const currentAngle = Math.round(currentRotation / anglePerItem) * anglePerItem;
+        targetRotation = currentAngle + anglePerItem;
         rotationVelocity = 0;
+        isHovering = true;
+        setTimeout(() => { isHovering = false; }, 1000);
     });
 
     if (slider) {
@@ -686,12 +728,38 @@ function initGallery3D() {
             isHovering = true; // 暂时禁用自动旋转
             const sliderValue = parseFloat(slider.value);
             targetRotation = -sliderValue * (360 / totalItems);
+            // 滑块拖动时实时更新
+            currentRotation = targetRotation;
         });
          slider.addEventListener('mouseup', () => {
             isHovering = false;
         });
     }
 
+    // 新增：窗口大小改变时重新计算半径
+    const handleResize = () => {
+        const newCylinderWidth = Math.min(Math.max(window.innerWidth * 1.8, 1200), 2800);
+        const newRadius = newCylinderWidth / (2 * Math.PI);
+        if (Math.abs(newRadius - radius) > 50) {
+            // 重新计算所有项目位置
+            items.forEach((item, index) => {
+                const angle = index * anglePerItem;
+                item.style.transform = `rotateY(${angle}deg) translateZ(${newRadius}px)`;
+            });
+            radius = newRadius;
+        }
+    };
+    
+    window.addEventListener('resize', handleResize);
+
     // 启动动画
     animate();
+    
+    // 清理函数
+    return () => {
+        if (animationFrameId) {
+            cancelAnimationFrame(animationFrameId);
+        }
+        window.removeEventListener('resize', handleResize);
+    };
 } 
