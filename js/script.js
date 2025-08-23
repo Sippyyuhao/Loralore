@@ -117,7 +117,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // 添加简单动画效果
-    const animateElements = document.querySelectorAll('.feature-box, .project-detail-item, .equipment-item, .template-item, .cert-item');
+    const animateElements = document.querySelectorAll('.feature-highlight, .project-detail-item, .equipment-item, .template-item, .cert-item');
     
     if ('IntersectionObserver' in window) {
         const animationObserver = new IntersectionObserver((entries) => {

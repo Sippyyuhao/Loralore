@@ -55,14 +55,14 @@
         }
 
         /* 2. 提升层次感的阴影和边框 */
-        .equipment-item, .service-card, .template-item, .project-detail-item, .feature-box, .school-logo a, .team-value-item {
+        .equipment-item, .service-card, .template-item, .project-detail-item, .school-logo a, .team-value-item {
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.04);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             border-radius: 12px;
             border: 1px solid #eef;
         }
 
-        .equipment-item:hover, .service-card:hover, .template-item:hover, .project-detail-item:hover, .feature-box:hover, .school-logo a:hover, .team-value-item:hover {
+        .equipment-item:hover, .service-card:hover, .template-item:hover, .project-detail-item:hover, .school-logo a:hover, .team-value-item:hover {
             transform: translateY(-8px);
             box-shadow: 0 12px 24px rgba(92, 107, 192, 0.1), 0 5px 10px rgba(0, 0, 0, 0.05);
         }
@@ -131,13 +131,13 @@
         }
 
         /* 5. Feature Box 个性化 */
-        .feature-box {
+        .feature-highlight {
             background: #fff;
             padding: 40px 30px;
             border: none;
             text-align: center;
         }
-        .feature-box i {
+        .feature-highlight i {
             font-size: 3rem;
             width: 80px;
             height: 80px;
@@ -149,7 +149,7 @@
             display: inline-block;
             transition: all 0.3s ease;
         }
-        .feature-box:hover i {
+        .feature-highlight:hover i {
             background: var(--primary-color, #5c6bc0);
             color: #fff;
             transform: rotate(15deg) scale(1.1);
@@ -1325,20 +1325,6 @@
 
         <section id="features">
             <div class="container">
-                <div class="feature-box reveal">
-                    <i class="fa fa-cogs"></i>
-                    <h3>工程化交付标准</h3>
-                    <p>从原型到上线：Git 管理、代码审查、自动化构建与 Netlify 灰度发布，支持回滚与备份</p>
-                </div>
-                <div class="feature-box reveal">
-                    <i class="fa fa-rocket"></i>
-                    <h3>性能与访问体验</h3>
-                    <p>聚焦关键指标：按需加载、WebP/懒加载、资源压缩缓存，移动端动画稳定 60fps</p>
-                </div>
-                <div class="feature-box reveal">
-                    <i class="fa fa-puzzle-piece"></i>
-                    <h3>定制与可维护</h3>
-                    <p>组件化与设计系统：统一色板与排版、响应式适配、内容可配置，便于后续扩展</p>
                 </div>
             </div>
         </section>
@@ -1560,7 +1546,7 @@
                                 <div class="service-features">
                                     <div class="service-feature">
                                         <i class="fa fa-check"></i>
-                                        <span>静态响应式网站</span>
+                                        <span>前后端响应式网站</span>
                                     </div>
                                     <div class="service-feature">
                                         <i class="fa fa-check"></i>
@@ -1568,7 +1554,7 @@
                                     </div>
                                     <div class="service-feature">
                                         <i class="fa fa-check"></i>
-                                        <span>Netlify云托管</span>
+                                        <span>MongoDB数据库</span>
                                     </div>
                                     <div class="service-feature">
                                         <i class="fa fa-check"></i>
@@ -1584,7 +1570,7 @@
                                     </div>
                                     <div class="service-feature highlight-feature">
                                         <i class="fa fa-globe"></i>
-                                        <span>无需服务器与域名，公网访问</span>
+                                        <span>提供前后端应用配置（需自带服务器）</span>
                                     </div>
                                 </div>
                                 <div class="service-action">
