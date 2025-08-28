@@ -66,4 +66,4 @@ if __name__ == "__main__":
         print("The 'Pillow' library is required. Please install it by running:")
         print("pip install Pillow")
     else:
-        compress_images_in_directory("images") 
+        compress_images_in_directory("images\\live in cmu")

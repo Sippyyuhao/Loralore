@@ -55,14 +55,14 @@
         }
 
         /* 2. 提升层次感的阴影和边框 */
-        .equipment-item, .service-card, .template-item, .project-detail-item, .school-logo a, .team-value-item {
+        .equipment-item, .service-card, .template-item, .project-detail-item, .team-value-item {
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.04);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             border-radius: 12px;
             border: 1px solid #eef;
         }
 
-        .equipment-item:hover, .service-card:hover, .template-item:hover, .project-detail-item:hover, .school-logo a:hover, .team-value-item:hover {
+        .equipment-item:hover, .service-card:hover, .template-item:hover, .project-detail-item:hover, .team-value-item:hover {
             transform: translateY(-8px);
             box-shadow: 0 12px 24px rgba(92, 107, 192, 0.1), 0 5px 10px rgba(0, 0, 0, 0.05);
         }
@@ -163,22 +163,6 @@
         }
         
         /* 7. 团队部分非对称布局 */
-        .school-logo a {
-            display: block;
-            padding: 20px;
-            background: #fff;
-            text-align: center;
-            height: 100%;
-        }
-        .school-logos {
-            align-items: center; /* 垂直居中对齐 */
-        }
-        .school-logo:nth-child(even) {
-            margin-top: 40px; /* 错落感 */
-        }
-        .school-logo a:hover {
-            transform: translateY(-8px) !important;
-        }
         .team-value-item {
             background: #fff;
             padding: 30px;
@@ -1283,6 +1267,8 @@
         .section-title-wrapper .btn-icon {
             margin-left: 10px;
         }
+
+
     </style>
 </head>
 <body>
@@ -1839,36 +1825,70 @@
                 </div>
                 
                 <div class="team-content-wrapper">
-                    <div class="school-logos">
+                    <!-- CMU 特别合作卡片 -->
+                    <div class="cmu-special-card reveal">
+                        <div class="cmu-card-content">
+                            <div class="cmu-logo-wrapper">
+                                <img src="./images/CMU.webp" alt="Carnegie Mellon University Logo" loading="lazy" 
+                                     onload="console.log('CMU logo loaded via HTML onload')" 
+                                     onerror="console.error('CMU logo failed to load via HTML'); this.style.display='none';">
+                                <!-- 备用文字 -->
+                                <div class="cmu-fallback-text" style="display: none; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: white; font-size: 2rem; font-weight: bold; z-index: 2;">CMU</div>
+                            </div>
+                            <div class="cmu-info">
+                                <h3 class="cmu-title">Carnegie Mellon University</h3>
+                                <p class="cmu-subtitle">特别合作 · 机械工程专业</p>
+                                <p class="cmu-description">与Winston同学的跨洋合作，融合国际视野与技术创新</p>
+                            </div>
+                            <a href="https://www.cmu.edu/" target="_blank" rel="noopener noreferrer" class="cmu-link">
+                                <i class="fa fa-external-link"></i>
+                            </a>
+                        </div>
+                    </div>
 
-                        <div class="special-collaboration-wrapper reveal">
-                            <a class="school-logo special-collaboration" href="https://www.cmu.edu/" target="_blank" rel="noopener noreferrer">
-                                <img src="./images/CMU.webp" alt="Carnegie Mellon University Logo" loading="lazy">
-                                <span>Carnegie Mellon University</span>
+                    <!-- 合作伙伴高校卡片 -->
+                    <div class="partner-schools-grid">
+                        <div class="school-card reveal">
+                            <a href="https://www.gdou.edu.cn/" target="_blank" rel="noopener noreferrer" class="school-card-link">
+                                <div class="school-card-content">
+                                    <div class="school-logo-wrapper">
+                                        <img src="./images/gdhy.webp" alt="广东海洋大学校标" loading="lazy">
+                                    </div>
+                                    <div class="school-info">
+                                        <h3 class="school-title">广东海洋大学</h3>
+                                        <p class="school-subtitle">海洋科技 · 创新驱动</p>
+                                    </div>
+                                </div>
                             </a>
                         </div>
 
-                        <div class="partner-schools">
-                            <div class="school-logo reveal">
-                                <a href="https://www.gdou.edu.cn/" target="_blank" rel="noopener noreferrer">
-                                    <img src="./images/gdhy.webp" alt="广东海洋大学校标" loading="lazy">
-                                    <span>广东海洋大学</span>
-                                </a>
-                            </div>
-                            <div class="school-logo reveal">
-                                <a href="https://www.scnu.edu.cn/" target="_blank" rel="noopener noreferrer">
-                                    <img src="./images/hnsf.webp" alt="华南师范大学校标" loading="lazy">
-                                    <span>华南师范大学</span>
-                                </a>
-                            </div>
-                            <div class="school-logo reveal">
-                                <a href="https://www.gdufs.edu.cn/" target="_blank" rel="noopener noreferrer">
-                                    <img src="./images/gdwywm.webp" alt="广东外语外贸大学校标" loading="lazy">
-                                    <span>广东外语外贸大学</span>
-                                </a>
-                            </div>
+                        <div class="school-card reveal">
+                            <a href="https://www.scnu.edu.cn/" target="_blank" rel="noopener noreferrer" class="school-card-link">
+                                <div class="school-card-content">
+                                    <div class="school-logo-wrapper">
+                                        <img src="./images/hnsf.webp" alt="华南师范大学校标" loading="lazy">
+                                    </div>
+                                    <div class="school-info">
+                                        <h3 class="school-title">华南师范大学</h3>
+                                        <p class="school-subtitle">教育创新 · 技术融合</p>
+                                    </div>
+                                </div>
+                            </a>
                         </div>
 
+                        <div class="school-card reveal">
+                            <a href="https://www.gdufs.edu.cn/" target="_blank" rel="noopener noreferrer" class="school-card-link">
+                                <div class="school-card-content">
+                                    <div class="school-logo-wrapper">
+                                        <img src="./images/gdwywm.webp" alt="广东外语外贸大学校标" loading="lazy">
+                                    </div>
+                                    <div class="school-info">
+                                        <h3 class="school-title">广东外语外贸大学</h3>
+                                        <p class="school-subtitle">国际视野 · 跨文化交流</p>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
                     </div>
                     
                     <div class="team-values">

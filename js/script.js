@@ -255,20 +255,176 @@ document.addEventListener('DOMContentLoaded', function() {
     // 添加滚动事件监听器
     window.addEventListener('scroll', updateActiveNav);
 
-    // 团队区：特别合作背景视差
-    const specialCollab = document.querySelector('.school-logo.special-collaboration');
-    if (specialCollab) {
+    // 团队区：CMU卡片视差效果
+    const cmuCard = document.querySelector('.cmu-special-card');
+    if (cmuCard) {
         const updateParallax = () => {
-            const rect = specialCollab.getBoundingClientRect();
+            const rect = cmuCard.getBoundingClientRect();
             const viewportH = window.innerHeight || document.documentElement.clientHeight;
             // 视差量：元素在视口中越靠中间，偏移越小
             const centerOffset = (rect.top + rect.height / 2) - viewportH / 2;
-            const parallax = Math.max(-40, Math.min(40, centerOffset * 0.06)); // 限制在 [-40, 40]px
-            specialCollab.style.setProperty('--parallax-y', parallax + 'px');
+            const parallax = Math.max(-20, Math.min(20, centerOffset * 0.04)); // 限制在 [-20, 20]px
+            cmuCard.style.setProperty('--parallax-y', parallax + 'px');
         };
         updateParallax();
         window.addEventListener('scroll', updateParallax);
         window.addEventListener('resize', updateParallax);
+    }
+
+    // 鼠标移动动效 - 背景粒子跟随鼠标
+    const teamSection = document.querySelector('#team');
+    const teamContentWrapper = document.querySelector('.team-content-wrapper');
+    
+    if (teamSection && teamContentWrapper) {
+        let mouseX = 0;
+        let mouseY = 0;
+        let isMoving = false;
+        let animationFrame;
+
+        const updateMousePosition = (e) => {
+            const rect = teamSection.getBoundingClientRect();
+            mouseX = ((e.clientX - rect.left) / rect.width) * 100;
+            mouseY = ((e.clientY - rect.top) / rect.height) * 100;
+            
+            if (!isMoving) {
+                isMoving = true;
+                animateMouseEffect();
+            }
+        };
+
+        const animateMouseEffect = () => {
+            // 更新CMU卡片的鼠标位置
+            const cmuCard = document.querySelector('.cmu-special-card');
+            if (cmuCard) {
+                cmuCard.style.setProperty('--mouse-x', mouseX + '%');
+                cmuCard.style.setProperty('--mouse-y', mouseY + '%');
+            }
+
+            // 更新团队内容包装器的背景粒子位置
+            teamContentWrapper.style.setProperty('--mouse-x', mouseX + '%');
+            teamContentWrapper.style.setProperty('--mouse-y', mouseY + '%');
+
+            // 添加鼠标移动的视觉反馈
+            const cards = document.querySelectorAll('.cmu-special-card, .school-card, .team-value-item');
+            cards.forEach(card => {
+                const rect = card.getBoundingClientRect();
+                const cardCenterX = rect.left + rect.width / 2;
+                const cardCenterY = rect.top + rect.height / 2;
+                const distance = Math.sqrt(
+                    Math.pow(e.clientX - cardCenterX, 2) + 
+                    Math.pow(e.clientY - cardCenterY, 2)
+                );
+                
+                if (distance < 200) {
+                    const intensity = Math.max(0, 1 - distance / 200);
+                    card.style.transform = `translateY(${intensity * -5}px) scale(${1 + intensity * 0.02})`;
+                    card.style.boxShadow = `0 ${8 + intensity * 8}px ${24 + intensity * 16}px rgba(0, 0, 0, ${0.12 + intensity * 0.08})`;
+                } else {
+                    card.style.transform = '';
+                    card.style.boxShadow = '';
+                }
+            });
+
+            animationFrame = requestAnimationFrame(animateMouseEffect);
+        };
+
+        const stopAnimation = () => {
+            isMoving = false;
+            if (animationFrame) {
+                cancelAnimationFrame(animationFrame);
+            }
+        };
+
+        // 添加鼠标移动事件监听器
+        teamSection.addEventListener('mousemove', updateMousePosition);
+        teamSection.addEventListener('mouseleave', stopAnimation);
+        
+        // 触摸设备支持
+        teamSection.addEventListener('touchmove', (e) => {
+            if (e.touches.length > 0) {
+                const touch = e.touches[0];
+                updateMousePosition(touch);
+            }
+        });
+        
+        teamSection.addEventListener('touchend', stopAnimation);
+    }
+
+    // CMU图片加载检测和错误处理
+    const cmuLogo = document.querySelector('.cmu-logo-wrapper img');
+    if (cmuLogo) {
+        const cmuLogoWrapper = document.querySelector('.cmu-logo-wrapper');
+        const cmuFallbackText = document.querySelector('.cmu-fallback-text');
+        
+        // 图片加载成功
+        cmuLogo.addEventListener('load', function() {
+            console.log('CMU logo loaded successfully via JavaScript');
+            this.style.opacity = '1';
+            this.style.visibility = 'visible';
+            this.style.display = 'block';
+            
+            // 隐藏备用文字
+            if (cmuFallbackText) {
+                cmuFallbackText.style.display = 'none';
+            }
+        });
+        
+        // 图片加载失败
+        cmuLogo.addEventListener('error', function() {
+            console.error('CMU logo failed to load');
+            this.style.display = 'none';
+            
+            // 显示备用文字
+            if (cmuFallbackText) {
+                cmuFallbackText.style.display = 'block';
+            }
+            
+            // 更新CSS变量
+            if (cmuLogoWrapper) {
+                cmuLogoWrapper.style.setProperty('--show-fallback', 'block');
+            }
+        });
+        
+        // 检查图片是否已经加载完成
+        const checkImageStatus = () => {
+            if (cmuLogo.complete && cmuLogo.naturalHeight !== 0) {
+                console.log('CMU logo already loaded, natural dimensions:', cmuLogo.naturalWidth, 'x', cmuLogo.naturalHeight);
+                cmuLogo.style.opacity = '1';
+                cmuLogo.style.visibility = 'visible';
+                cmuLogo.style.display = 'block';
+                
+                // 隐藏备用文字
+                if (cmuFallbackText) {
+                    cmuFallbackText.style.display = 'none';
+                }
+                return true;
+            } else {
+                console.log('CMU logo still loading or failed...');
+                return false;
+            }
+        };
+        
+        // 立即检查一次
+        if (checkImageStatus()) {
+            // 图片已经加载完成，不需要进一步处理
+            console.log('CMU logo was already loaded on page load');
+        } else {
+            // 图片还在加载中，设置初始状态
+            console.log('CMU logo is loading, setting initial state');
+            cmuLogo.style.opacity = '0';
+            cmuLogo.style.transition = 'opacity 0.3s ease';
+        }
+        
+        // 延迟检查图片状态（仅在需要时）
+        setTimeout(() => {
+            if (!checkImageStatus()) {
+                console.log('CMU logo still not loaded after timeout, showing fallback');
+                // 如果图片仍然没有加载，显示备用文字
+                if (cmuFallbackText) {
+                    cmuFallbackText.style.display = 'block';
+                }
+            }
+        }, 3000); // 增加到3秒，给图片更多加载时间
     }
 
     // 回到顶部浮动按钮显示/隐藏逻辑
