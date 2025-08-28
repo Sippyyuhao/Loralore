@@ -1194,6 +1194,78 @@ nav ul li.current a {
     }
 }
 
+/* Team background horizontal carousel (uses images/live in cmu/*.webp) */
+.team-bg-carousel {
+    position: absolute;
+    inset: 0; /* fill the team section */
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    pointer-events: none; /* background should not capture pointer events */
+    z-index: 0; /* placed behind content */
+}
+
+.team-bg-track {
+    display: flex;
+    gap: 28px;
+    align-items: center;
+    padding-left: 6%;
+    padding-right: 6%;
+    will-change: transform;
+    animation: teamMarquee 36s linear infinite;
+}
+
+.team-bg-carousel.paused .team-bg-track { animation-play-state: paused; }
+
+.team-bg-slide {
+    width: auto;
+    height: 56vh; /* keep images large but not full screen */
+    max-height: 480px; /* cap for high-dpi screens */
+    min-height: 220px;
+    aspect-ratio: 16/10;
+    object-fit: cover;
+    border-radius: 18px;
+    filter: blur(10px) brightness(0.92);
+    transform: scale(1.06);
+    opacity: 0.95;
+    box-shadow: 0 30px 60px rgba(0,0,0,0.25);
+    transition: filter 0.35s ease, transform 0.45s ease, opacity 0.35s ease;
+    pointer-events: none;
+}
+
+.team-bg-slide:focus, .team-bg-slide:hover {
+    filter: blur(8px) brightness(1);
+    transform: scale(1.08);
+}
+
+/* slower and reduced blur for small screens */
+@media screen and (max-width: 992px) {
+    .team-bg-slide { height: 46vh; max-height: 380px; filter: blur(8px); }
+    .team-bg-track { gap: 18px; }
+    .team-bg-carousel { padding-left: 0; padding-right: 0; }
+    .team-bg-slide { border-radius: 14px; }
+    .team-bg-track { animation-duration: 46s; }
+}
+
+@media screen and (max-width: 480px) {
+    .team-bg-slide { height: 34vh; max-height: 260px; filter: blur(6px); }
+    .team-bg-track { gap: 12px; animation-duration: 60s; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .team-bg-track { animation: none !important; }
+}
+
+/* marquee animation: translate by half the width of duplicated content for seamless loop */
+@keyframes teamMarquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+
+/* ensure team content sits above background */
+.team-content-wrapper { z-index: 2; position: relative; }
+
+
 /* 学校标识样式 */
 .school-logos {
     position: relative;

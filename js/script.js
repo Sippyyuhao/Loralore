@@ -350,6 +350,71 @@ document.addEventListener('DOMContentLoaded', function() {
         teamSection.addEventListener('touchend', stopAnimation);
     }
 
+        // ---- 团队区域：横向背景轮播（使用 images/live in cmu/*.webp） ----
+        (function initTeamBgCarousel(){
+            try {
+                // 如果 HTML 已经包含静态 carousel，则不再动态创建
+                if (document.querySelector('.team-bg-carousel')) {
+                    return;
+                }
+                const images = [
+                    './images/live in cmu/cmu1.webp',
+                    './images/live in cmu/cmu2.webp',
+                    './images/live in cmu/cmu3.webp',
+                    './images/live in cmu/cmu4.webp',
+                    './images/live in cmu/cmu5.webp',
+                    './images/live in cmu/cmu6.webp'
+                ];
+
+                // create carousel container
+                const carousel = document.createElement('div');
+                carousel.className = 'team-bg-carousel';
+
+                const track = document.createElement('div');
+                track.className = 'team-bg-track';
+
+                // duplicate set for seamless loop
+                const buildSlides = (list) => {
+                    list.forEach(src => {
+                        const img = document.createElement('img');
+                        img.className = 'team-bg-slide';
+                        img.src = src;
+                        img.alt = 'team background';
+                        img.draggable = false;
+                        track.appendChild(img);
+                    });
+                };
+
+                buildSlides(images);
+                buildSlides(images); // duplicated
+
+                carousel.appendChild(track);
+
+                // insert carousel into team section and ensure content wrapper sits above
+                teamSection.insertBefore(carousel, teamSection.firstChild);
+                teamSection.classList.add('has-bg-carousel');
+
+                // pause when user hovers (improve accessibility)
+                teamSection.addEventListener('mouseenter', () => carousel.classList.add('paused'));
+                teamSection.addEventListener('mouseleave', () => carousel.classList.remove('paused'));
+
+                // On small screens reduce motion by slowing/stopping animation
+                const mq = window.matchMedia('(max-width: 480px)');
+                function handleSmall(e){
+                    if (e.matches) {
+                        // pause animation to reduce CPU / bandwidth
+                        carousel.classList.add('paused');
+                    } else {
+                        carousel.classList.remove('paused');
+                    }
+                }
+                handleSmall(mq);
+                mq.addListener(handleSmall);
+            } catch (err) {
+                console.error('initTeamBgCarousel error', err);
+            }
+        })();
+
     // CMU图片加载检测和错误处理
     const cmuLogo = document.querySelector('.cmu-logo-wrapper img');
     if (cmuLogo) {
