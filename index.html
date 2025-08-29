@@ -1972,38 +1972,44 @@
             <div class="container">
                 <h2 class="section-title shiny-text">知识产权</h2>
                 <p class="section-subtitle">我们致力于创新与技术研发，并已获得多项国家认证的知识产权。</p>
-                <div class="certs-grid">
-                    <div class="cert-item">
-                        <a href="images/weijif 1 of 1.webp" class="cert-link">
-                            <img src="images/weijif 1 of 1.webp" alt="微积分计算软件著作权证书" loading="lazy">
-                            <div class="cert-info">
-                                <h3>软件著作权：微积分计算软件</h3>
+                <div class="certs-carousel-container">
+                    <div class="certs-carousel" aria-label="知识产权证书轮播">
+                        <div class="certs-track">
+                            <!-- 第一组证书图片 -->
+                            <div class="cert-slide">
+                                <img src="images/weijif 1 of 1.webp" alt="微积分计算软件著作权证书" loading="lazy">
+                                <div class="cert-title">软件著作权：微积分计算软件</div>
                             </div>
-                        </a>
-                    </div>
-                    <div class="cert-item">
-                        <a href="images/LAN 1 of 1.webp" class="cert-link">
-                            <img src="images/LAN 1 of 1.webp" alt="LAN交流互动软件著作权证书" loading="lazy">
-                            <div class="cert-info">
-                                <h3>软件著作权：LAN交流互动软件</h3>
+                            <div class="cert-slide">
+                                <img src="images/LAN 1 of 1.webp" alt="LAN交流互动软件著作权证书" loading="lazy">
+                                <div class="cert-title">软件著作权：LAN交流互动软件</div>
                             </div>
-                        </a>
-                    </div>
-                    <div class="cert-item">
-                        <a href="images/ASCIIfy 1 of 1.webp" class="cert-link">
-                            <img src="images/ASCIIfy 1 of 1.webp" alt="图像转ASCII软件著作权证书" loading="lazy">
-                            <div class="cert-info">
-                                <h3>软件著作权：图像转ASCII软件</h3>
+                            <div class="cert-slide">
+                                <img src="images/ASCIIfy 1 of 1.webp" alt="图像转ASCII软件著作权证书" loading="lazy">
+                                <div class="cert-title">软件著作权：图像转ASCII软件</div>
                             </div>
-                        </a>
-                    </div>
-                    <div class="cert-item patent-card">
-                        <a href="images/patent.webp" class="cert-link">
-                            <img src="images/patent.webp" alt="发明与实用新型专利证书" loading="lazy">
-                            <div class="cert-info">
-                                <h3>多项发明与实用新型专利</h3>
+                            <div class="cert-slide">
+                                <img src="images/patent.webp" alt="发明与实用新型专利证书" loading="lazy">
+                                <div class="cert-title">多项发明与实用新型专利</div>
                             </div>
-                        </a>
+                            <!-- 复制的第二组证书图片，实现无缝循环 -->
+                            <div class="cert-slide">
+                                <img src="images/weijif 1 of 1.webp" alt="微积分计算软件著作权证书" loading="lazy">
+                                <div class="cert-title">软件著作权：微积分计算软件</div>
+                            </div>
+                            <div class="cert-slide">
+                                <img src="images/LAN 1 of 1.webp" alt="LAN交流互动软件著作权证书" loading="lazy">
+                                <div class="cert-title">软件著作权：LAN交流互动软件</div>
+                            </div>
+                            <div class="cert-slide">
+                                <img src="images/ASCIIfy 1 of 1.webp" alt="图像转ASCII软件著作权证书" loading="lazy">
+                                <div class="cert-title">软件著作权：图像转ASCII软件</div>
+                            </div>
+                            <div class="cert-slide">
+                                <img src="images/patent.webp" alt="发明与实用新型专利证书" loading="lazy">
+                                <div class="cert-title">多项发明与实用新型专利</div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -2464,6 +2470,45 @@
                                 this.style.zIndex = 'auto';
                             });
                         });
+                    })();
+
+                    /* --- 证书轮播清晰显示控制 --- */
+                    (function() {
+                        const certsCarousel = document.querySelector('.certs-carousel');
+                        if (!certsCarousel) return;
+
+                        const slides = certsCarousel.querySelectorAll('.cert-slide');
+                        
+                        // 确保所有证书图片清晰显示
+                        function ensureCertsClearDisplay() {
+                            slides.forEach(slide => {
+                                slide.style.filter = 'none';
+                            });
+                        }
+
+                        // 初始化清晰显示
+                        ensureCertsClearDisplay();
+
+                        // 鼠标悬停暂停动画
+                        certsCarousel.addEventListener('mouseenter', () => {
+                            certsCarousel.classList.add('paused');
+                        });
+                        
+                        certsCarousel.addEventListener('mouseleave', () => {
+                            certsCarousel.classList.remove('paused');
+                        });
+
+                        // 小屏幕减少动画
+                        const mq = window.matchMedia('(max-width: 480px)');
+                        function handleSmallScreen(e) {
+                            if (e.matches) {
+                                certsCarousel.classList.add('paused');
+                            } else {
+                                certsCarousel.classList.remove('paused');
+                            }
+                        }
+                        handleSmallScreen(mq);
+                        mq.addListener(handleSmallScreen);
                     })();
         });
     </script>
