@@ -34,11 +34,14 @@ body {
 .school-card,
 .team-value-item,
 .project-detail-item {
-    /* 使内部卡片半透明以便背景透出 */
-    background: rgba(255,255,255,0.88);
+    /* 使内部卡片更透明以便背景透出 */
+    background: rgba(255,255,255,0.75);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
     border-radius: 12px;
     padding: 25px;
     box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.2);
     text-align: center;
     width: 300px;
     transition: transform 0.4s ease, box-shadow 0.4s ease, background 0.3s ease;
@@ -1336,13 +1339,14 @@ nav ul li.current a {
 /* 学校标识样式 */
 .school-logos {
     position: relative;
-    padding-bottom: 30px;
+    padding: 40px 0;
     margin-bottom: 40px;
-    border-bottom: 1px solid #eee;
+    border-bottom: 1px solid rgba(238, 238, 238, 0.5);
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     gap: 30px;
+    z-index: 2;
 }
 
 @keyframes pulse-glow {
@@ -1393,17 +1397,19 @@ nav ul li.current a {
     flex-direction: column;
     width: 100%;
     padding: 50px 25px;
-    background: #ffffff; /* 移除红色背景，改为白色 */
+    background: rgba(255,255,255,0.8); /* 半透明白色背景 */
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
     border-radius: 18px;
-    border: 0px solid #fce4ec; /* 边框厚度设置为0 */
-    box-shadow: none; /* 移除阴影 */
-    animation: none; /* 移除动画 */
-    position: relative; /* For the new connector */
-    z-index: 1;
-    overflow: hidden; /* 使背景铺满且不外溢 */
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    animation: none;
+    position: relative;
+    z-index: 2;
+    overflow: hidden;
     --mouse-x: 50%;
     --mouse-y: 50%;
-    transition: all 0.3s ease; /* 保持过渡效果 */
+    transition: all 0.3s ease;
     will-change: transform;
 }
 
