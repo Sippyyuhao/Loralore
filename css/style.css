@@ -837,8 +837,23 @@ nav ul li.current a {
 }
 
 /* 隐藏旧的项目展示 */
-.services-container, .carousel-container {
+.services-container {
     display: none;
+}
+
+/* 轮播容器前景显示样式 */
+.carousel-container {
+    display: block;
+    margin: 40px 0;
+    padding: 20px 0;
+    position: relative;
+    z-index: 2;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
 }
 
 /* 项目区样式 */
@@ -1260,16 +1275,20 @@ nav ul li.current a {
 
 /* Team background horizontal carousel (uses images/live in cmu/*.webp) */
 .team-bg-carousel {
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: 0;
-    bottom: 0;
+    position: relative;
+    left: auto;
+    right: auto;
+    top: auto;
+    bottom: auto;
     display: flex;
     align-items: center;
+    justify-content: center;
     overflow: hidden;
-    pointer-events: none; /* background should not capture pointer events */
-    z-index: 1; /* above colored background but below content */
+    pointer-events: auto; /* 允许交互 */
+    z-index: 2; /* 与高校卡片同层级 */
+    height: 300px; /* 固定高度 */
+    width: 100%;
+    margin: 20px 0;
 }
 
 .team-bg-track {
@@ -1286,20 +1305,20 @@ nav ul li.current a {
 
 .team-bg-slide {
     width: auto;
-    height: 56vh; /* keep images large but not full screen */
-    max-height: 480px; /* cap for high-dpi screens */
-    min-height: 220px;
+    height: 250px; /* 固定高度适合前景显示 */
+    max-height: 250px;
+    min-height: 200px;
     aspect-ratio: 16/10;
     object-fit: cover;
-    border-radius: 18px;
-    /* dynamic blur via CSS variable (small by default) */
-    --team-bg-blur: 2px;
-    filter: blur(var(--team-bg-blur)) brightness(0.92);
-    transform: scale(1.06);
-    opacity: 0.95;
-    box-shadow: 0 30px 60px rgba(0,0,0,0.25);
-    transition: filter 0.35s ease, transform 0.45s ease, opacity 0.35s ease;
-    pointer-events: none;
+    border-radius: 15px;
+    margin: 0 10px;
+    /* 清晰显示，移除模糊效果 */
+    filter: none;
+    transform: scale(1);
+    opacity: 1;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    pointer-events: auto;
 }
 
 .team-bg-slide:focus, .team-bg-slide:hover {
@@ -1318,7 +1337,7 @@ nav ul li.current a {
 }
 
 @media screen and (max-width: 480px) {
-    .team-bg-slide { height: 34vh; max-height: 260px; filter: blur(6px); }
+    .team-bg-slide { height: 200px; max-height: 200px; filter: none; }
     .team-bg-track { gap: 12px; animation-duration: 60s; }
 }
 
