@@ -4,7 +4,10 @@ const allowedOrigins = [
   'https://loralore.netlify.app',
   'https://sippyyuhao.github.io',
   // Add 'null' for local file testing (opening index.html directly)
-  'null' 
+  'null',
+  // Add Replit domains for development
+  /^https?:\/\/.*\.replit\.dev$/,
+  /^https?:\/\/.*\.repl\.co$/
 ];
 
 export const handler = async (event) => {
@@ -16,7 +19,16 @@ export const handler = async (event) => {
   };
 
   // Only add CORS headers if the origin is in our allowed list
-  if (allowedOrigins.includes(origin)) {
+  const isAllowed = allowedOrigins.some(allowed => {
+    if (typeof allowed === 'string') {
+      return allowed === origin;
+    } else if (allowed instanceof RegExp) {
+      return allowed.test(origin);
+    }
+    return false;
+  });
+  
+  if (isAllowed) {
     headers['Access-Control-Allow-Origin'] = origin;
     headers['Vary'] = 'Origin';
   }
