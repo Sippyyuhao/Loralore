@@ -179,8 +179,47 @@ header .container {
     color: var(--primary-color);
 }
 
+/* Logo: remove underline on the right half and set right color to black */
+.logo a,
+.logo a:link,
+.logo a:visited,
+.logo a:hover,
+.logo a:focus {
+    text-decoration: none !important; /* 强制移除链接下划线 */
+    color: inherit; /* 保持子项颜色由子选择器控制 */
+}
+.logo a, .logo a * {
+    text-decoration: none !important; /* 额外防护，去除伪元素/子元素的下划线 */
+}
+.logo .logo-text {
+    color: #000 !important; /* 右侧变黑 */
+}
+.logo .highlight {
+    color: var(--primary-color) !important; /* 左侧保持主题色 */
+}
+
+/* Navigation list: remove default list markers and normalize spacing */
 nav ul {
     display: flex;
+    list-style: none; /* 移除默认圆点 */
+    padding: 0;
+    margin: 0;
+}
+
+/* 兼容各浏览器的 marker 清除 */
+nav ul li {
+    margin-left: 25px;
+    list-style: none;
+}
+
+/* 某些浏览器会渲染 ::marker，强制隐藏 */
+nav ul li::marker {
+    display: none;
+}
+
+/* 也防护性地移除可能的伪元素 */
+nav ul li::before {
+    content: none !important;
 }
 
 nav ul li {
