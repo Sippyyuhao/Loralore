@@ -2434,46 +2434,35 @@
                 });
             }
 
-                    /* --- 动态背景模糊交互 (Team background) --- */
+                    /* --- 轮播图清晰显示 --- */
                     (function() {
                         const carousel = document.querySelector('.team-bg-carousel');
                         if (!carousel) return;
 
                         const slides = carousel.querySelectorAll('.team-bg-slide');
-                        // parameters (small blur range)
-                        const maxBlur = 6; // px
-                        const minBlur = 0;  // px
-
-                        function setBlurForSlides(value) {
-                            slides.forEach(s => {
-                                s.style.setProperty('--team-bg-blur', value + 'px');
+                        
+                        // 确保所有图片清晰显示，移除模糊效果
+                        function ensureClearDisplay() {
+                            slides.forEach(slide => {
+                                slide.style.filter = 'none';
+                                slide.style.removeProperty('--team-bg-blur');
                             });
                         }
 
-                        // set initial blur (small)
-                        setBlurForSlides(2);
+                        // 初始化清晰显示
+                        ensureClearDisplay();
 
-                        function handleMove(e) {
-                            const rect = carousel.getBoundingClientRect();
-                            const clientX = (e.touches && e.touches[0]) ? e.touches[0].clientX : e.clientX;
-                            const x = clientX - rect.left; // x within carousel
-                            const ratio = Math.max(0, Math.min(1, x / rect.width));
-                            // center should be clearest: calculate distance from center
-                            const distFromCenter = Math.abs(ratio - 0.5) / 0.5; // 0 at center, 1 at edges
-                            const blur = minBlur + (maxBlur - minBlur) * distFromCenter; // edges blur more
-                            setBlurForSlides(blur);
-                        }
-
-                        carousel.addEventListener('mousemove', handleMove);
-                        carousel.addEventListener('touchmove', handleMove, {passive: true});
-
-                        carousel.addEventListener('mouseenter', function() {
-                            carousel.classList.add('interactive-blur');
-                        });
-                            carousel.addEventListener('mouseleave', function() {
-                            carousel.classList.remove('interactive-blur');
-                            // restore default blur
-                            setBlurForSlides(2);
+                        // 鼠标悬停时显示轻微放大效果
+                        slides.forEach(slide => {
+                            slide.addEventListener('mouseenter', function() {
+                                this.style.transform = 'scale(1.05)';
+                                this.style.zIndex = '10';
+                            });
+                            
+                            slide.addEventListener('mouseleave', function() {
+                                this.style.transform = 'scale(1)';
+                                this.style.zIndex = 'auto';
+                            });
                         });
                     })();
         });

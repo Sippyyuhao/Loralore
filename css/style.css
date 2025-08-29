@@ -845,15 +845,13 @@ nav ul li.current a {
 .carousel-container {
     display: block;
     margin: 40px 0;
-    padding: 20px 0;
+    padding: 0;
     position: relative;
     z-index: 2;
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border-radius: 20px;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    background: transparent;
+    border-radius: 0;
+    border: none;
+    box-shadow: none;
 }
 
 /* 项目区样式 */
@@ -1276,17 +1274,13 @@ nav ul li.current a {
 /* Team background horizontal carousel (uses images/live in cmu/*.webp) */
 .team-bg-carousel {
     position: relative;
-    left: auto;
-    right: auto;
-    top: auto;
-    bottom: auto;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     overflow: hidden;
-    pointer-events: auto; /* 允许交互 */
-    z-index: 2; /* 与高校卡片同层级 */
-    height: 300px; /* 固定高度 */
+    pointer-events: auto;
+    z-index: 2;
+    height: 280px;
     width: 100%;
     margin: 20px 0;
 }
@@ -1298,47 +1292,46 @@ nav ul li.current a {
     padding-left: 6%;
     padding-right: 6%;
     will-change: transform;
-    animation: teamMarquee 36s linear infinite;
+    animation: seamlessCarousel 30s linear infinite;
 }
 
 .team-bg-carousel.paused .team-bg-track { animation-play-state: paused; }
 
 .team-bg-slide {
     width: auto;
-    height: 250px; /* 固定高度适合前景显示 */
+    height: 250px;
     max-height: 250px;
     min-height: 200px;
     aspect-ratio: 16/10;
     object-fit: cover;
-    border-radius: 15px;
-    margin: 0 10px;
-    /* 清晰显示，移除模糊效果 */
+    border-radius: 12px;
+    margin: 0 8px;
     filter: none;
     transform: scale(1);
     opacity: 1;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
     pointer-events: auto;
+    flex-shrink: 0;
 }
 
-.team-bg-slide:focus, .team-bg-slide:hover {
-    /* slightly reduce blur on hover/focus as a fallback */
-    filter: blur(calc(var(--team-bg-blur) * 0.6)) brightness(1);
-    transform: scale(1.08);
+.team-bg-slide:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
 }
 
-/* slower and reduced blur for small screens */
+/* 响应式调整 */
 @media screen and (max-width: 992px) {
-    .team-bg-slide { height: 46vh; max-height: 380px; filter: blur(8px); }
-    .team-bg-track { gap: 18px; }
+    .team-bg-slide { height: 200px; max-height: 200px; filter: none; }
+    .team-bg-track { gap: 16px; }
     .team-bg-carousel { padding-left: 0; padding-right: 0; }
-    .team-bg-slide { border-radius: 14px; }
-    .team-bg-track { animation-duration: 46s; }
+    .team-bg-slide { border-radius: 12px; }
+    .team-bg-track { animation-duration: 25s; }
 }
 
 @media screen and (max-width: 480px) {
-    .team-bg-slide { height: 200px; max-height: 200px; filter: none; }
-    .team-bg-track { gap: 12px; animation-duration: 60s; }
+    .team-bg-slide { height: 180px; max-height: 180px; filter: none; margin: 0 4px; }
+    .team-bg-track { gap: 12px; animation-duration: 20s; }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -1346,7 +1339,7 @@ nav ul li.current a {
 }
 
 /* marquee animation: translate by half the width of duplicated content for seamless loop */
-@keyframes teamMarquee {
+@keyframes seamlessCarousel {
     0% { transform: translateX(0); }
     100% { transform: translateX(-50%); }
 }
