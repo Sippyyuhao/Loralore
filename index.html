@@ -1268,6 +1268,29 @@
             margin-left: 10px;
         }
 
+        /* Ensure silk full-page background shows through these sections */
+        #projects, #services, #equipment, #team, #intellectual-property, #contact {
+            background: transparent !important;
+            position: relative; /* make sure their content stacks above the global canvas */
+            z-index: 1;
+        }
+
+        /* keep contact inner container transparent so silk shows through, but leave forms/cards white */
+        #contact .container,
+        #contact .contact-container {
+            background: transparent !important;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Footer should not show the silk background; keep it opaque and on top */
+        footer {
+            position: relative;
+            z-index: 2100; /* above silk canvas (which is z-index:0) and most UI */
+            background: #732020;
+            color: var(--footer-color, #fff);
+        }
+
 
     </style>
 </head>
@@ -2102,6 +2125,10 @@
     <script src="./js/script.js"></script>
     <script src="./js/particles.js"></script>
     <script src="./js/particles/config.js"></script>
+    <!-- three.js for shader backgrounds (must be before silk-bg.js) -->
+    <script src="https://unpkg.com/three@0.158.0/build/three.min.js"></script>
+    <!-- silk background shader script -->
+    <script src="./js/silk-bg.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             // Fuzzy Text Effect for Showcase Title
