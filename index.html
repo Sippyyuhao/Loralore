@@ -1808,25 +1808,25 @@
         </section>
 
         <section id="team">
-            <div class="container">
-                <!-- 静态插入的团队背景横向轮播（使用 images/live in cmu/*.webp） -->
-                <div class="team-bg-carousel" aria-hidden="true">
-                    <div class="team-bg-track">
-                        <img class="team-bg-slide" src="./images/live%20in%20cmu/cmu1.webp" alt="cmu1" loading="lazy">
-                        <img class="team-bg-slide" src="./images/live%20in%20cmu/cmu2.webp" alt="cmu2" loading="lazy">
-                        <img class="team-bg-slide" src="./images/live%20in%20cmu/cmu3.webp" alt="cmu3" loading="lazy">
-                        <img class="team-bg-slide" src="./images/live%20in%20cmu/cmu4.webp" alt="cmu4" loading="lazy">
-                        <img class="team-bg-slide" src="./images/live%20in%20cmu/cmu5.webp" alt="cmu5" loading="lazy">
-                        <img class="team-bg-slide" src="./images/live%20in%20cmu/cmu6.webp" alt="cmu6" loading="lazy">
-                        <!-- duplicated for seamless loop -->
-                        <img class="team-bg-slide" src="./images/live%20in%20cmu/cmu1.webp" alt="cmu1" loading="lazy">
-                        <img class="team-bg-slide" src="./images/live%20in%20cmu/cmu2.webp" alt="cmu2" loading="lazy">
-                        <img class="team-bg-slide" src="./images/live%20in%20cmu/cmu3.webp" alt="cmu3" loading="lazy">
-                        <img class="team-bg-slide" src="./images/live%20in%20cmu/cmu4.webp" alt="cmu4" loading="lazy">
-                        <img class="team-bg-slide" src="./images/live%20in%20cmu/cmu5.webp" alt="cmu5" loading="lazy">
-                        <img class="team-bg-slide" src="./images/live%20in%20cmu/cmu6.webp" alt="cmu6" loading="lazy">
-                    </div>
+            <!-- 静态插入的团队背景横向轮播（使用 images/live in cmu/*.webp），放在 section 直接子级以确保层级正确 -->
+            <div class="team-bg-carousel" aria-hidden="true">
+                <div class="team-bg-track">
+                    <img class="team-bg-slide" src="./images/live%20in%20cmu/cmu1.webp" alt="cmu1" loading="lazy">
+                    <img class="team-bg-slide" src="./images/live%20in%20cmu/cmu2.webp" alt="cmu2" loading="lazy">
+                    <img class="team-bg-slide" src="./images/live%20in%20cmu/cmu3.webp" alt="cmu3" loading="lazy">
+                    <img class="team-bg-slide" src="./images/live%20in%20cmu/cmu4.webp" alt="cmu4" loading="lazy">
+                    <img class="team-bg-slide" src="./images/live%20in%20cmu/cmu5.webp" alt="cmu5" loading="lazy">
+                    <img class="team-bg-slide" src="./images/live%20in%20cmu/cmu6.webp" alt="cmu6" loading="lazy">
+                    <!-- duplicated for seamless loop -->
+                    <img class="team-bg-slide" src="./images/live%20in%20cmu/cmu1.webp" alt="cmu1" loading="lazy">
+                    <img class="team-bg-slide" src="./images/live%20in%20cmu/cmu2.webp" alt="cmu2" loading="lazy">
+                    <img class="team-bg-slide" src="./images/live%20in%20cmu/cmu3.webp" alt="cmu3" loading="lazy">
+                    <img class="team-bg-slide" src="./images/live%20in%20cmu/cmu4.webp" alt="cmu4" loading="lazy">
+                    <img class="team-bg-slide" src="./images/live%20in%20cmu/cmu5.webp" alt="cmu5" loading="lazy">
+                    <img class="team-bg-slide" src="./images/live%20in%20cmu/cmu6.webp" alt="cmu6" loading="lazy">
                 </div>
+            </div>
+            <div class="container">
                 <div class="section-title-wrapper reveal">
                     <h2 class="section-title shiny-text">团队成员</h2>
                     <div class="btn-group">
@@ -2403,6 +2403,49 @@
                     }
                 });
             }
+
+                    /* --- 动态背景模糊交互 (Team background) --- */
+                    (function() {
+                        const carousel = document.querySelector('.team-bg-carousel');
+                        if (!carousel) return;
+
+                        const slides = carousel.querySelectorAll('.team-bg-slide');
+                        // parameters (small blur range)
+                        const maxBlur = 6; // px
+                        const minBlur = 0;  // px
+
+                        function setBlurForSlides(value) {
+                            slides.forEach(s => {
+                                s.style.setProperty('--team-bg-blur', value + 'px');
+                            });
+                        }
+
+                        // set initial blur (small)
+                        setBlurForSlides(2);
+
+                        function handleMove(e) {
+                            const rect = carousel.getBoundingClientRect();
+                            const clientX = (e.touches && e.touches[0]) ? e.touches[0].clientX : e.clientX;
+                            const x = clientX - rect.left; // x within carousel
+                            const ratio = Math.max(0, Math.min(1, x / rect.width));
+                            // center should be clearest: calculate distance from center
+                            const distFromCenter = Math.abs(ratio - 0.5) / 0.5; // 0 at center, 1 at edges
+                            const blur = minBlur + (maxBlur - minBlur) * distFromCenter; // edges blur more
+                            setBlurForSlides(blur);
+                        }
+
+                        carousel.addEventListener('mousemove', handleMove);
+                        carousel.addEventListener('touchmove', handleMove, {passive: true});
+
+                        carousel.addEventListener('mouseenter', function() {
+                            carousel.classList.add('interactive-blur');
+                        });
+                            carousel.addEventListener('mouseleave', function() {
+                            carousel.classList.remove('interactive-blur');
+                            // restore default blur
+                            setBlurForSlides(2);
+                        });
+                    })();
         });
     </script>
 </body>
