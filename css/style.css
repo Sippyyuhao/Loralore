@@ -2029,8 +2029,8 @@ footer .container { max-width: 1400px; padding-left: 28px; padding-right: 28px; 
     object-fit: contain;
     border-radius: 50%;
     margin-bottom: 15px;
-    padding: 10px;
-    background-color: #fff;
+    padding: 0;
+    background-color: transparent;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
@@ -3105,18 +3105,18 @@ section {
 .school-logo-wrapper {
     width: 80px;
     height: 80px;
-    background: #f8f9fa;
+    background: transparent;
     border-radius: 12px;
     display: flex;
     align-items: center;
     justify-content: center;
     margin-bottom: 20px;
-    padding: 8px; /* 缩小内边距，避免 logo 看起来偏上 */
+    padding: 0;
     transition: all 0.3s ease;
 }
 
 .school-card:hover .school-logo-wrapper {
-    background: #f0f0f0;
+    background: transparent;
     transform: scale(1.05);
 }
 
