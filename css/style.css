@@ -230,6 +230,27 @@ nav ul li a {
     font-weight: 500;
     transition: var(--transition);
 }
+    /* Ensure nav links never show underlines (desktop and responsive) */
+    #header nav a,
+    #header nav a:link,
+    #header nav a:visited,
+    #header nav a:hover,
+    #header nav a:active {
+        text-decoration: none !important;
+        color: inherit; /* keep color controlled by li.current or hover rules */
+    }
+
+    /* Mobile responsive menu links */
+    nav.responsive ul li a {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        text-decoration: none !important;
+        color: inherit;
+    }
+
+    /* Defensive: remove underline from any span within nav links */
+    #header nav a span, #header nav a i { text-decoration: none !important; }
 
 nav ul li a:hover, 
 nav ul li.current a {
