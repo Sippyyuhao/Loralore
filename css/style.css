@@ -967,8 +967,10 @@ nav ul li.current a {
 .project-details {
     margin-top: 50px;
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
     gap: 40px;
+    justify-content: center;
+    place-items: center;
 }
 
 .project-detail-item {
@@ -1963,13 +1965,16 @@ footer .container { max-width: 1400px; padding-left: 28px; padding-right: 28px; 
 
 @media screen and (max-width: 1200px) {
     .project-details {
-        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        justify-content: center;
     }
 }
 
 @media screen and (max-width: 768px) {
     .project-details {
-        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        justify-content: center;
+        gap: 30px;
     }
     
     .project-detail-header {
@@ -1984,6 +1989,9 @@ footer .container { max-width: 1400px; padding-left: 28px; padding-right: 28px; 
 @media screen and (max-width: 480px) {
     .project-details {
         grid-template-columns: 1fr;
+        justify-content: center;
+        gap: 20px;
+        padding: 0 10px;
     }
 }
 
