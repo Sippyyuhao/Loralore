@@ -38,8 +38,249 @@ body {
     font-family: Linotte, HYZhengYuan, sans-serif;
     font-weight: normal;
 }
+/* - 全局样式 End */
 
-/* 主题色彩变量 */
+/* - 页首 */
+.page-head {
+    display: flex;
+    justify-content: center;
+    /* align-items: center; */ /* [^1] 开这玩意儿实现打字标题居中会导致页面跳动，我也不知道这是为甚么 TAT */
+    width: 100%;
+    height: 320px;
+    background-color: #49b1f5;
+    background-image: url(../images/backgrounds/page-head/wallhaven-9delkw.jpg);
+    background-size: cover;
+    background-position: center 85%; /* 请根据需要调整图片位置 */
+    /* background-attachment: fixed; */
+}
+
+.page-head > .title,
+.page-head > .typed-cursor {
+    height: max-content;
+    margin-top: 160px; /* [^1] 所以此处使用上边距实现居中，反正能跑就行（ */
+    font-size: 32px;
+    font-weight: bold;
+    color: #ffffff;
+    text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.15);
+}
+/* - 页首 End */
+
+/* - 主体容器 */
+.primary-container {
+    display: flex;
+    justify-content: center;
+    width: 80%;
+    height: auto;
+    /* background-color: brown; */
+    max-width: 1200px;
+    padding: 20px;
+    margin: -40px auto 20px;
+    position: relative;
+    display: flex; /* Ensure flex layout */
+    justify-content: center; /* Center flex items */
+}
+
+/* 左侧区域 */
+.primary-container > .left-area {
+    max-width: 350px;
+    width: 30%;
+    margin-right: 16px;
+
+    transition: margin-top, ease-in, 0.2s;
+}
+
+/* 右侧区域 */
+.primary-container > .right-area {
+    max-width: 1050px;
+    width: 70%;
+}
+/* - 主体容器 End */
+
+/* 内容版块 */
+.primary-container > .right-area > .content-page {
+    position: relative;
+    width: 100%;
+    margin-top: 16px;
+    border-radius: 12px;
+    padding: 20px 46px 46px 46px;
+    box-sizing: border-box;
+
+    * {
+        position: relative;
+        z-index: 1;
+    }
+}
+
+/* 内容板块的贴纸 */
+.primary-container > .right-area > .content-page::before {
+    content: "";
+    position: absolute;
+
+    /* 如果需要修改贴纸请根据图片情况调整此处的值~ */
+    bottom: 20px;
+    right: 0;
+    width: 400px;
+    height: 500px;
+
+    background-color: #aaaaaa;
+    /* 使用base64或干脆不使用贴纸以避免CORS问题 */
+    display: none; /* 暂时隐藏贴纸 */
+    z-index: 0;
+}
+
+/* - 左侧卡片 */
+.primary-container > .left-area > .cards > .card-item {
+    width: 100%;
+    margin-top: 16px;
+    padding: 18px 20px;
+    border-radius: 12px;
+    box-sizing: border-box;
+    font-size: 14px;
+}
+
+/* 标题 */
+.primary-container > .left-area > .cards > .card-item > .title {
+    display: inline-block;
+    margin-bottom: 8px;
+    font-size: 14px;
+    font-weight: bold;
+
+    i {
+        margin-right: 10px;
+    }
+}
+
+/* - 个人信息 */
+.primary-container > .left-area > .cards > .card-item#personal-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.primary-container > .left-area > .cards > .card-item#personal-info > .avatar {
+    width: 120px;
+    height: auto;
+    overflow: hidden;
+    border-radius: 50%;
+}
+
+.primary-container > .left-area > .cards > .card-item#personal-info > .name {
+    margin: 12px 0 14px 0;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.primary-container > .left-area > .cards > .card-item#personal-info > .social-icons i {
+    padding: 7px;
+    border-radius: 50%;
+    font-size: 16px;
+    background-color: #b5e0ff;
+    color: #304660;
+}
+
+.primary-container > .left-area > .cards > .card-item#personal-info > .social-icons a + a {
+    margin-left: 14px;
+}
+/* - 个人信息 End */
+
+/* 一言 */
+.primary-container > .left-area > .cards > .card-item#hitokoto > .content a#hitokoto-text {
+    color: unset;
+}
+
+/* - 浏览设置 */
+.primary-container > .left-area > .cards > .card-item > .content > .settings-item {
+    margin-top: 8px;
+    padding: 6px 10px;
+    border-radius: 12px;
+    box-sizing: border-box;
+    background-color: #c0e5ff;
+}
+
+/* 标题 */
+.primary-container > .left-area > .cards > .card-item > .content > .settings-item > .title {
+    display: inline-block;
+    margin-bottom: 8px;
+    font-size: 14px;
+    font-weight: bold;
+
+    i {
+        margin-right: 10px;
+    }
+}
+
+/* - 主题设置 */
+.primary-container > .left-area > .cards > .card-item > .content > .settings-item > .themes {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+}
+
+.primary-container > .left-area > .cards > .card-item > .content > .settings-item > .themes > .theme-item {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 42px;
+    border-radius: 12px;
+    font-size: 10px;
+    font-weight: bold;
+    box-sizing: border-box;
+
+    i {
+        margin-bottom: 2px;
+    }
+}
+
+.primary-container > .left-area > .cards > .card-item > .content > .settings-item > .themes > .theme-item,
+.primary-container > .left-area > .cards > .card-item > .content > .settings-item > .themes > .theme-item * {
+    cursor: pointer;
+}
+
+.primary-container > .left-area > .cards > .card-item > .content > .settings-item > .themes > .theme-item.enable {
+    /* border: 2px solid #e87a90; */
+    box-shadow: 0px 0px 2px 2px #2a92d8;
+}
+/* - 主题设置 End */
+/* - 浏览设置 End */
+
+/* - 左侧卡片 End */
+
+/* - 页脚 */
+.footer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 180px;
+    margin-top: 70px;
+    font-size: 14px;
+    line-height: 20px;
+}
+
+.footer > br {
+    position: relative;
+}
+
+.footer > .line-break {
+    display: block;
+    margin: 2px 0;
+    color: #aaaaaa;
+}
+
+.footer .icp-link {
+    color: #4c4948;
+}
+/* - 页脚 End */
+
+/* 
+    Professional Redesign by Gemini 
+    - A cohesive and elegant design system.
+*/
+
 :root {
     /* THEMEABLE COLORS - Default (Pink) Theme */
     --theme-primary: #ffb6c1;
@@ -64,6 +305,7 @@ body {
     --transition-speed: 0.3s;
     --animation-stagger-delay: 100ms;
 }
+
 
 /* Base Body & Background Styling */
 body {
@@ -107,7 +349,7 @@ body {
 
 .background-container.show-clear-bg .background-image.active {
     filter: blur(0px) brightness(1);
-    transform: scale(1.03);
+    transform: scale(1.03); /* slight zoom in for focus */
 }
 
 #sakura-container {
@@ -118,6 +360,20 @@ body {
     height: 100%;
     z-index: -1;
     pointer-events: none;
+}
+
+/* Page Header */
+.page-head {
+    text-align: center;
+    padding: 40px 20px 20px;
+    animation: fadeInDown 0.8s ease-out;
+}
+
+.page-head .title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #fff;
+    text-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
 /* Main Layout Container */
@@ -188,11 +444,12 @@ body {
 
 /* Staggered animation delays */
 .hero-card { animation-delay: var(--animation-stagger-delay); }
-.main-content { animation-delay: calc(var(--animation-stagger-delay) * 1); }
+.main-content { animation-delay: calc(var(--animation-stagger-delay) * 1); } /* Align animation timing */
 .secondary-card#music-player { animation-delay: calc(var(--animation-stagger-delay) * 2); }
 .secondary-card#recommend { animation-delay: calc(var(--animation-stagger-delay) * 3); }
 .secondary-card#hitokoto { animation-delay: calc(var(--animation-stagger-delay) * 4); }
 .secondary-card#settings { animation-delay: calc(var(--animation-stagger-delay) * 5); }
+
 
 /* Hero Card (Personal Info) */
 .hero-card {
@@ -312,9 +569,10 @@ body {
     box-sizing: border-box;
 }
 
+/* We need to define how the children of the flex container behave */
 .main-content {
     flex: 2;
-    min-width: 0;
+    min-width: 0; /* Critical for flex-shrink to work correctly */
     margin: 0;
     padding: var(--gap);
 }
@@ -357,10 +615,11 @@ body {
     color: var(--theme-text-secondary);
 }
 
+
 /* Secondary Cards Section */
 .secondary-cards {
     flex: 1;
-    min-width: 0;
+    min-width: 0; /* Critical for flex-shrink to work correctly */
     display: flex;
     flex-direction: column;
     gap: var(--gap);
@@ -502,7 +761,7 @@ body {
 }
 
 .control-btn.play-pause {
-    font-size: 1.8rem;
+    font-size: 1.8rem; /* Make play/pause bigger */
     color: var(--theme-primary);
 }
 
@@ -553,7 +812,7 @@ body {
     width: 20px;
     height: 20px;
     border-radius: 50%;
-    background-color: #ffb6c1;
+    background-color: #ffb6c1; /* Static Pink for the button */
     border: 2px solid #fff;
 }
 

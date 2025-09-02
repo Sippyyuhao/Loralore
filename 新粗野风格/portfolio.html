@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>作品集 - 个人作品展示</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="nav-brutal">
+        <div class="nav-container">
+            <div class="logo-brutal">
+                <h1>MY</h1>
+                <span class="team-tag">SPACE</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">首页</a></li>
+                <li><a href="portfolio.html" class="nav-link active">作品</a></li>
+                <li><a href="about.html" class="nav-link">关于</a></li>
+                <li><a href="contact.html" class="nav-link">联系</a></li>
+            </ul>
+            <div class="nav-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 作品集页面 -->
+    <main class="portfolio-page">
+        <!-- 作品集标题 -->
+        <section class="portfolio-hero">
+            <div class="container">
+                <div class="portfolio-content">
+                    <h1 class="portfolio-title">
+                        我的
+                        <span class="highlight-text">作品集</span>
+                    </h1>
+                    <div class="portfolio-subtitle">
+                        <p>xxxx</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 作品分类 -->
+        <section class="portfolio-filters">
+            <div class="container">
+                <div class="filter-buttons">
+                    <button class="filter-btn active" data-filter="all">全部</button>
+                    <button class="filter-btn" data-filter="design">设计</button>
+                    <button class="filter-btn" data-filter="web">网页</button>
+                    <button class="filter-btn" data-filter="mobile">移动端</button>
+                    <button class="filter-btn" data-filter="branding">品牌</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- 作品展示 -->
+        <section class="portfolio-grid-section">
+            <div class="container">
+                <div class="portfolio-grid">
+                    <!-- 作品项目 1 -->
+                    <div class="portfolio-item" data-category="branding design">
+                        <div class="portfolio-image">
+                            <div class="image-placeholder">
+                                <span></span>
+                            </div>
+                            <div class="portfolio-overlay">
+                                <div class="overlay-content">
+                                    <h3>xxxx</h3>
+                                    <p>xxxx</p>
+                                    <div class="overlay-actions">
+                                        <button class="btn-view" onclick="openModal('project1')">查看详情</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="portfolio-info">
+                            <h3>xxxx</h3>
+                            <div class="portfolio-tags">
+                                <span class="tag">xxxx</span>
+                                <span class="tag">xxxx</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 作品项目 2 -->
+                    <div class="portfolio-item" data-category="web design">
+                        <div class="portfolio-image">
+                            <div class="image-placeholder">
+                                <span></span>
+                            </div>
+                            <div class="portfolio-overlay">
+                                <div class="overlay-content">
+                                    <h3>xxxx</h3>
+                                    <p>xxxx</p>
+                                    <div class="overlay-actions">
+                                        <button class="btn-view" onclick="openModal('project2')">查看详情</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="portfolio-info">
+                            <h3>xxxx</h3>
+                            <div class="portfolio-tags">
+                                <span class="tag">xxxx</span>
+                                <span class="tag">xxxx</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 作品项目 3 -->
+                    <div class="portfolio-item" data-category="mobile design">
+                        <div class="portfolio-image">
+                            <div class="image-placeholder">
+                                <span></span>
+                            </div>
+                            <div class="portfolio-overlay">
+                                <div class="overlay-content">
+                                    <h3>xxxx</h3>
+                                    <p>xxxx</p>
+                                    <div class="overlay-actions">
+                                        <button class="btn-view" onclick="openModal('project3')">查看详情</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="portfolio-info">
+                            <h3>xxxx</h3>
+                            <div class="portfolio-tags">
+                                <span class="tag">xxxx</span>
+                                <span class="tag">xxxx</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 作品项目 4 -->
+                    <div class="portfolio-item" data-category="design branding">
+                        <div class="portfolio-image">
+                            <div class="image-placeholder">
+                                <span></span>
+                            </div>
+                            <div class="portfolio-overlay">
+                                <div class="overlay-content">
+                                    <h3>xxxx</h3>
+                                    <p>xxxx</p>
+                                    <div class="overlay-actions">
+                                        <button class="btn-view" onclick="openModal('project4')">查看详情</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="portfolio-info">
+                            <h3>xxxx</h3>
+                            <div class="portfolio-tags">
+                                <span class="tag">xxxx</span>
+                                <span class="tag">xxxx</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 作品项目 5 -->
+                    <div class="portfolio-item" data-category="web design">
+                        <div class="portfolio-image">
+                            <div class="image-placeholder">
+                                <span></span>
+                            </div>
+                            <div class="portfolio-overlay">
+                                <div class="overlay-content">
+                                    <h3>xxxx</h3>
+                                    <p>xxxx</p>
+                                    <div class="overlay-actions">
+                                        <button class="btn-view" onclick="openModal('project5')">查看详情</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="portfolio-info">
+                            <h3>xxxx</h3>
+                            <div class="portfolio-tags">
+                                <span class="tag">xxxx</span>
+                                <span class="tag">xxxx</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 作品项目 6 -->
+                    <div class="portfolio-item" data-category="mobile design">
+                        <div class="portfolio-image">
+                            <div class="image-placeholder">
+                                <span></span>
+                            </div>
+                            <div class="portfolio-overlay">
+                                <div class="overlay-content">
+                                    <h3>xxxx</h3>
+                                    <p>xxxx</p>
+                                    <div class="overlay-actions">
+                                        <button class="btn-view" onclick="openModal('project6')">查看详情</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="portfolio-info">
+                            <h3>xxxx</h3>
+                            <div class="portfolio-tags">
+                                <span class="tag">xxxx</span>
+                                <span class="tag">xxxx</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 技能统计 -->
+        <section class="skills-stats">
+            <div class="container">
+                <h2 class="section-heading">设计技能</h2>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon"></div>
+                        <div class="stat-info">
+                            <h3>xxxx</h3>
+                            <div class="stat-bar">
+                                <div class="stat-fill" data-width="90%"></div>
+                            </div>
+                            <span class="stat-percent">90%</span>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon"></div>
+                        <div class="stat-info">
+                            <h3>xxxx</h3>
+                            <div class="stat-bar">
+                                <div class="stat-fill" data-width="75%"></div>
+                            </div>
+                            <span class="stat-percent">75%</span>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon"></div>
+                        <div class="stat-info">
+                            <h3>xxxx</h3>
+                            <div class="stat-bar">
+                                <div class="stat-fill" data-width="85%"></div>
+                            </div>
+                            <span class="stat-percent">85%</span>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon"></div>
+                        <div class="stat-info">
+                            <h3>xxxx</h3>
+                            <div class="stat-bar">
+                                <div class="stat-fill" data-width="70%"></div>
+                            </div>
+                            <span class="stat-percent">70%</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- 项目详情模态框 -->
+    <div class="modal" id="projectModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modalTitle">项目标题</h2>
+                <button class="modal-close" onclick="closeModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="modal-image">
+                    <div class="image-placeholder">
+                        <span id="modalIcon"></span>
+                    </div>
+                </div>
+                <div class="modal-info">
+                    <p id="modalDescription">xxxx</p>
+                    <div class="modal-details">
+                        <div class="detail-item">
+                            <strong>项目类型：</strong>
+                            <span id="modalType">xxxx</span>
+                        </div>
+                        <div class="detail-item">
+                            <strong>完成时间：</strong>
+                            <span id="modalTime">xxxx</span>
+                        </div>
+                        <div class="detail-item">
+                            <strong>使用工具：</strong>
+                            <span id="modalTools">xxxx</span>
+                        </div>
+                    </div>
+                    <div class="modal-tags" id="modalTags">
+                        <!-- 标签将通过JS动态添加 -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 页脚 -->
+    <footer class="footer-brutal">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <h3>xx xx</h3>
+                    <p>xxx</p>
+                </div>
+                <div class="footer-links">
+                    <a href="mailto:your.email@example.com">xxx</a>
+                    <a href="#" target="_blank">xxx</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025Loralore模板，新粗野风格.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+    <script src="js/portfolio.js"></script>
+</body>
+</html>dy>
+</html>

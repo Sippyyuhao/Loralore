@@ -228,13 +228,16 @@
 
     // Create a single full-page silk background so the effect is continuous across sections.
     try {
-      initFullPageSilkBackground({
+      const silkInstance = initFullPageSilkBackground({
         speed: 2.5,
         scale: 1,
         color: '#b23f3fff',
         noiseIntensity: 0,
         rotation: 0.0,
       });
+      
+      // 设置统一红色主题
+      setUnifiedRedTheme(silkInstance);
     } catch (e) {
       console.error('Failed to init full-page silk background', e);
     }
@@ -282,8 +285,24 @@
     autoInit();
   }
 
+  // 设置统一红色主题
+  function setUnifiedRedTheme(silkInstance) {
+    if (!silkInstance) return;
+    
+    const redColor = '#b23f3f'; // 统一的红色主题
+    
+    // 设置丝绸背景颜色
+    silkInstance.setColor(redColor);
+    
+    // 通知粒子系统使用相同颜色
+    if (window.ParticlesSilkSync) {
+      window.ParticlesSilkSync.updateColor(redColor);
+    }
+  }
+
   // expose API
   window.__SilkBackground = {
     init: initSilkBackground,
+    setUnifiedRedTheme: setUnifiedRedTheme,
   };
 })();

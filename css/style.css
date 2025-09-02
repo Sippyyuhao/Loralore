@@ -461,32 +461,17 @@ nav ul li.current a {
     width: 100%;
     overflow: hidden;
     margin: 50px 0;
+    perspective: 2000px;
+    perspective-origin: center center;
 }
 
-.gallery-gradient {
-    position: absolute;
-    top: 0;
-    height: 100%;
-    width: 80px;
-    z-index: 10;
-}
 
-.gallery-gradient-left {
-    left: 0;
-    background: linear-gradient(to left, rgba(255, 255, 255, 0) 0%, #ffffff 100%);
-}
-
-.gallery-gradient-right {
-    right: 0;
-    background: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, #ffffff 100%);
-}
 
 .gallery-content {
     display: flex;
     height: 100%;
     align-items: center;
     justify-content: center;
-    perspective: 1500px;
     transform-style: preserve-3d;
 }
 
@@ -500,7 +485,8 @@ nav ul li.current a {
     transform-style: preserve-3d;
     width: 100%;
     position: relative;
-    transition: transform 0.5s ease;
+    transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    will-change: transform;
 }
 
 .gallery-track.grabbing {
@@ -522,21 +508,29 @@ nav ul li.current a {
     border-radius: 15px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
     overflow: hidden;
-    transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.3s ease;
+    transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94), 
+                box-shadow 0.4s ease, 
+                opacity 0.4s ease,
+                filter 0.4s ease;
     transform-origin: center center;
-    opacity: 0.6;
+    opacity: 0.7;
+    filter: blur(0px) brightness(1);
+    will-change: transform, opacity, filter;
 }
 
 .gallery-item.active {
     opacity: 1;
-    box-shadow: 0 15px 30px rgba(94, 114, 228, 0.2);
+    box-shadow: 0 20px 40px rgba(229, 57, 53, 0.25);
     z-index: 10;
+    filter: blur(0px) brightness(1.05);
+    transform: translateZ(50px) scale(1.05);
 }
 
 .gallery-item:hover {
     opacity: 1;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
-    transform: translateY(-10px) translateZ(30px) !important;
+    box-shadow: 0 25px 50px rgba(229, 57, 53, 0.3);
+    transform: translateY(-15px) translateZ(80px) scale(1.08) !important;
+    filter: blur(0px) brightness(1.1);
 }
 
 .gallery-img {
@@ -800,6 +794,7 @@ nav ul li.current a {
 @media screen and (max-width: 768px) {
     .gallery-container {
         height: 450px;
+        perspective: 1500px;
     }
     
     .gallery-item {
@@ -809,10 +804,6 @@ nav ul li.current a {
     
     .gallery-img {
         height: 140px;
-    }
-    
-    .gallery-gradient {
-        width: 60px;
     }
 }
 
@@ -1233,34 +1224,9 @@ nav ul li.current a {
     will-change: transform;
 }
 
-.team-content-wrapper::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 4px;
-    background: linear-gradient(to right, #ffffff, #ffcdd2);
-    z-index: 2;
-}
 
-/* 动态背景粒子效果 */
-.team-content-wrapper::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-image: 
-        radial-gradient(circle at var(--mouse-x, 20%) var(--mouse-y, 30%), rgba(255, 255, 255, 0.15) 0%, transparent 50%),
-        radial-gradient(circle at var(--mouse-x, 80%) var(--mouse-y, 70%), rgba(255, 255, 255, 0.12) 0%, transparent 50%),
-        radial-gradient(circle at var(--mouse-x, 40%) var(--mouse-y, 80%), rgba(255, 255, 255, 0.08) 0%, transparent 50%);
-    z-index: 0;
-    pointer-events: none;
-    animation: particleMove 20s linear infinite;
-    transition: all 0.3s ease;
-}
+
+
 
 @keyframes particleMove {
     0% {
@@ -2707,13 +2673,14 @@ footer .container { max-width: 1400px; padding-left: 28px; padding-right: 28px; 
 
 .cert-item {
     flex: 0 1 320px;
-    border: 1px solid #eef;
+    border: none;
     border-radius: 12px;
     overflow: hidden;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.04);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: none;
+    transition: transform 0.3s ease;
     display: flex;
     flex-direction: column;
+    background: transparent;
 }
 .cert-item:hover {
     transform: translateY(-8px);
@@ -2764,27 +2731,27 @@ footer .container { max-width: 1400px; padding-left: 28px; padding-right: 28px; 
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-between;
-    background: #fff;
+    justify-content: center;
+    background: transparent;
     border-radius: 12px;
     margin: 0 10px;
     filter: none;
     transform: scale(1);
     opacity: 1;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+    box-shadow: none;
     pointer-events: auto;
     flex-shrink: 0;
     overflow: hidden;
-    padding: 15px;
+    padding: 0;
 }
 
 .cert-slide img {
-    width: 90%;
-    height: 75%;
+    width: 100%;
+    height: 100%;
     object-fit: contain;
     border-radius: 8px;
-    background: #fff;
+    background: transparent;
 }
 
 .cert-slide:hover {
@@ -2793,12 +2760,7 @@ footer .container { max-width: 1400px; padding-left: 28px; padding-right: 28px; 
 }
 
 .cert-title {
-    font-size: 0.9rem;
-    color: #333;
-    text-align: center;
-    margin-top: 10px;
-    line-height: 1.3;
-    font-weight: 500;
+    display: none;
 }
 
 /* 证书轮播响应式设计 */
@@ -2806,11 +2768,17 @@ footer .container { max-width: 1400px; padding-left: 28px; padding-right: 28px; 
     .cert-slide { 
         height: 240px; 
         max-height: 240px; 
-        min-height: 200px; 
+        min-height: 200px;
+        transform: scale(1);
+        transition: transform 0.3s ease;
+    }
+    .cert-slide:hover {
+        transform: scale(1.05);
     }
     .certs-track { 
         gap: 16px; 
-        animation-duration: 30s; 
+        animation-duration: 30s;
+        animation-play-state: running;
     }
 }
 
@@ -2819,14 +2787,26 @@ footer .container { max-width: 1400px; padding-left: 28px; padding-right: 28px; 
         height: 200px; 
         max-height: 200px; 
         margin: 0 5px; 
-        padding: 10px;
+        padding: 0;
+        transform: scale(1);
+        transition: transform 0.3s ease;
+    }
+    .cert-slide:hover {
+        transform: scale(1.05);
     }
     .certs-track { 
         gap: 12px; 
-        animation-duration: 25s; 
+        animation-duration: 25s;
+        animation-play-state: running;
     }
     .cert-title {
-        font-size: 0.8rem;
+        display: none;
+    }
+    
+    /* 移动端触摸优化 */
+    .certs-carousel {
+        touch-action: pan-x;
+        -webkit-overflow-scrolling: touch;
     }
 }
 
