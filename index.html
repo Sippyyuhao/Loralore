@@ -1295,6 +1295,23 @@
     </style>
 </head>
 <body>
+    <!-- 小屏幕提示框 -->
+    <div id="mobile-notice" class="mobile-notice">
+        <div class="mobile-notice-content">
+            <div class="mobile-notice-icon">
+                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
+                    <line x1="8" y1="21" x2="16" y2="21"/>
+                    <line x1="12" y1="17" x2="12" y2="21"/>
+                </svg>
+            </div>
+            <div class="mobile-notice-text">
+                <h3>建议使用电脑浏览</h3>
+                <p>为了获得最佳浏览体验，建议您使用电脑访问本网站</p>
+            </div>
+            <button class="mobile-notice-close" onclick="closeMobileNotice()">×</button>
+        </div>
+    </div>
     <header id="header">
         <div class="container">
             <div class="logo">
@@ -1879,7 +1896,7 @@
                                     </div>
                                     <div class="school-info">
                                         <h3 class="school-title">广东海洋大学</h3>
-                                        <p class="school-subtitle">船舶与海洋工程</p>
+                                        <p class="school-subtitle">物联网工程、船舶与海洋工程</p>
                                     </div>
                                 </div>
                             </a>
@@ -2511,6 +2528,38 @@
                         handleSmallScreen(mq);
                         mq.addListener(handleSmallScreen);
                     })();
+        });
+    </script>
+    <script>
+        // 小屏幕提示功能
+        function closeMobileNotice() {
+            document.getElementById('mobile-notice').style.display = 'none';
+            localStorage.setItem('mobileNoticeHidden', 'true');
+        }
+
+        // 检查是否需要显示提示
+        function checkMobileNotice() {
+            const isHidden = localStorage.getItem('mobileNoticeHidden');
+            const isMobile = window.innerWidth <= 768;
+            
+            if (isMobile && !isHidden) {
+                document.getElementById('mobile-notice').style.display = 'flex';
+            }
+        }
+
+        // 页面加载时检查
+        window.addEventListener('load', checkMobileNotice);
+        
+        // 窗口大小改变时检查
+        window.addEventListener('resize', function() {
+            const isMobile = window.innerWidth <= 768;
+            const isHidden = localStorage.getItem('mobileNoticeHidden');
+            
+            if (isMobile && !isHidden) {
+                document.getElementById('mobile-notice').style.display = 'flex';
+            } else if (!isMobile) {
+                document.getElementById('mobile-notice').style.display = 'none';
+            }
         });
     </script>
 </body>

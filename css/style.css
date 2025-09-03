@@ -10,6 +10,110 @@
     --student-color: #e53935;     /* 学生专属价格颜色 */
 }
 
+/* 小屏幕提示框样式 - 新粗野风格 */
+.mobile-notice {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 10000;
+}
+
+.mobile-notice-content {
+    background: #000;
+    border: 4px solid #fff;
+    padding: 30px;
+    margin: 20px;
+    max-width: 350px;
+    text-align: center;
+    position: relative;
+    box-shadow: 8px 8px 0px #fff, 16px 16px 0px rgba(255, 255, 255, 0.3);
+    animation: brutalistSlide 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    transform: rotate(-1deg);
+}
+
+.mobile-notice-icon {
+    margin-bottom: 20px;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+}
+
+.mobile-notice-icon svg {
+    width: 48px;
+    height: 48px;
+    stroke: #fff;
+    stroke-width: 3;
+}
+
+.mobile-notice-text h3 {
+    color: #fff;
+    font-size: 22px;
+    margin: 0 0 15px 0;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-family: 'Arial Black', Arial, sans-serif;
+}
+
+.mobile-notice-text p {
+    color: #fff;
+    font-size: 14px;
+    line-height: 1.4;
+    margin: 0;
+    font-weight: 600;
+}
+
+.mobile-notice-close {
+    position: absolute;
+    top: -2px;
+    right: -2px;
+    background: #fff;
+    border: 3px solid #000;
+    color: #000;
+    font-size: 20px;
+    font-weight: 900;
+    cursor: pointer;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+    box-shadow: 3px 3px 0px #000;
+}
+
+.mobile-notice-close:hover {
+    background: #000;
+    color: #fff;
+    transform: translate(-2px, -2px);
+    box-shadow: 5px 5px 0px #fff;
+}
+
+.mobile-notice-close:active {
+    transform: translate(0px, 0px);
+    box-shadow: 2px 2px 0px #fff;
+}
+
+@keyframes brutalistSlide {
+    0% {
+        opacity: 0;
+        transform: translateY(-100px) rotate(-5deg) scale(0.8);
+    }
+    50% {
+        transform: translateY(10px) rotate(1deg) scale(1.05);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) rotate(-1deg) scale(1);
+    }
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -268,7 +372,18 @@ nav ul li.current a {
 
 /* 展示区样式 */
 #showcase {
-    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6));
+    background: 
+        linear-gradient(135deg, 
+            rgba(229, 57, 53, 0.7) 0%, 
+            rgba(229, 57, 53, 0.4) 25%, 
+            rgba(0, 0, 0, 0.5) 50%, 
+            rgba(229, 57, 53, 0.4) 75%, 
+            rgba(229, 57, 53, 0.7) 100%),
+        linear-gradient(45deg, 
+            rgba(0, 0, 0, 0.2) 0%, 
+            transparent 40%, 
+            transparent 60%, 
+            rgba(0, 0, 0, 0.2) 100%);
     color: #fff;
     height: 100vh;
     display: flex;
@@ -283,6 +398,43 @@ nav ul li.current a {
     background-repeat: no-repeat;
 }
 
+#showcase::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(
+        ellipse at center,
+        transparent 30%,
+        rgba(229, 57, 53, 0.15) 60%,
+        rgba(229, 57, 53, 0.3) 90%
+    );
+    mix-blend-mode: multiply;
+    pointer-events: none;
+    z-index: 1;
+}
+
+#showcase::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+        180deg,
+        rgba(229, 57, 53, 0.1) 0%,
+        transparent 25%,
+        transparent 75%,
+        rgba(229, 57, 53, 0.15) 100%
+    );
+    mix-blend-mode: soft-light;
+    pointer-events: none;
+    z-index: 1;
+}
+
 #particles-js {
     position: absolute;
     width: 100%;
@@ -295,7 +447,7 @@ nav ul li.current a {
 
 #showcase .container {
     position: relative;
-    z-index: 2;
+    z-index: 3;
     animation: fadeIn 1.5s ease;
 }
 
