@@ -310,9 +310,12 @@ document.addEventListener('DOMContentLoaded', function() {
                 const rect = card.getBoundingClientRect();
                 const cardCenterX = rect.left + rect.width / 2;
                 const cardCenterY = rect.top + rect.height / 2;
+                // 使用存储的鼠标位置而不是事件对象
+                const currentMouseX = (mouseX / 100) * teamSection.getBoundingClientRect().width + teamSection.getBoundingClientRect().left;
+                const currentMouseY = (mouseY / 100) * teamSection.getBoundingClientRect().height + teamSection.getBoundingClientRect().top;
                 const distance = Math.sqrt(
-                    Math.pow(e.clientX - cardCenterX, 2) + 
-                    Math.pow(e.clientY - cardCenterY, 2)
+                    Math.pow(currentMouseX - cardCenterX, 2) + 
+                    Math.pow(currentMouseY - cardCenterY, 2)
                 );
                 
                 if (distance < 200) {

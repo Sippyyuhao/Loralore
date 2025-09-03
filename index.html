@@ -1292,6 +1292,116 @@
         }
 
 
+        /* 微信模态框样式 */
+        #wechat-modal .modal-content {
+            background: white;
+            border-radius: 15px;
+            padding: 0;
+            max-width: 500px;
+            width: 90%;
+            max-height: 90vh;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+        }
+
+        .wechat-header {
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-color-dark));
+            color: white;
+            padding: 20px;
+            border-radius: 15px 15px 0 0;
+        }
+
+        .wechat-header h3 {
+            margin: 0;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .wechat-title-animated {
+            overflow: hidden;
+            white-space: nowrap;
+            position: relative;
+            display: inline-block;
+            border-right: 2px solid rgba(255, 255, 255, 0.8);
+        }
+
+        /* 当模态框显示时触发动画 */
+        #wechat-modal.visible .wechat-title-animated {
+            animation: typewriter 2s steps(32, end), blink-caret 0.75s step-end infinite;
+            animation-delay: 0.3s;
+            animation-fill-mode: forwards;
+            width: 0;
+        }
+
+        @keyframes typewriter {
+            from {
+                width: 0;
+            }
+            to {
+                width: 100%;
+            }
+        }
+
+        @keyframes blink-caret {
+            from, to {
+                border-color: transparent;
+            }
+            50% {
+                border-color: rgba(255, 255, 255, 0.8);
+            }
+        }
+
+        .wechat-qr-container {
+            padding: 30px;
+            background: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .wechat-qr-container img {
+            max-width: 100%;
+            max-height: 400px;
+            width: auto;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            object-fit: contain;
+        }
+
+        .wechat-footer {
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 0 0 15px 15px;
+        }
+
+        .wechat-footer p {
+            margin: 5px 0;
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .wechat-footer p:first-child {
+            font-weight: 600;
+            color: #333;
+        }
+
+        #wechat-modal .modal-close-btn {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+            cursor: pointer;
+            z-index: 1000;
+        }
+
+        #wechat-modal .modal-close-btn:hover {
+            color: #f0f0f0;
+        }
+
     </style>
 </head>
 <body>
@@ -2050,7 +2160,7 @@
                             <p>邮箱：sippyyuhao@hotmail.com </p>
                         </div>
                         <div class="social-links">
-                            <a href="#" class="social-link"><i class="fa fa-weixin"></i></a>
+                            <a href="#" class="social-link" id="wechat-link"><i class="fa fa-weixin"></i></a>
                             <a href="javascript:alert('请添加负责人qq：')" class="social-link"><i class="fa fa-qq"></i></a>
                             <a href="https://github.com/" target="_blank" class="social-link"><i class="fa fa-github"></i></a>
                             <a href="https://grabcad.com/sippy-1" target="_blank" class="social-link"><i class="fa fa-cube"></i></a>
@@ -2092,6 +2202,23 @@
             <span class="modal-close-btn">&times;</span>
             <div class="modal-content image-modal-content">
                 <img id="modal-img-content" src="" alt="Certificate Preview">
+            </div>
+        </div>
+
+        <!-- 微信二维码模态框 -->
+        <div id="wechat-modal" class="modal-overlay">
+            <span class="modal-close-btn" id="wechat-modal-close">&times;</span>
+            <div class="modal-content wechat-modal-content">
+                <div class="wechat-header">
+                    <h3 class="wechat-title-animated">Follow Loralore Official WeChat</h3>
+                </div>
+                <div class="wechat-qr-container">
+                    <img src="./images/wechat.png" alt="微信公众号二维码" id="wechat-qr-img">
+                </div>
+                <div class="wechat-footer">
+                    <p>扫描二维码关注我们的微信公众号</p>
+                    <p>获取最新技术资讯和项目动态</p>
+                </div>
             </div>
         </div>
 
@@ -2528,6 +2655,42 @@
                         handleSmallScreen(mq);
                         mq.addListener(handleSmallScreen);
                     })();
+
+            // 微信模态框功能
+            const wechatLink = document.getElementById('wechat-link');
+            const wechatModal = document.getElementById('wechat-modal');
+            const wechatModalClose = document.getElementById('wechat-modal-close');
+
+            if (wechatLink && wechatModal && wechatModalClose) {
+                // 点击微信图标显示模态框
+                wechatLink.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    wechatModal.classList.add('visible');
+                    document.body.style.overflow = 'hidden'; // 防止背景滚动
+                });
+
+                // 点击关闭按钮隐藏模态框
+                wechatModalClose.addEventListener('click', function() {
+                    wechatModal.classList.remove('visible');
+                    document.body.style.overflow = 'auto'; // 恢复滚动
+                });
+
+                // 点击模态框背景隐藏模态框
+                wechatModal.addEventListener('click', function(e) {
+                    if (e.target === wechatModal) {
+                        wechatModal.classList.remove('visible');
+                        document.body.style.overflow = 'auto'; // 恢复滚动
+                    }
+                });
+
+                // ESC键关闭模态框
+                document.addEventListener('keydown', function(e) {
+                    if (e.key === 'Escape' && wechatModal.classList.contains('visible')) {
+                        wechatModal.classList.remove('visible');
+                        document.body.style.overflow = 'auto'; // 恢复滚动
+                    }
+                });
+            }
         });
     </script>
     <script>
