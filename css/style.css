@@ -1884,10 +1884,25 @@ nav ul li.current a {
 }
 
 /* 页脚样式 */
+/* 确保footer触底 */
+html, body {
+    height: 100%;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    flex: 1;
+}
+
 footer {
     background-color: #663939;
     color: #fff;
     padding: 60px 0 30px;
+    margin-top: auto;
 }
 
 .footer-content,

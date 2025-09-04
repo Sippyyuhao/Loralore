@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Loralore - 洛尔工作室 | 创新技术解决方案</title>
     <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/target-cursor.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" crossorigin="anonymous">
     <link rel="icon" href="./images/favicon.webp" type="image/x-icon">
     <meta name="description" content="洛尔科技工作室是由一群充满激情的学生创业者组成的技术团队，专注于创新解决方案的开发与实现。">
@@ -47,7 +48,12 @@
         body {
             font-family: 'Lato', sans-serif;
             background-color: #ffffff; /* 稍微柔和的白色背景 */
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
         }
+        main { flex: 1 0 auto; display: block; }
 
         h1, h2, h3, h4, h5, h6 {
             font-family: 'Poppins', sans-serif;
@@ -1431,13 +1437,13 @@
             </div>
             <nav id="nav">
                 <ul>
-                    <li><a href="#showcase"><i class="fa fa-home"></i><span>首页</span></a></li>
-                    <li><a href="#projects"><i class="fa fa-folder-open-o"></i><span>项目</span></a></li>
-                    <li><a href="#services"><i class="fa fa-briefcase"></i><span>服务</span></a></li>
-                    <li><a href="#equipment"><i class="fa fa-cubes"></i><span>资源</span></a></li>
-                    <li><a href="#team"><i class="fa fa-users"></i><span>团队</span></a></li>
-                    <li><a href="#intellectual-property"><i class="fa fa-certificate"></i><span>知识产权</span></a></li>
-                    <li><a href="#contact"><i class="fa fa-envelope-o"></i><span>联系我们</span></a></li>
+                    <li><a href="#showcase" class="cursor-target"><i class="fa fa-home"></i><span>首页</span></a></li>
+                    <li><a href="#projects" class="cursor-target"><i class="fa fa-folder-open-o"></i><span>项目</span></a></li>
+                    <li><a href="#services" class="cursor-target"><i class="fa fa-briefcase"></i><span>服务</span></a></li>
+                    <li><a href="#equipment" class="cursor-target"><i class="fa fa-cubes"></i><span>资源</span></a></li>
+                    <li><a href="#team" class="cursor-target"><i class="fa fa-users"></i><span>团队</span></a></li>
+                    <li><a href="#intellectual-property" class="cursor-target"><i class="fa fa-certificate"></i><span>知识产权</span></a></li>
+                    <li><a href="#contact" class="cursor-target"><i class="fa fa-envelope-o"></i><span>联系我们</span></a></li>
                     <li class="visit-counter-li"><i class="fa fa-eye"></i><span>累计访问: <span id="visit-count">3000</span></span></li>
                 </ul>
             </nav>
@@ -1454,7 +1460,7 @@
                 <div class="showcase-content">
                     <h1>用创意改变生活</h1>
                     <p>我们是一群热爱技术的学生创业者，致力于将创意转化为现实</p>
-                    <a href="#projects" class="btn btn-primary">查看我们的项目</a>
+                    <a href="#projects" class="btn btn-primary cursor-target">查看我们的项目</a>
                 </div>
             </div>
         </section>
@@ -1649,7 +1655,171 @@
         </section>
 
         <section id="services">
-            <div class="container">
+            <div class="container" style="position: relative;">
+                <!-- 整个服务区域蒙版 -->
+                <div class="services-overlay" style="
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    right: 0;
+                    bottom: 0;
+                    background: rgba(255, 255, 255, 0.9);
+                    backdrop-filter: blur(3px);
+                    z-index: 10;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    border-radius: 15px;
+                    border: 12px solid transparent;
+                    border-image: repeating-linear-gradient(
+                        45deg,
+                        #d32f2f 0px,
+                        #d32f2f 15px,
+                        #ffd700 15px,
+                        #ffd700 30px,
+                        #d32f2f 30px,
+                        #d32f2f 45px,
+                        #ffd700 45px,
+                        #ffd700 60px
+                    ) 12;
+                    box-shadow: 
+                        inset 0 0 0 3px #d32f2f,
+                        inset 0 0 0 6px #ffd700,
+                        inset 0 0 0 9px #d32f2f,
+                        0 0 30px rgba(211, 47, 47, 0.4);
+                ">
+                    <!-- 四角仪仗队徽章装饰 -->
+                    <div style="
+                        position: absolute;
+                        top: -8px;
+                        left: -8px;
+                        width: 40px;
+                        height: 40px;
+                        background: radial-gradient(circle, #ffd700 20%, #d32f2f 40%, #ffd700 60%, #d32f2f 80%);
+                        border-radius: 50%;
+                        border: 3px solid #d32f2f;
+                        box-shadow: 0 0 10px rgba(211, 47, 47, 0.5);
+                    "></div>
+                    <div style="
+                        position: absolute;
+                        top: -8px;
+                        right: -8px;
+                        width: 40px;
+                        height: 40px;
+                        background: radial-gradient(circle, #ffd700 20%, #d32f2f 40%, #ffd700 60%, #d32f2f 80%);
+                        border-radius: 50%;
+                        border: 3px solid #d32f2f;
+                        box-shadow: 0 0 10px rgba(211, 47, 47, 0.5);
+                    "></div>
+                    <div style="
+                        position: absolute;
+                        bottom: -8px;
+                        left: -8px;
+                        width: 40px;
+                        height: 40px;
+                        background: radial-gradient(circle, #ffd700 20%, #d32f2f 40%, #ffd700 60%, #d32f2f 80%);
+                        border-radius: 50%;
+                        border: 3px solid #d32f2f;
+                        box-shadow: 0 0 10px rgba(211, 47, 47, 0.5);
+                    "></div>
+                    <div style="
+                        position: absolute;
+                        bottom: -8px;
+                        right: -8px;
+                        width: 40px;
+                        height: 40px;
+                        background: radial-gradient(circle, #ffd700 20%, #d32f2f 40%, #ffd700 60%, #d32f2f 80%);
+                        border-radius: 50%;
+                        border: 3px solid #d32f2f;
+                        box-shadow: 0 0 10px rgba(211, 47, 47, 0.5);
+                    "></div>
+                    <!-- 边框中央仪仗队装饰条 -->
+                    <div style="
+                        position: absolute;
+                        top: -10px;
+                        left: 50%;
+                        transform: translateX(-50%);
+                        width: 80px;
+                        height: 20px;
+                        background: linear-gradient(90deg, #d32f2f 0%, #ffd700 25%, #d32f2f 50%, #ffd700 75%, #d32f2f 100%);
+                        border-radius: 10px;
+                        border: 2px solid #d32f2f;
+                        box-shadow: 0 0 8px rgba(211, 47, 47, 0.4);
+                    "></div>
+                    <div style="
+                        position: absolute;
+                        bottom: -10px;
+                        left: 50%;
+                        transform: translateX(-50%);
+                        width: 80px;
+                        height: 20px;
+                        background: linear-gradient(90deg, #d32f2f 0%, #ffd700 25%, #d32f2f 50%, #ffd700 75%, #d32f2f 100%);
+                        border-radius: 10px;
+                        border: 2px solid #d32f2f;
+                        box-shadow: 0 0 8px rgba(211, 47, 47, 0.4);
+                    "></div>
+                    <div style="
+                        position: absolute;
+                        left: -10px;
+                        top: 50%;
+                        transform: translateY(-50%);
+                        width: 20px;
+                        height: 80px;
+                        background: linear-gradient(0deg, #d32f2f 0%, #ffd700 25%, #d32f2f 50%, #ffd700 75%, #d32f2f 100%);
+                        border-radius: 10px;
+                        border: 2px solid #d32f2f;
+                        box-shadow: 0 0 8px rgba(211, 47, 47, 0.4);
+                    "></div>
+                    <div style="
+                        position: absolute;
+                        right: -10px;
+                        top: 50%;
+                        transform: translateY(-50%);
+                        width: 20px;
+                        height: 80px;
+                        background: linear-gradient(0deg, #d32f2f 0%, #ffd700 25%, #d32f2f 50%, #ffd700 75%, #d32f2f 100%);
+                        border-radius: 10px;
+                        border: 2px solid #d32f2f;
+                        box-shadow: 0 0 8px rgba(211, 47, 47, 0.4);
+                    "></div>
+                    <div style="
+                        text-align: center;
+                        padding: 50px;
+                        background: rgba(211, 47, 47, 0.1);
+                        border: 2px dashed var(--primary-color);
+                        border-radius: 15px;
+                        max-width: 500px;
+                    ">
+                        <i class="fa fa-cogs" style="
+                            font-size: 60px;
+                            color: var(--primary-color);
+                            margin-bottom: 25px;
+                            display: block;
+                        "></i>
+                        <h3 style="
+                            color: var(--primary-color);
+                            margin-bottom: 20px;
+                            font-size: 28px;
+                            font-weight: 600;
+                        ">服务正在完善中</h3>
+                        <p style="
+                            color: #666;
+                            font-size: 18px;
+                            line-height: 1.6;
+                            margin: 0;
+                        ">我们正在优化服务内容和定价策略<br>敬请期待更好的服务体验</p>
+                        <div style="
+                            margin-top: 25px;
+                            padding: 15px;
+                            background: rgba(211, 47, 47, 0.05);
+                            border-radius: 8px;
+                            font-size: 14px;
+                            color: #888;
+                        ">
+                            <i class="fa fa-clock-o"></i> 预计完善时间：近期
+                        </div>
+                    </div>
+                </div>
                 <h2 class="section-title reveal shiny-text">我们的服务</h2>
                 <div class="services-intro reveal">
                     <p class="services-description">Loralore工作室提供简约静态网站开发服务，无需购买服务器或域名，即可获得优质公网访问体验。我们关注页面美观与移动端适配，为您打造个性化展示页面。</p>
@@ -1666,7 +1836,50 @@
                     </div>
                 </div>
                 
-                <div class="service-highlight reveal">
+                <div class="service-highlight reveal" style="position: relative;">
+                    <!-- 服务完善中蒙版 -->
+                    <div class="service-overlay" style="
+                        position: absolute;
+                        top: 0;
+                        left: -75%;
+                        right: 0;
+                        bottom: 0;
+                        background: rgba(255, 255, 255, 0.9);
+                        backdrop-filter: blur(3px);
+                        z-index: 10;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        border-radius: 15px;
+                    ">
+                        <div style="
+                            text-align: center;
+                            padding: 40px;
+                            background: rgba(211, 47, 47, 0.1);
+                            border: 2px dashed var(--primary-color);
+                            border-radius: 15px;
+                            max-width: 400px;
+                        ">
+                            <i class="fa fa-cogs" style="
+                                font-size: 48px;
+                                color: var(--primary-color);
+                                margin-bottom: 20px;
+                                display: block;
+                            "></i>
+                            <h3 style="
+                                color: var(--primary-color);
+                                margin-bottom: 15px;
+                                font-size: 24px;
+                                font-weight: 600;
+                            ">服务正在完善中</h3>
+                            <p style="
+                                color: #666;
+                                font-size: 16px;
+                                line-height: 1.5;
+                                margin: 0;
+                            ">我们正在优化服务内容和定价策略<br>敬请期待更好的服务体验</p>
+                        </div>
+                    </div>
                     <div class="pricing-comparison">
                         <!-- Regular Price Card -->
                         <div class="service-card">
@@ -1710,7 +1923,7 @@
                                     </div>
                                 </div>
                                 <div class="service-action">
-                                    <a href="#contact" class="btn" id="btn-regular">立即拥有</a>
+                                    <a href="#contact" class="btn cursor-target" id="btn-regular">立即拥有</a>
                                 </div>
                             </div>
                         </div>
@@ -1766,7 +1979,7 @@
                                     </div>
                                 </div>
                                 <div class="service-action">
-                                    <a href="#contact" class="btn btn-primary" id="btn-student">学生专享价</a>
+                                    <a href="#contact" class="btn btn-primary cursor-target" id="btn-student">学生专享价</a>
                                 </div>
                             </div>
                         </div>
@@ -1826,7 +2039,7 @@
                                     </div>
                                 </div>
                                 <div class="service-action">
-                                    <a href="#contact" class="btn btn-premium" id="btn-premium">急速上线</a>
+                                    <a href="#contact" class="btn btn-premium cursor-target" id="btn-premium">急速上线</a>
                                 </div>
                             </div>
                         </div>
@@ -1914,46 +2127,352 @@
             <div class="container">
                 <h2 class="section-title reveal shiny-text">资源</h2>
                 <div class="equipment-intro reveal">
-                    <p class="equipment-description">Loralore工作室配备多台专业3D打印设备，支持团队从产品原型设计到最终实物成型的全流程创新。我们的资源涵盖FDM打印、激光雕刻等不同工艺，为创意项目提供强大硬件支持。</p>
+                    <p class="equipment-description">Loralore工作室拥有丰富的技术资源，涵盖3D打印设备、具身人工智能系统和航行器等前沿科技领域。从原型设计到智能交互，从地面制造到空中探索，我们的多元化设备为创新项目提供全方位的技术支持与实现可能。</p>
                 </div>
                 
-                <div class="equipment-grid">
-                    <div class="equipment-item reveal">
-                        <div class="equipment-image">
-                            <img src="./images/创想三维Ender3v3ke.webp" alt="创想三维Ender3v3ke" loading="lazy">
-                        </div>
-                        <div class="equipment-info">
-                            <h3>创想三维Ender3v3ke</h3>
-                        </div>
+                <!-- 三行错位轮播图片展示 -->
+                <div class="parallax-gallery" id="parallaxGallery" style="
+                    overflow: hidden;
+                    margin: 60px 0;
+                    position: relative;
+                    height: 600px;
+                    user-select: none;
+                ">
+                    <!-- 第一行标题 -->
+                    <div style="
+                        position: absolute;
+                        top: -30px;
+                        left: 20px;
+                        font-size: 18px;
+                        font-weight: 600;
+                        color: var(--primary-color);
+                        z-index: 5;
+                    ">3D打印设备</div>
+                    
+                    <!-- 第一行：3D打印机 - 向左滚动 -->
+                    <div class="gallery-row" id="row1" data-direction="left" style="
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        width: 400%;
+                        height: 180px;
+                        display: flex;
+                        align-items: center;
+                        gap: 30px;
+                        animation: scrollLeft 40s linear infinite;
+                    ">
+                        <!-- 多次重复图片实现完美闭环 -->
+                        <img src="./images/resources/3d printer/创想三维Ender3v3ke.webp" alt="3D打印机" style="height: 150px; width: auto; border-radius: 15px; box-shadow: 0 8px 25px rgba(0,0,0,0.15);">
+                        <img src="./images/resources/3d printer/拓竹A1mini.webp" alt="3D打印机" style="height: 150px; width: auto; border-radius: 15px; box-shadow: 0 8px 25px rgba(0,0,0,0.15);">
+                        <img src="./images/resources/3d printer/拓竹p1s.webp" alt="3D打印机" style="height: 150px; width: auto; border-radius: 15px; box-shadow: 0 8px 25px rgba(0,0,0,0.15);">
+                        <img src="./images/resources/3d printer/创想三维Ender3v3ke.webp" alt="3D打印机" style="height: 150px; width: auto; border-radius: 15px; box-shadow: 0 8px 25px rgba(0,0,0,0.15);">
+                        <img src="./images/resources/3d printer/拓竹A1mini.webp" alt="3D打印机" style="height: 150px; width: auto; border-radius: 15px; box-shadow: 0 8px 25px rgba(0,0,0,0.15);">
+                        <img src="./images/resources/3d printer/拓竹p1s.webp" alt="3D打印机" style="height: 150px; width: auto; border-radius: 15px; box-shadow: 0 8px 25px rgba(0,0,0,0.15);">
+                        <img src="./images/resources/3d printer/创想三维Ender3v3ke.webp" alt="3D打印机" style="height: 150px; width: auto; border-radius: 15px; box-shadow: 0 8px 25px rgba(0,0,0,0.15);">
+                        <img src="./images/resources/3d printer/拓竹A1mini.webp" alt="3D打印机" style="height: 150px; width: auto; border-radius: 15px; box-shadow: 0 8px 25px rgba(0,0,0,0.15);">
+                        <img src="./images/resources/3d printer/拓竹p1s.webp" alt="3D打印机" style="height: 150px; width: auto; border-radius: 15px; box-shadow: 0 8px 25px rgba(0,0,0,0.15);">
+                        <img src="./images/resources/3d printer/创想三维Ender3v3ke.webp" alt="3D打印机" style="height: 150px; width: auto; border-radius: 15px; box-shadow: 0 8px 25px rgba(0,0,0,0.15);">
+                        <img src="./images/resources/3d printer/拓竹A1mini.webp" alt="3D打印机" style="height: 150px; width: auto; border-radius: 15px; box-shadow: 0 8px 25px rgba(0,0,0,0.15);">
+                        <img src="./images/resources/3d printer/拓竹p1s.webp" alt="3D打印机" style="height: 150px; width: auto; border-radius: 15px; box-shadow: 0 8px 25px rgba(0,0,0,0.15);">
                     </div>
                     
-                    <div class="equipment-item reveal">
-                        <div class="equipment-image">
-                            <img src="./images/拓竹A1mini.webp" alt="拓竹A1mini" loading="lazy">
-                        </div>
-                        <div class="equipment-info">
-                            <h3>拓竹A1mini</h3>
-                        </div>
+                    <!-- 第二行标题 -->
+                    <div style="
+                        position: absolute;
+                        top: 180px;
+                        right: 20px;
+                        font-size: 18px;
+                        font-weight: 600;
+                        color: var(--primary-color);
+                        z-index: 5;
+                    ">具身人工智能</div>
+                    
+                    <!-- 第二行：机器人 - 向右滚动 -->
+                    <div class="gallery-row" id="row2" data-direction="right" style="
+                        position: absolute;
+                        top: 210px;
+                        left: 0;
+                        width: 400%;
+                        height: 180px;
+                        display: flex;
+                        align-items: center;
+                        gap: 30px;
+                        animation: scrollRight 50s linear infinite;
+                    ">
+                        <!-- 多次重复图片实现完美闭环 -->
+                        <img src="./images/resources/robot/01.webp" alt="机器人" style="height: 150px; width: auto; border-radius: 15px; box-shadow: 0 8px 25px rgba(0,0,0,0.15);">
+                        <img src="./images/resources/robot/02.webp" alt="机器人" style="height: 150px; width: auto; border-radius: 15px; box-shadow: 0 8px 25px rgba(0,0,0,0.15);">
+                        <img src="./images/resources/robot/03.webp" alt="机器人" style="height: 150px; width: auto; border-radius: 15px; box-shadow: 0 8px 25px rgba(0,0,0,0.15);">
+                        <img src="./images/resources/robot/01.webp" alt="机器人" style="height: 150px; width: auto; border-radius: 15px; box-shadow: 0 8px 25px rgba(0,0,0,0.15);">
+                        <img src="./images/resources/robot/02.webp" alt="机器人" style="height: 150px; width: auto; border-radius: 15px; box-shadow: 0 8px 25px rgba(0,0,0,0.15);">
+                        <img src="./images/resources/robot/03.webp" alt="机器人" style="height: 150px; width: auto; border-radius: 15px; box-shadow: 0 8px 25px rgba(0,0,0,0.15);">
+                        <img src="./images/resources/robot/01.webp" alt="机器人" style="height: 150px; width: auto; border-radius: 15px; box-shadow: 0 8px 25px rgba(0,0,0,0.15);">
+                        <img src="./images/resources/robot/02.webp" alt="机器人" style="height: 150px; width: auto; border-radius: 15px; box-shadow: 0 8px 25px rgba(0,0,0,0.15);">
+                        <img src="./images/resources/robot/03.webp" alt="机器人" style="height: 150px; width: auto; border-radius: 15px; box-shadow: 0 8px 25px rgba(0,0,0,0.15);">
+                        <img src="./images/resources/robot/01.webp" alt="机器人" style="height: 150px; width: auto; border-radius: 15px; box-shadow: 0 8px 25px rgba(0,0,0,0.15);">
+                        <img src="./images/resources/robot/02.webp" alt="机器人" style="height: 150px; width: auto; border-radius: 15px; box-shadow: 0 8px 25px rgba(0,0,0,0.15);">
+                        <img src="./images/resources/robot/03.webp" alt="机器人" style="height: 150px; width: auto; border-radius: 15px; box-shadow: 0 8px 25px rgba(0,0,0,0.15);">
                     </div>
                     
-                    <div class="equipment-item reveal">
-                        <div class="equipment-image">
-                            <img src="./images/拓竹p1s.webp" alt="拓竹P1S" loading="lazy">
-                        </div>
-                        <div class="equipment-info">
-                            <h3>拓竹P1S</h3>
-                        </div>
-                    </div>
+                    <!-- 第三行标题 -->
+                    <div style="
+                        position: absolute;
+                        top: 390px;
+                        left: 20px;
+                        font-size: 18px;
+                        font-weight: 600;
+                        color: var(--primary-color);
+                        z-index: 5;
+                    ">航行器</div>
                     
-                    <div class="equipment-item reveal">
-                        <div class="equipment-image">
-                            <img src="./images/Think3D.webp" alt="Think3D " loading="lazy">
-                        </div>
-                        <div class="equipment-info">
-                            <h3>Think3D </h3>
-                        </div>
+                    <!-- 第三行：旅行者 - 向左滚动 -->
+                    <div class="gallery-row" id="row3" data-direction="left" style="
+                        position: absolute;
+                        top: 420px;
+                        left: 0;
+                        width: 400%;
+                        height: 180px;
+                        display: flex;
+                        align-items: center;
+                        gap: 30px;
+                        animation: scrollLeft 60s linear infinite;
+                    ">
+                        <!-- 多次重复图片实现完美闭环 -->
+                        <img src="./images/resources/voyager/01.webp" alt="旅行者" style="height: 150px; width: auto; border-radius: 15px; box-shadow: 0 8px 25px rgba(0,0,0,0.15);">
+                        <img src="./images/resources/voyager/02.webp" alt="旅行者" style="height: 150px; width: auto; border-radius: 15px; box-shadow: 0 8px 25px rgba(0,0,0,0.15);">
+                        <img src="./images/resources/voyager/03.webp" alt="旅行者" style="height: 150px; width: auto; border-radius: 15px; box-shadow: 0 8px 25px rgba(0,0,0,0.15);">
+                        <img src="./images/resources/voyager/04.webp" alt="旅行者" style="height: 150px; width: auto; border-radius: 15px; box-shadow: 0 8px 25px rgba(0,0,0,0.15);">
+                        <img src="./images/resources/voyager/05.webp" alt="旅行者" style="height: 150px; width: auto; border-radius: 15px; box-shadow: 0 8px 25px rgba(0,0,0,0.15);">
+                        <img src="./images/resources/voyager/01.webp" alt="旅行者" style="height: 150px; width: auto; border-radius: 15px; box-shadow: 0 8px 25px rgba(0,0,0,0.15);">
+                        <img src="./images/resources/voyager/02.webp" alt="旅行者" style="height: 150px; width: auto; border-radius: 15px; box-shadow: 0 8px 25px rgba(0,0,0,0.15);">
+                        <img src="./images/resources/voyager/03.webp" alt="旅行者" style="height: 150px; width: auto; border-radius: 15px; box-shadow: 0 8px 25px rgba(0,0,0,0.15);">
+                        <img src="./images/resources/voyager/04.webp" alt="旅行者" style="height: 150px; width: auto; border-radius: 15px; box-shadow: 0 8px 25px rgba(0,0,0,0.15);">
+                        <img src="./images/resources/voyager/05.webp" alt="旅行者" style="height: 150px; width: auto; border-radius: 15px; box-shadow: 0 8px 25px rgba(0,0,0,0.15);">
+                        <img src="./images/resources/voyager/01.webp" alt="旅行者" style="height: 150px; width: auto; border-radius: 15px; box-shadow: 0 8px 25px rgba(0,0,0,0.15);">
+                        <img src="./images/resources/voyager/02.webp" alt="旅行者" style="height: 150px; width: auto; border-radius: 15px; box-shadow: 0 8px 25px rgba(0,0,0,0.15);">
+                        <img src="./images/resources/voyager/03.webp" alt="旅行者" style="height: 150px; width: auto; border-radius: 15px; box-shadow: 0 8px 25px rgba(0,0,0,0.15);">
+                        <img src="./images/resources/voyager/04.webp" alt="旅行者" style="height: 150px; width: auto; border-radius: 15px; box-shadow: 0 8px 25px rgba(0,0,0,0.15);">
+                        <img src="./images/resources/voyager/05.webp" alt="旅行者" style="height: 150px; width: auto; border-radius: 15px; box-shadow: 0 8px 25px rgba(0,0,0,0.15);">
                     </div>
                 </div>
+                
+                <!-- CSS动画定义 -->
+                <style>
+                    @keyframes scrollLeft {
+                        0% { transform: translateX(0); }
+                        100% { transform: translateX(-25%); }
+                    }
+                    
+                    @keyframes scrollRight {
+                        0% { transform: translateX(-25%); }
+                        100% { transform: translateX(0%); }
+                    }
+                    
+                    .gallery-row {
+                        transition: transform 0.3s ease;
+                    }
+                    
+                    .gallery-row:hover {
+                        transform: scale(1.02);
+                    }
+                    
+                    /* 视差滑动效果 */
+                    .parallax-gallery {
+                        cursor: grab;
+                    }
+                    
+                    .parallax-gallery:active {
+                        cursor: grabbing;
+                    }
+                    
+                    /* 响应式设计 */
+                    @media (max-width: 768px) {
+                        .parallax-gallery {
+                            height: 450px;
+                        }
+                        
+                        .gallery-row {
+                            height: 130px;
+                        }
+                        
+                        .gallery-row:nth-child(2) {
+                            top: 150px;
+                        }
+                        
+                        .gallery-row:nth-child(3) {
+                            top: 300px;
+                        }
+                        
+                        .gallery-row img {
+                            height: 100px !important;
+                        }
+                    }
+                </style>
+                
+                <!-- JavaScript交互控制 -->
+                <script>
+                document.addEventListener('DOMContentLoaded', function() {
+                    const gallery = document.getElementById('parallaxGallery');
+                    const rows = gallery.querySelectorAll('.gallery-row');
+                    
+                    let isDragging = false;
+                    let startX = 0;
+                    let currentX = 0;
+                    let animationSpeed = [1, 1, 1]; // 三行的速度倍数
+                    let baseSpeed = [40, 50, 60]; // 基础动画时间（秒）
+                    
+                    // 更新动画速度
+                    function updateAnimationSpeed() {
+                        rows.forEach((row, index) => {
+                            const direction = row.dataset.direction;
+                            const speed = baseSpeed[index] / animationSpeed[index];
+                            const animationName = direction === 'left' ? 'scrollLeft' : 'scrollRight';
+                            row.style.animation = `${animationName} ${speed}s linear infinite`;
+                        });
+                    }
+                    
+                    // 鼠标事件
+                    gallery.addEventListener('mousedown', function(e) {
+                        isDragging = true;
+                        startX = e.clientX;
+                        gallery.style.cursor = 'grabbing';
+                        
+                        // 暂停所有动画
+                        rows.forEach(row => {
+                            row.style.animationPlayState = 'paused';
+                        });
+                    });
+                    
+                    gallery.addEventListener('mousemove', function(e) {
+                        if (!isDragging) return;
+                        
+                        currentX = e.clientX;
+                        const deltaX = currentX - startX;
+                        const sensitivity = 0.01;
+                        
+                        // 根据滑动方向和距离调整速度
+                        const speedMultiplier = Math.max(0.1, Math.min(3, 1 + Math.abs(deltaX) * sensitivity));
+                        
+                        animationSpeed = [speedMultiplier, speedMultiplier * 0.8, speedMultiplier * 0.6];
+                        
+                        // 实时更新位置
+                        rows.forEach((row, index) => {
+                            const direction = row.dataset.direction;
+                            const currentTransform = row.style.transform || 'translateX(0)';
+                            const currentTranslate = parseFloat(currentTransform.match(/-?\d+\.?\d*/)?.[0] || 0);
+                            
+                            let newTranslate;
+                            if (direction === 'left') {
+                                newTranslate = currentTranslate - deltaX * 0.1;
+                            } else {
+                                newTranslate = currentTranslate + deltaX * 0.1;
+                            }
+                            
+                            row.style.transform = `translateX(${newTranslate}px)`;
+                        });
+                        
+                        startX = currentX;
+                    });
+                    
+                    gallery.addEventListener('mouseup', function() {
+                        if (!isDragging) return;
+                        
+                        isDragging = false;
+                        gallery.style.cursor = 'grab';
+                        
+                        // 恢复动画
+                        updateAnimationSpeed();
+                        rows.forEach(row => {
+                            row.style.animationPlayState = 'running';
+                            row.style.transform = ''; // 清除手动变换
+                        });
+                        
+                        // 3秒后恢复正常速度
+                        setTimeout(() => {
+                            animationSpeed = [1, 1, 1];
+                            updateAnimationSpeed();
+                        }, 3000);
+                    });
+                    
+                    gallery.addEventListener('mouseleave', function() {
+                        if (isDragging) {
+                            isDragging = false;
+                            gallery.style.cursor = 'grab';
+                            
+                            // 恢复动画
+                            updateAnimationSpeed();
+                            rows.forEach(row => {
+                                row.style.animationPlayState = 'running';
+                                row.style.transform = '';
+                            });
+                            
+                            setTimeout(() => {
+                                animationSpeed = [1, 1, 1];
+                                updateAnimationSpeed();
+                            }, 3000);
+                        }
+                    });
+                    
+                    // 触摸事件（移动端）
+                    gallery.addEventListener('touchstart', function(e) {
+                        isDragging = true;
+                        startX = e.touches[0].clientX;
+                        
+                        rows.forEach(row => {
+                            row.style.animationPlayState = 'paused';
+                        });
+                    });
+                    
+                    gallery.addEventListener('touchmove', function(e) {
+                        if (!isDragging) return;
+                        e.preventDefault();
+                        
+                        currentX = e.touches[0].clientX;
+                        const deltaX = currentX - startX;
+                        const sensitivity = 0.01;
+                        
+                        const speedMultiplier = Math.max(0.1, Math.min(3, 1 + Math.abs(deltaX) * sensitivity));
+                        animationSpeed = [speedMultiplier, speedMultiplier * 0.8, speedMultiplier * 0.6];
+                        
+                        rows.forEach((row, index) => {
+                            const direction = row.dataset.direction;
+                            const currentTransform = row.style.transform || 'translateX(0)';
+                            const currentTranslate = parseFloat(currentTransform.match(/-?\d+\.?\d*/)?.[0] || 0);
+                            
+                            let newTranslate;
+                            if (direction === 'left') {
+                                newTranslate = currentTranslate - deltaX * 0.1;
+                            } else {
+                                newTranslate = currentTranslate + deltaX * 0.1;
+                            }
+                            
+                            row.style.transform = `translateX(${newTranslate}px)`;
+                        });
+                        
+                        startX = currentX;
+                    });
+                    
+                    gallery.addEventListener('touchend', function() {
+                        if (!isDragging) return;
+                        
+                        isDragging = false;
+                        
+                        updateAnimationSpeed();
+                        rows.forEach(row => {
+                            row.style.animationPlayState = 'running';
+                            row.style.transform = '';
+                        });
+                        
+                        setTimeout(() => {
+                            animationSpeed = [1, 1, 1];
+                            updateAnimationSpeed();
+                        }, 3000);
+                    });
+                    
+                    // 初始化
+                    updateAnimationSpeed();
+                });
+                </script>
             </div>
         </section>
 
@@ -1980,8 +2499,8 @@
                         <div class="cmu-card-content">
                             <div class="cmu-logo-wrapper">
                                 <img src="./images/CMU.webp" alt="Carnegie Mellon University Logo" loading="lazy" 
-                                     onload="console.log('CMU logo loaded via HTML onload')" 
-                                     onerror="console.error('CMU logo failed to load via HTML'); this.style.display='none';">
+                                     onload="console.log('🎓 欢迎来到Loralore！CMU合作展示已完美加载')" 
+                                     onerror="console.log('🌟 欢迎来到Loralore！正在为您优化显示效果'); this.style.display='none';">
                                 <!-- 备用文字 -->
                                 <div class="cmu-fallback-text" style="display: none; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: white; font-size: 2rem; font-weight: bold; z-index: 2;">CMU</div>
                             </div>
@@ -2045,19 +2564,19 @@
                     <div class="carousel-container reveal">
                         <div class="team-bg-carousel" aria-label="CMU生活照片轮播">
                             <div class="team-bg-track">
-                                <img class="team-bg-slide" src="./images/live%20in%20cmu/cmu1.webp" alt="cmu1" loading="lazy">
-                                <img class="team-bg-slide" src="./images/live%20in%20cmu/cmu2.webp" alt="cmu2" loading="lazy">
-                                <img class="team-bg-slide" src="./images/live%20in%20cmu/cmu3.webp" alt="cmu3" loading="lazy">
-                                <img class="team-bg-slide" src="./images/live%20in%20cmu/cmu4.webp" alt="cmu4" loading="lazy">
-                                <img class="team-bg-slide" src="./images/live%20in%20cmu/cmu5.webp" alt="cmu5" loading="lazy">
-                                <img class="team-bg-slide" src="./images/live%20in%20cmu/cmu6.webp" alt="cmu6" loading="lazy">
+                                <img class="team-bg-slide cursor-target" src="./images/live%20in%20cmu/cmu1.webp" alt="cmu1" loading="lazy">
+                                <img class="team-bg-slide cursor-target" src="./images/live%20in%20cmu/cmu2.webp" alt="cmu2" loading="lazy">
+                                <img class="team-bg-slide cursor-target" src="./images/live%20in%20cmu/cmu3.webp" alt="cmu3" loading="lazy">
+                                <img class="team-bg-slide cursor-target" src="./images/live%20in%20cmu/cmu4.webp" alt="cmu4" loading="lazy">
+                                <img class="team-bg-slide cursor-target" src="./images/live%20in%20cmu/cmu5.webp" alt="cmu5" loading="lazy">
+                                <img class="team-bg-slide cursor-target" src="./images/live%20in%20cmu/cmu6.webp" alt="cmu6" loading="lazy">
                                 <!-- duplicated for seamless loop -->
-                                <img class="team-bg-slide" src="./images/live%20in%20cmu/cmu1.webp" alt="cmu1" loading="lazy">
-                                <img class="team-bg-slide" src="./images/live%20in%20cmu/cmu2.webp" alt="cmu2" loading="lazy">
-                                <img class="team-bg-slide" src="./images/live%20in%20cmu/cmu3.webp" alt="cmu3" loading="lazy">
-                                <img class="team-bg-slide" src="./images/live%20in%20cmu/cmu4.webp" alt="cmu4" loading="lazy">
-                                <img class="team-bg-slide" src="./images/live%20in%20cmu/cmu5.webp" alt="cmu5" loading="lazy">
-                                <img class="team-bg-slide" src="./images/live%20in%20cmu/cmu6.webp" alt="cmu6" loading="lazy">
+                                <img class="team-bg-slide cursor-target" src="./images/live%20in%20cmu/cmu1.webp" alt="cmu1" loading="lazy">
+                                <img class="team-bg-slide cursor-target" src="./images/live%20in%20cmu/cmu2.webp" alt="cmu2" loading="lazy">
+                                <img class="team-bg-slide cursor-target" src="./images/live%20in%20cmu/cmu3.webp" alt="cmu3" loading="lazy">
+                                <img class="team-bg-slide cursor-target" src="./images/live%20in%20cmu/cmu4.webp" alt="cmu4" loading="lazy">
+                                <img class="team-bg-slide cursor-target" src="./images/live%20in%20cmu/cmu5.webp" alt="cmu5" loading="lazy">
+                                <img class="team-bg-slide cursor-target" src="./images/live%20in%20cmu/cmu6.webp" alt="cmu6" loading="lazy">
                             </div>
                         </div>
                     </div>
@@ -2103,36 +2622,36 @@
                     <div class="certs-carousel" aria-label="知识产权证书轮播">
                         <div class="certs-track">
                             <!-- 第一组证书图片 -->
-                            <div class="cert-slide">
+                            <div class="cert-slide cursor-target">
                                 <img src="images/weijif 1 of 1.webp" alt="微积分计算软件著作权证书" loading="lazy">
                                 <div class="cert-title">软件著作权：微积分计算软件</div>
                             </div>
-                            <div class="cert-slide">
+                            <div class="cert-slide cursor-target">
                                 <img src="images/LAN 1 of 1.webp" alt="LAN交流互动软件著作权证书" loading="lazy">
                                 <div class="cert-title">软件著作权：LAN交流互动软件</div>
                             </div>
-                            <div class="cert-slide">
+                            <div class="cert-slide cursor-target">
                                 <img src="images/ASCIIfy 1 of 1.webp" alt="图像转ASCII软件著作权证书" loading="lazy">
                                 <div class="cert-title">软件著作权：图像转ASCII软件</div>
                             </div>
-                            <div class="cert-slide">
+                            <div class="cert-slide cursor-target">
                                 <img src="images/patent.webp" alt="发明与实用新型专利证书" loading="lazy">
                                 <div class="cert-title">多项发明与实用新型专利</div>
                             </div>
                             <!-- 复制的第二组证书图片，实现无缝循环 -->
-                            <div class="cert-slide">
+                            <div class="cert-slide cursor-target">
                                 <img src="images/weijif 1 of 1.webp" alt="微积分计算软件著作权证书" loading="lazy">
                                 <div class="cert-title">软件著作权：微积分计算软件</div>
                             </div>
-                            <div class="cert-slide">
+                            <div class="cert-slide cursor-target">
                                 <img src="images/LAN 1 of 1.webp" alt="LAN交流互动软件著作权证书" loading="lazy">
                                 <div class="cert-title">软件著作权：LAN交流互动软件</div>
                             </div>
-                            <div class="cert-slide">
+                            <div class="cert-slide cursor-target">
                                 <img src="images/ASCIIfy 1 of 1.webp" alt="图像转ASCII软件著作权证书" loading="lazy">
                                 <div class="cert-title">软件著作权：图像转ASCII软件</div>
                             </div>
-                            <div class="cert-slide">
+                            <div class="cert-slide cursor-target">
                                 <img src="images/patent.webp" alt="发明与实用新型专利证书" loading="lazy">
                                 <div class="cert-title">多项发明与实用新型专利</div>
                             </div>
@@ -2180,7 +2699,7 @@
                             <div class="form-group">
                                 <textarea id="form-message" name="message" placeholder="您的留言" required></textarea>
                             </div>
-                            <button type="submit" class="btn btn-primary">发送消息</button>
+                            <button type="submit" class="btn btn-primary cursor-target">发送消息</button>
                         </form>
                     </div>
                 </div>
@@ -2230,26 +2749,27 @@
                         <p class="footer-tagline">无限进步</p>
                         <p class="footer-desc">我们是一支跨校的学生创意与技术团队，专注于小程序、Web 与桌面端的产品设计与实现，用技术驱动创意落地。</p>
                         <div class="footer-social">
-                            <a href="https://github.com/Sippyyuhao/Loralore" target="_blank" aria-label="GitHub"><i class="fa fa-github"></i></a>
-                            <a href="https://grabcad.com/sippy-1" target="_blank" aria-label="GrabCAD"><i class="fa fa-cube"></i></a>
-                            <a href="javascript:alert('请添加负责人qq：')" aria-label="QQ"><i class="fa fa-qq"></i></a>
+                            <a href="https://github.com/Sippyyuhao/Loralore" target="_blank" aria-label="GitHub" class="cursor-target"><i class="fa fa-github"></i></a>
+                            <a href="https://grabcad.com/sippy-1" target="_blank" aria-label="GrabCAD" class="cursor-target"><i class="fa fa-cube"></i></a>
+                            <a href="javascript:alert('请添加负责人qq：')" aria-label="QQ" class="cursor-target"><i class="fa fa-qq"></i></a>
+                            <a href="#" id="footer-wechat-btn" aria-label="WeChat" class="cursor-target"><i class="fa fa-wechat"></i></a>
                         </div>
                     </div>
                     <div class="footer-links">
                         <div class="footer-links-column">
                             <h3>快速链接</h3>
-                            <a href="#projects">项目展示</a>
-                            <a href="#services">服务</a>
-                            <a href="#equipment">资源</a>
-                            <a href="#team">团队介绍</a>
-                            <a href="#contact">联系我们</a>
+                            <a href="#projects" class="cursor-target">项目展示</a>
+                            <a href="#services" class="cursor-target">服务</a>
+                            <a href="#equipment" class="cursor-target">资源</a>
+                            <a href="#team" class="cursor-target">团队介绍</a>
+                            <a href="#contact" class="cursor-target">联系我们</a>
                         </div>
                         <div class="footer-links-column">
                             <h3>项目类型</h3>
-                            <a href="#project-ascii-wx">微信小程序</a>
-                            <a href="#project-ascii-qt">桌面应用</a>
-                            <a href="#project-lovalovea">Web应用</a>
-                            <a href="#project-calculus">数学应用</a>
+                            <a href="#project-ascii-wx" class="cursor-target">微信小程序</a>
+                            <a href="#project-ascii-qt" class="cursor-target">桌面应用</a>
+                            <a href="#project-lovalovea" class="cursor-target">Web应用</a>
+                            <a href="#project-calculus" class="cursor-target">数学应用</a>
                         </div>
                     </div>
                     <div class="footer-contact">
@@ -2260,13 +2780,13 @@
                             <li><i class="fa fa-envelope"></i> sippyyuhao@hotmail.com</li>
                         </ul>
                         <div class="footer-cta">
-                            <a href="#contact" class="btn btn-icon"><i class="fa fa-paper-plane"></i>Have Fun</a>
+                            <a href="#contact" class="btn btn-icon cursor-target"><i class="fa fa-paper-plane"></i>Have Fun</a>
                         </div>
                     </div>
                 </div>
                 <div class="footer-bottom">
                     <p>&copy; 2025 Loralore. 保留所有权利.</p>
-                    <a href="#showcase" class="back-to-top" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
+                    <a href="#showcase" class="back-to-top cursor-target" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
                 </div>
             </div>
         </footer>
@@ -2326,7 +2846,7 @@
                         }
                     })
                     .catch(error => {
-                        console.error('Error fetching visit count:', error);
+                        console.log('📊 欢迎来到Loralore！访问统计功能正在优化中，感谢您的关注');
                         // 在出错时给用户一个反馈
                         visitCountElement.innerText = 'N/A';
                     });
@@ -2336,7 +2856,7 @@
                 // 使用配置文件初始化粒子效果
                 particlesJS("particles-js", particlesConfig);
             } else {
-                console.error("particles.js 未加载");
+                console.log("✨ 欢迎来到Loralore！粒子特效正在为您准备中，精彩即将呈现");
             }
 
             // 滚动显示动画
@@ -2658,16 +3178,27 @@
 
             // 微信模态框功能
             const wechatLink = document.getElementById('wechat-link');
+            const footerWechatBtn = document.getElementById('footer-wechat-btn');
             const wechatModal = document.getElementById('wechat-modal');
             const wechatModalClose = document.getElementById('wechat-modal-close');
 
-            if (wechatLink && wechatModal && wechatModalClose) {
-                // 点击微信图标显示模态框
-                wechatLink.addEventListener('click', function(e) {
+            if (wechatModal && wechatModalClose) {
+                // 显示微信模态框的通用函数
+                function showWechatModal(e) {
                     e.preventDefault();
                     wechatModal.classList.add('visible');
                     document.body.style.overflow = 'hidden'; // 防止背景滚动
-                });
+                }
+
+                // 点击header微信图标显示模态框
+                if (wechatLink) {
+                    wechatLink.addEventListener('click', showWechatModal);
+                }
+
+                // 点击footer微信按钮显示模态框
+                if (footerWechatBtn) {
+                    footerWechatBtn.addEventListener('click', showWechatModal);
+                }
 
                 // 点击关闭按钮隐藏模态框
                 wechatModalClose.addEventListener('click', function() {
@@ -2725,5 +3256,76 @@
             }
         });
     </script>
+    <script src="./js/target-cursor.js"></script>
 </body>
+</html>ex';
+            } else if (!isMobile) {
+                document.getElementById('mobile-notice').style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>   }
+        });
+    </script>
+</body>
+</html>notice').style.display = 'flex';
+            } else if (!isMobile) {
+                document.getElementById('mobile-notice').style.display = 'none';
+            }
+        });
+    </script>
+    <script src="./js/target-cursor.js"></script>
+</body>
+</html>ex';
+            } else if (!isMobile) {
+                document.getElementById('mobile-notice').style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>   }
+        });
+    </script>
+</body>
+</html>ody>
+</html>   });
+    </script>
+</body>
+</html>   }
+        });
+    </script>
+</body>
+</html>ody>
+</html>/body>
+</html>   }
+        });
+    </script>
+</body>
+</html>ody>
+</html>   });
+    </script>
+</body>
+</html>   }
+        });
+    </script>
+</body>
+</html>ody>
+</html>       }
+        });
+    </script>
+</body>
+</html>   }
+        });
+    </script>
+</body>
+</html>ody>
+</html>   });
+    </script>
+</body>
+</html>   }
+        });
+    </script>
+</body>
+</html>ody>
 </html>
