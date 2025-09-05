@@ -13,6 +13,17 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
+        /* --- CSS Reset --- */
+        * {
+            box-sizing: border-box;
+        }
+        
+        html, body {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+        }
+        
         /* --- Theme Colors & Overrides --- */
         :root {
             --primary-color: #d32f2f; /* Red */
@@ -826,7 +837,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            z-index: 2000;
+            z-index: 2200;
             opacity: 0;
             visibility: hidden;
             transition: opacity 0.3s ease, visibility 0.3s ease;
@@ -1295,6 +1306,8 @@
             z-index: 2100; /* above silk canvas (which is z-index:0) and most UI */
             background: #732020;
             color: var(--footer-color, #fff);
+            margin-top: auto; /* 确保footer贴底 */
+            flex-shrink: 0; /* 防止footer被压缩 */
         }
 
 
@@ -2278,11 +2291,7 @@
                     
                     /* 视差滑动效果 */
                     .parallax-gallery {
-                        cursor: grab;
-                    }
-                    
-                    .parallax-gallery:active {
-                        cursor: grabbing;
+                        cursor: default;
                     }
                     
                     /* 响应式设计 */
@@ -2312,165 +2321,8 @@
                 <!-- JavaScript交互控制 -->
                 <script>
                 document.addEventListener('DOMContentLoaded', function() {
-                    const gallery = document.getElementById('parallaxGallery');
-                    const rows = gallery.querySelectorAll('.gallery-row');
-                    
-                    let isDragging = false;
-                    let startX = 0;
-                    let currentX = 0;
-                    let animationSpeed = [1, 1, 1]; // 三行的速度倍数
-                    let baseSpeed = [40, 50, 60]; // 基础动画时间（秒）
-                    
-                    // 更新动画速度
-                    function updateAnimationSpeed() {
-                        rows.forEach((row, index) => {
-                            const direction = row.dataset.direction;
-                            const speed = baseSpeed[index] / animationSpeed[index];
-                            const animationName = direction === 'left' ? 'scrollLeft' : 'scrollRight';
-                            row.style.animation = `${animationName} ${speed}s linear infinite`;
-                        });
-                    }
-                    
-                    // 鼠标事件
-                    gallery.addEventListener('mousedown', function(e) {
-                        isDragging = true;
-                        startX = e.clientX;
-                        gallery.style.cursor = 'grabbing';
-                        
-                        // 暂停所有动画
-                        rows.forEach(row => {
-                            row.style.animationPlayState = 'paused';
-                        });
-                    });
-                    
-                    gallery.addEventListener('mousemove', function(e) {
-                        if (!isDragging) return;
-                        
-                        currentX = e.clientX;
-                        const deltaX = currentX - startX;
-                        const sensitivity = 0.01;
-                        
-                        // 根据滑动方向和距离调整速度
-                        const speedMultiplier = Math.max(0.1, Math.min(3, 1 + Math.abs(deltaX) * sensitivity));
-                        
-                        animationSpeed = [speedMultiplier, speedMultiplier * 0.8, speedMultiplier * 0.6];
-                        
-                        // 实时更新位置
-                        rows.forEach((row, index) => {
-                            const direction = row.dataset.direction;
-                            const currentTransform = row.style.transform || 'translateX(0)';
-                            const currentTranslate = parseFloat(currentTransform.match(/-?\d+\.?\d*/)?.[0] || 0);
-                            
-                            let newTranslate;
-                            if (direction === 'left') {
-                                newTranslate = currentTranslate - deltaX * 0.1;
-                            } else {
-                                newTranslate = currentTranslate + deltaX * 0.1;
-                            }
-                            
-                            row.style.transform = `translateX(${newTranslate}px)`;
-                        });
-                        
-                        startX = currentX;
-                    });
-                    
-                    gallery.addEventListener('mouseup', function() {
-                        if (!isDragging) return;
-                        
-                        isDragging = false;
-                        gallery.style.cursor = 'grab';
-                        
-                        // 恢复动画
-                        updateAnimationSpeed();
-                        rows.forEach(row => {
-                            row.style.animationPlayState = 'running';
-                            row.style.transform = ''; // 清除手动变换
-                        });
-                        
-                        // 3秒后恢复正常速度
-                        setTimeout(() => {
-                            animationSpeed = [1, 1, 1];
-                            updateAnimationSpeed();
-                        }, 3000);
-                    });
-                    
-                    gallery.addEventListener('mouseleave', function() {
-                        if (isDragging) {
-                            isDragging = false;
-                            gallery.style.cursor = 'grab';
-                            
-                            // 恢复动画
-                            updateAnimationSpeed();
-                            rows.forEach(row => {
-                                row.style.animationPlayState = 'running';
-                                row.style.transform = '';
-                            });
-                            
-                            setTimeout(() => {
-                                animationSpeed = [1, 1, 1];
-                                updateAnimationSpeed();
-                            }, 3000);
-                        }
-                    });
-                    
-                    // 触摸事件（移动端）
-                    gallery.addEventListener('touchstart', function(e) {
-                        isDragging = true;
-                        startX = e.touches[0].clientX;
-                        
-                        rows.forEach(row => {
-                            row.style.animationPlayState = 'paused';
-                        });
-                    });
-                    
-                    gallery.addEventListener('touchmove', function(e) {
-                        if (!isDragging) return;
-                        e.preventDefault();
-                        
-                        currentX = e.touches[0].clientX;
-                        const deltaX = currentX - startX;
-                        const sensitivity = 0.01;
-                        
-                        const speedMultiplier = Math.max(0.1, Math.min(3, 1 + Math.abs(deltaX) * sensitivity));
-                        animationSpeed = [speedMultiplier, speedMultiplier * 0.8, speedMultiplier * 0.6];
-                        
-                        rows.forEach((row, index) => {
-                            const direction = row.dataset.direction;
-                            const currentTransform = row.style.transform || 'translateX(0)';
-                            const currentTranslate = parseFloat(currentTransform.match(/-?\d+\.?\d*/)?.[0] || 0);
-                            
-                            let newTranslate;
-                            if (direction === 'left') {
-                                newTranslate = currentTranslate - deltaX * 0.1;
-                            } else {
-                                newTranslate = currentTranslate + deltaX * 0.1;
-                            }
-                            
-                            row.style.transform = `translateX(${newTranslate}px)`;
-                        });
-                        
-                        startX = currentX;
-                    });
-                    
-                    gallery.addEventListener('touchend', function() {
-                        if (!isDragging) return;
-                        
-                        isDragging = false;
-                        
-                        updateAnimationSpeed();
-                        rows.forEach(row => {
-                            row.style.animationPlayState = 'running';
-                            row.style.transform = '';
-                        });
-                        
-                        setTimeout(() => {
-                            animationSpeed = [1, 1, 1];
-                            updateAnimationSpeed();
-                        }, 3000);
-                    });
-                    
-                    // 初始化
-                    updateAnimationSpeed();
+                    // 图片轮播现在只保持固定速度，无交互逻辑
+                    console.log('图片轮播已启动，保持固定速度滚动');
                 });
                 </script>
             </div>
@@ -2741,56 +2593,58 @@
             </div>
         </div>
 
-        <footer>
-            <div class="container">
-                <div class="footer-content">
-                    <div class="footer-logo">
-                        <h2><span class="highlight">Lora</span>lore</h2>
-                        <p class="footer-tagline">无限进步</p>
-                        <p class="footer-desc">我们是一支跨校的学生创意与技术团队，专注于小程序、Web 与桌面端的产品设计与实现，用技术驱动创意落地。</p>
-                        <div class="footer-social">
-                            <a href="https://github.com/Sippyyuhao/Loralore" target="_blank" aria-label="GitHub" class="cursor-target"><i class="fa fa-github"></i></a>
-                            <a href="https://grabcad.com/sippy-1" target="_blank" aria-label="GrabCAD" class="cursor-target"><i class="fa fa-cube"></i></a>
-                            <a href="javascript:alert('请添加负责人qq：')" aria-label="QQ" class="cursor-target"><i class="fa fa-qq"></i></a>
-                            <a href="#" id="footer-wechat-btn" aria-label="WeChat" class="cursor-target"><i class="fa fa-wechat"></i></a>
-                        </div>
-                    </div>
-                    <div class="footer-links">
-                        <div class="footer-links-column">
-                            <h3>快速链接</h3>
-                            <a href="#projects" class="cursor-target">项目展示</a>
-                            <a href="#services" class="cursor-target">服务</a>
-                            <a href="#equipment" class="cursor-target">资源</a>
-                            <a href="#team" class="cursor-target">团队介绍</a>
-                            <a href="#contact" class="cursor-target">联系我们</a>
-                        </div>
-                        <div class="footer-links-column">
-                            <h3>项目类型</h3>
-                            <a href="#project-ascii-wx" class="cursor-target">微信小程序</a>
-                            <a href="#project-ascii-qt" class="cursor-target">桌面应用</a>
-                            <a href="#project-lovalovea" class="cursor-target">Web应用</a>
-                            <a href="#project-calculus" class="cursor-target">数学应用</a>
-                        </div>
-                    </div>
-                    <div class="footer-contact">
-                        <h3>联系信息</h3>
-                        <ul>
-                            <li><i class="fa fa-map-marker"></i> 广州大学城（广东省广州市番禺区小谷围岛）</li>
-                            <li><i class="fa fa-map-marker"></i> Carnegie Mellon University, 5000 Forbes Ave, Pittsburgh, PA 15213, USA</li>
-                            <li><i class="fa fa-envelope"></i> sippyyuhao@hotmail.com</li>
-                        </ul>
-                        <div class="footer-cta">
-                            <a href="#contact" class="btn btn-icon cursor-target"><i class="fa fa-paper-plane"></i>Have Fun</a>
-                        </div>
+
+    </main>
+    
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <h2><span class="highlight">Lora</span>lore</h2>
+                    <p class="footer-tagline">无限进步</p>
+                    <p class="footer-desc">我们是一支跨校的学生创意与技术团队，专注于小程序、Web 与桌面端的产品设计与实现，用技术驱动创意落地。</p>
+                    <div class="footer-social">
+                        <a href="https://github.com/Sippyyuhao/" target="_blank" aria-label="GitHub" class="cursor-target"><i class="fa fa-github"></i></a>
+                        <a href="https://grabcad.com/sippy-1" target="_blank" aria-label="GrabCAD" class="cursor-target"><i class="fa fa-cube"></i></a>
+                        <a href="javascript:alert('请添加负责人qq：')" aria-label="QQ" class="cursor-target"><i class="fa fa-qq"></i></a>
+                        <a href="#" id="footer-wechat-btn" aria-label="WeChat" class="cursor-target"><i class="fa fa-wechat"></i></a>
                     </div>
                 </div>
-                <div class="footer-bottom">
-                    <p>&copy; 2025 Loralore. 保留所有权利.</p>
-                    <a href="#showcase" class="back-to-top cursor-target" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
+                <div class="footer-links">
+                    <div class="footer-links-column">
+                        <h3>快速链接</h3>
+                        <a href="#projects" class="cursor-target">项目展示</a>
+                        <a href="#services" class="cursor-target">服务</a>
+                        <a href="#equipment" class="cursor-target">资源</a>
+                        <a href="#team" class="cursor-target">团队介绍</a>
+                        <a href="#contact" class="cursor-target">联系我们</a>
+                    </div>
+                    <div class="footer-links-column">
+                        <h3>项目类型</h3>
+                        <a href="#project-ascii-wx" class="cursor-target">微信小程序</a>
+                        <a href="#project-ascii-qt" class="cursor-target">桌面应用</a>
+                        <a href="#project-lovalovea" class="cursor-target">Web应用</a>
+                        <a href="#project-calculus" class="cursor-target">数学应用</a>
+                    </div>
+                </div>
+                <div class="footer-contact">
+                    <h3>联系信息</h3>
+                    <ul>
+                        <li><i class="fa fa-map-marker"></i> 广州大学城（广东省广州市番禺区小谷围岛）</li>
+                        <li><i class="fa fa-map-marker"></i> Carnegie Mellon University, 5000 Forbes Ave, Pittsburgh, PA 15213, USA</li>
+                        <li><i class="fa fa-envelope"></i> sippyyuhao@hotmail.com</li>
+                    </ul>
+                    <div class="footer-cta">
+                        <a href="#contact" class="btn btn-icon cursor-target"><i class="fa fa-paper-plane"></i>Have Fun</a>
+                    </div>
                 </div>
             </div>
-        </footer>
-    </main>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Loralore. 保留所有权利.</p>
+                <a href="#showcase" class="back-to-top cursor-target" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
+            </div>
+        </div>
+    </footer>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
@@ -2846,7 +2700,7 @@
                         }
                     })
                     .catch(error => {
-                        console.log('📊 欢迎来到Loralore！访问统计功能正在优化中，感谢您的关注');
+                        console.log('欢迎来到Loralore！访问统计功能正在优化中，感谢您的关注');
                         // 在出错时给用户一个反馈
                         visitCountElement.innerText = 'N/A';
                     });
@@ -2856,7 +2710,7 @@
                 // 使用配置文件初始化粒子效果
                 particlesJS("particles-js", particlesConfig);
             } else {
-                console.log("✨ 欢迎来到Loralore！粒子特效正在为您准备中，精彩即将呈现");
+                console.log(" 欢迎来到Loralore！粒子特效正在为您准备中，精彩即将呈现");
             }
 
             // 滚动显示动画
@@ -3322,6 +3176,15 @@
 </html>ody>
 </html>   });
     </script>
+</body>
+</html>   }
+        });
+    </script>
+</body>
+</html>ody>
+</html></body>
+</html>ody>
+</html>ipt>
 </body>
 </html>   }
         });

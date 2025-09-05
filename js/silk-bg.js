@@ -270,7 +270,11 @@
     const instance = initSilkBackground(container, options);
 
     // ensure body content is above canvas
-    document.body.style.position = document.body.style.position || 'relative';
+    // 不修改body的position，保持flexbox布局
+    if (!document.body.style.position || document.body.style.position === 'static') {
+      // 只在必要时设置relative，但保持flexbox布局
+      // document.body.style.position = 'relative';
+    }
 
     // store instance for later control
     window.__SilkBackground = window.__SilkBackground || {};
