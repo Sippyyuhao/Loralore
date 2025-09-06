@@ -1,0 +1,243 @@
+/* 项目详情展开收回功能样式 */
+
+/* 项目详情标题区域样式 */
+.project-detail-header {
+    position: relative;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    padding: 20px;
+    border-radius: 12px 12px 0 0;
+    background: linear-gradient(135deg, #d32f2f 0%, #f44336 100%);
+    color: white;
+    user-select: none;
+}
+
+.project-detail-header:hover {
+    background: linear-gradient(135deg, #c62828 0%, #e53935 100%);
+}
+
+.project-detail-header h3 {
+    margin: 0 40px 8px 0;
+    font-size: 1.4rem;
+    font-weight: 600;
+}
+
+.project-detail-header .project-slogan {
+    margin: 0 40px 0 0;
+    font-size: 0.95rem;
+    opacity: 0.9;
+    font-style: italic;
+}
+
+/* 展开按钮样式 */
+.project-expand-btn {
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.2);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    color: white;
+    font-size: 14px;
+    backdrop-filter: blur(10px);
+}
+
+.project-expand-btn:hover {
+    background: rgba(255, 255, 255, 0.3);
+    border-color: rgba(255, 255, 255, 0.5);
+    transform: translateY(-50%) scale(1.1);
+}
+
+.project-expand-btn:active {
+    transform: translateY(-50%) scale(0.95);
+}
+
+.project-expand-btn i {
+    transition: transform 0.3s ease;
+}
+
+/* 展开状态的按钮动画 */
+.project-detail-item.expanded .project-expand-btn i {
+    transform: rotate(180deg);
+}
+
+/* 项目详情内容区域 */
+.project-detail-content {
+    background: white;
+    border-radius: 0 0 12px 12px;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out, opacity 0.3s ease-out;
+}
+
+/* 收起状态 */
+.project-detail-item.collapsed .project-detail-content {
+    max-height: 0 !important;
+    opacity: 0;
+    padding: 0 20px;
+}
+
+/* 展开状态 */
+.project-detail-item.expanded .project-detail-content {
+    opacity: 1;
+    padding: 20px;
+}
+
+/* 项目详情信息样式优化 */
+.project-detail-info {
+    line-height: 1.6;
+}
+
+.project-detail-info > p {
+    margin-bottom: 20px;
+    color: #555;
+    font-size: 1rem;
+}
+
+.project-detail-info h4 {
+    color: #d32f2f;
+    margin: 24px 0 16px 0;
+    font-size: 1.1rem;
+    font-weight: 600;
+    border-left: 4px solid #d32f2f;
+    padding-left: 12px;
+}
+
+.project-detail-info ul {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 24px 0;
+}
+
+.project-detail-info li {
+    padding: 8px 0;
+    display: flex;
+    align-items: center;
+    color: #666;
+    font-size: 0.95rem;
+}
+
+.project-detail-info li i {
+    color: #d32f2f;
+    width: 20px;
+    margin-right: 12px;
+    text-align: center;
+}
+
+/* 技术栈标签样式 */
+.project-tech {
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid #eee;
+}
+
+.project-tech > span:first-child {
+    color: #333;
+    font-weight: 600;
+    margin-right: 12px;
+}
+
+.tech-tag {
+    display: inline-block;
+    background: linear-gradient(135deg, #f5f5f5 0%, #e8e8e8 100%);
+    color: #555;
+    padding: 4px 12px;
+    border-radius: 16px;
+    font-size: 0.85rem;
+    margin: 4px 6px 4px 0;
+    border: 1px solid #ddd;
+    transition: all 0.2s ease;
+}
+
+.tech-tag:hover {
+    background: linear-gradient(135deg, #d32f2f 0%, #f44336 100%);
+    color: white;
+    border-color: #d32f2f;
+    transform: translateY(-1px);
+}
+
+/* 项目卡片整体样式 */
+.project-detail-item {
+    margin-bottom: 24px;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+    transition: all 0.3s ease;
+    background: white;
+}
+
+.project-detail-item:hover {
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+    transform: translateY(-2px);
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .project-detail-header {
+        padding: 16px;
+    }
+    
+    .project-detail-header h3 {
+        font-size: 1.2rem;
+        margin-right: 35px;
+    }
+    
+    .project-detail-header .project-slogan {
+        font-size: 0.9rem;
+        margin-right: 35px;
+    }
+    
+    .project-expand-btn {
+        width: 32px;
+        height: 32px;
+        right: 16px;
+        font-size: 12px;
+    }
+    
+    .project-detail-item.expanded .project-detail-content,
+    .project-detail-item.collapsed .project-detail-content {
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+    
+    .project-detail-item.expanded .project-detail-content {
+        padding-top: 16px;
+        padding-bottom: 16px;
+    }
+}
+
+/* 动画增强 */
+@keyframes expandBounce {
+    0% { transform: translateY(-50%) scale(1); }
+    50% { transform: translateY(-50%) scale(1.2); }
+    100% { transform: translateY(-50%) scale(1.1); }
+}
+
+.project-expand-btn:hover {
+    animation: expandBounce 0.3s ease;
+}
+
+/* 无障碍支持 */
+.project-expand-btn:focus {
+    outline: 2px solid rgba(255, 255, 255, 0.8);
+    outline-offset: 2px;
+}
+
+/* 高对比度模式支持 */
+@media (prefers-contrast: high) {
+    .project-expand-btn {
+        border-width: 3px;
+        background: rgba(255, 255, 255, 0.4);
+    }
+    
+    .tech-tag {
+        border-width: 2px;
+    }
+}
