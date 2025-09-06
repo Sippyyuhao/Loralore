@@ -414,7 +414,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 handleSmall(mq);
                 mq.addListener(handleSmall);
             } catch (err) {
-                console.log('🎨 欢迎来到Loralore！团队背景轮播正在优化中，为您提供更好的体验');
+                console.log('欢迎来到Loralore！团队背景轮播正在优化中，为您提供更好的体验');
             }
         })();
 
@@ -426,7 +426,7 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // 图片加载成功
         cmuLogo.addEventListener('load', function() {
-            console.log('🎉 欢迎来到Loralore！CMU合作项目展示已准备就绪');
+            console.log(' 欢迎来到Loralore！CMU合作项目展示已准备就绪');
             this.style.opacity = '1';
             this.style.visibility = 'visible';
             this.style.display = 'block';
@@ -439,7 +439,7 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // 图片加载失败
         cmuLogo.addEventListener('error', function() {
-            console.log('🌟 欢迎来到Loralore！正在为您准备最佳体验...');
+            console.log('欢迎来到Loralore！正在为您准备最佳体验...');
             this.style.display = 'none';
             
             // 显示备用文字
@@ -456,7 +456,7 @@ document.addEventListener('DOMContentLoaded', function() {
         // 检查图片是否已经加载完成
         const checkImageStatus = () => {
             if (cmuLogo.complete && cmuLogo.naturalHeight !== 0) {
-                console.log('✨ 欢迎来到Loralore！国际合作展示区已完美呈现');
+                console.log(' 欢迎来到Loralore！国际合作展示区已完美呈现');
                 cmuLogo.style.opacity = '1';
                 cmuLogo.style.visibility = 'visible';
                 cmuLogo.style.display = 'block';
@@ -475,10 +475,10 @@ document.addEventListener('DOMContentLoaded', function() {
         // 立即检查一次
         if (checkImageStatus()) {
             // 图片已经加载完成，不需要进一步处理
-            console.log('🎊 欢迎来到Loralore！所有内容已准备完毕，开始您的探索之旅吧！');
+            console.log(' 欢迎来到Loralore！所有内容已准备完毕，开始您的探索之旅吧！');
         } else {
             // 图片还在加载中，设置初始状态
-            console.log('🌈 欢迎来到Loralore！正在为您呈现最佳视觉效果...');
+            console.log(' 欢迎来到Loralore！正在为您呈现最佳视觉效果...');
             cmuLogo.style.opacity = '0';
             cmuLogo.style.transition = 'opacity 0.3s ease';
         }
@@ -486,7 +486,7 @@ document.addEventListener('DOMContentLoaded', function() {
         // 延迟检查图片状态（仅在需要时）
         setTimeout(() => {
             if (!checkImageStatus()) {
-                console.log('💫 欢迎来到Loralore！感谢您的耐心等待，精彩内容即将呈现');
+                console.log(' 欢迎来到Loralore！感谢您的耐心等待，精彩内容即将呈现');
                 // 如果图片仍然没有加载，显示备用文字
                 if (cmuFallbackText) {
                     cmuFallbackText.style.display = 'block';

@@ -1466,7 +1466,7 @@ var _hmt = _hmt || [];
                     <li><a href="#team" class="cursor-target"><i class="fa fa-users"></i><span>团队</span></a></li>
                     <li><a href="#intellectual-property" class="cursor-target"><i class="fa fa-certificate"></i><span>知识产权</span></a></li>
                     <li><a href="#contact" class="cursor-target"><i class="fa fa-envelope-o"></i><span>联系我们</span></a></li>
-                    <li class="visit-counter-li"><i class="fa fa-eye"></i><span>累计访问: <span id="visit-count">3000</span></span></li>
+                    <li class="visit-counter-li"><i class="fa fa-eye"></i><span>累计访问: <span id="visit-count">0</span></span></li>
                 </ul>
             </nav>
         </div>
@@ -2690,7 +2690,7 @@ var _hmt = _hmt || [];
                     })
                     .then(data => {
                         if (data.count !== undefined) {
-                            visitCountElement.innerText = data.count + 3000;
+                            visitCountElement.innerText = data.count ;
                         }
                     })
                     .catch(error => {
